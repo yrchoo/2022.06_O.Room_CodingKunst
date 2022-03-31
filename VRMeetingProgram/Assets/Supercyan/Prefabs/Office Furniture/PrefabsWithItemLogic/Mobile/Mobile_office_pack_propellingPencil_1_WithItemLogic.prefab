@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1746598544361168399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085850427692388973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b040736da90200d469616062cbbd8ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_useBothHands: 0
+  m_preferredHand: 2
+  m_itemType: 3
+  m_dummyPoint: {fileID: 2085850427692420687}
+  m_itemAnimations: {fileID: 11400000, guid: fca7e94cadef32842a3ddf1d8cdb803d, type: 2}
+  m_accessoryLogic: {fileID: 0}
+  m_flipXForHand: 0
+  m_flipYForHand: 0
+  m_flipZForHand: 0
+--- !u!1001 &6103884133616307295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5208192715537538610, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_Name
+      value: Mobile_office_pack_propellingPencil_1_WithItemLogic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715537498642, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208192715535597808, guid: 53e2efb12722bd14eaedfe36905bc575,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8a88c66d65f3504786875bdfe310b96, type: 2}
+    m_RemovedComponents:
+    - {fileID: 1089037475252040379, guid: 53e2efb12722bd14eaedfe36905bc575, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 53e2efb12722bd14eaedfe36905bc575, type: 3}
+--- !u!1 &2085850427692388973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5208192715537538610, guid: 53e2efb12722bd14eaedfe36905bc575,
+    type: 3}
+  m_PrefabInstance: {fileID: 6103884133616307295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2085850427692420687 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5208192715537498640, guid: 53e2efb12722bd14eaedfe36905bc575,
+    type: 3}
+  m_PrefabInstance: {fileID: 6103884133616307295}
+  m_PrefabAsset: {fileID: 0}

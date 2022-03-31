@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!64 &3654823893536277319
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4700612482415739680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300002, guid: 7a9c26efb4a54b04cb4beb2b9c0d1631, type: 3}
+--- !u!64 &901738065105607737
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4700612482415739686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 7a9c26efb4a54b04cb4beb2b9c0d1631, type: 3}
+--- !u!1001 &4700612482415838594
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_Name
+      value: Mobile_office_pack_markerPen_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8a88c66d65f3504786875bdfe310b96, type: 2}
+    - target: {fileID: 2300002, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8a88c66d65f3504786875bdfe310b96, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 27a0b683a8efcc344852643b18f30435, type: 3}
+--- !u!1 &4700612482415739680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 27a0b683a8efcc344852643b18f30435,
+    type: 3}
+  m_PrefabInstance: {fileID: 4700612482415838594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4700612482415739686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 27a0b683a8efcc344852643b18f30435,
+    type: 3}
+  m_PrefabInstance: {fileID: 4700612482415838594}
+  m_PrefabAsset: {fileID: 0}
