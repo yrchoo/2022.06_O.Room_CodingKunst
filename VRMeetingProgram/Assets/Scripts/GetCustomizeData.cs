@@ -12,6 +12,12 @@ public class GetCustomizeData : MonoBehaviour
     public int oldModelData = 0;
     public GameObject[] character = new GameObject[32];
 
+    struct characterData{
+        int gender;
+        int model;        
+        int skin;
+    };
+
 
     // Start is called before the first frame update
     void Start()
