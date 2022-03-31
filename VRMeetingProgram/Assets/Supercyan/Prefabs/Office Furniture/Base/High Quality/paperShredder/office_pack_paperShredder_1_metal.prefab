@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!64 &3842912571897985784
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634779925473634742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 4226c49c7c7b6a54da40df14cb79c7f2, type: 3}
+--- !u!64 &5656774746617081584
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634779925473634740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300002, guid: 4226c49c7c7b6a54da40df14cb79c7f2, type: 3}
+--- !u!1001 &4634779925473537814
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_Name
+      value: office_pack_paperShredder_1_metal
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 73b38087905d8264985c146492da539a, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eecf528171269e449971b56b7b5ab972, type: 3}
+--- !u!1 &4634779925473634742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: eecf528171269e449971b56b7b5ab972,
+    type: 3}
+  m_PrefabInstance: {fileID: 4634779925473537814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4634779925473634740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: eecf528171269e449971b56b7b5ab972,
+    type: 3}
+  m_PrefabInstance: {fileID: 4634779925473537814}
+  m_PrefabAsset: {fileID: 0}
