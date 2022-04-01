@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    //ChatManager chatManager;
+
     [Header("SideBar")]
     public InputField NickNameInput;
 
@@ -23,7 +25,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject Chat;
     public Text ListText;
     public Text RoomInfoText;
-    //public Text[] ChatText;
+    public Text[] ChatText;
     public InputField ChatInput;
 
     [Header("ETC")]
@@ -33,19 +35,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     List<RoomInfo> myList = new List<RoomInfo>();
     //int currentPage = 1, maxPage, multiple;
 
-
     #region 서버연결
     void Awake() => Screen.SetResolution(960, 540, false);
 
     void Update()
     {
         StatusText.text = PhotonNetwork.NetworkClientState.ToString();
-        LobbyInfoText.text = (PhotonNetwork.CountOfPlayers - PhotonNetwork.CountOfPlayersInRooms) + "로비 / " + PhotonNetwork.CountOfPlayers + "접속";
+        LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "접속";
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
 
-    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
+    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby(); //connect의 콜백
 
     public override void OnJoinedLobby()
     {
@@ -58,7 +59,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Disconnect() => PhotonNetwork.Disconnect();
 
-    public override void OnDisconnected(DisconnectCause cause)
+    public override void OnDisconnected(DisconnectCause cause) //disconnect콜백
     {
         SideBar2.SetActive(false);
         Chat.SetActive(false);
@@ -71,7 +72,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         //if (num == -2) --currentPage;
         //else if (num == -1) ++currentPage;
-        //else PhotonNetwork.JoinRoom(myList[multiple + num].Name);
+        //else
         PhotonNetwork.JoinRoom(myList[num].Name);
         MyListRenewal();
     }
@@ -111,8 +112,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+
     #region 방
-    public void CreateRoom() => PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });
+    public void CreateRoom()
+    {
+        PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });  //성공적으로 만들어지면 onJoinedRoom으로
+        RoomInput.text = "";
+        //MyListRenewal();
+    }
 
     //public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
 
@@ -123,23 +130,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Chat.SetActive(true);
         RoomRenewal();
         ChatInput.text = "";
-        //for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
+        for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
 
     //public override void OnJoinRandomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
 
+    //player가 방에 있을 때 호출
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        RoomRenewal();
-        ChatRPC("<color=yellow>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
+        RoomRenewal(); //사람이 들어왔다 나갔다 할 때 방 갱신
+        //ChatRPC(newPlayer.NickName + "님이 참가하셨습니다");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
-        ChatRPC("<color=yellow>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
+        //ChatRPC("<color=yellow>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
     }
 
     void RoomRenewal()
@@ -151,6 +159,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+
     #region 채팅
     public void Send()
     {
@@ -161,13 +170,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [PunRPC] // RPC는 플레이어가 속해있는 방 모든 인원에게 전달한다
     void ChatRPC(string msg)
     {
-        bool isInput = false;
-        Debug.Log(msg);
+        bool who = PV.IsMine ? true : false;
+        string name = PV.IsMine ? PhotonNetwork.NickName : PV.Owner.NickName;
+        Debug.Log(who + name);
+        //chatManager.Chat(who, msg, name, null);
         /*
+        bool isInput = false;
         for (int i = 0; i < ChatText.Length; i++)
-        {
-            
-        }
             if (ChatText[i].text == "")
             {
                 isInput = true;
@@ -179,7 +188,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             for (int i = 1; i < ChatText.Length; i++) ChatText[i - 1].text = ChatText[i].text;
             ChatText[ChatText.Length - 1].text = msg;
         }*/
-
 
     }
     #endregion

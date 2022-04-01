@@ -4,8 +4,6 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-
-
 public class ChatManager : MonoBehaviour
 {
     public GameObject YellowArea, WhiteArea, DateArea;
@@ -136,10 +134,7 @@ public class ChatManager : MonoBehaviour
         
     }
 
-
-
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
-
 
     void ScrollDelay() => scrollBar.value = 0;
 
