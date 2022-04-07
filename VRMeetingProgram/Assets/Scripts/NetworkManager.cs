@@ -27,22 +27,32 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public Text ListText;
     public Text RoomInfoText;
     public Text[] ChatText;
-    public InputField ChatInput;
+    //public InputField ChatInput;
+
 
     [Header("ETC")]
     public Text StatusText;
     public PhotonView PV;
+    //public Text NickNameText;
 
     List<RoomInfo> myList = new List<RoomInfo>();
     //int currentPage = 1, maxPage, multiple;
 
     #region 서버연결
-    void Awake() => Screen.SetResolution(960, 540, false);
+    void Awake()
+    {
+        Screen.SetResolution(960, 540, false);
+        //NickNameText.text = PV.IsMine ? PhotonNetwork.NickName : PV.Owner.NickName;
+        //NickNameText.color = PV.IsMine ? Color.green : Color.red;
+    }
 
     void Update()
     {
+        //Debug.Log(PV.IsMine);
         StatusText.text = PhotonNetwork.NetworkClientState.ToString();
         LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "접속";
+
+
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
@@ -130,7 +140,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Chat.SetActive(true);
         RoomRenewal();
-        ChatInput.text = "";
+       // ChatInput.text = "";
         for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
     }
 
@@ -159,18 +169,45 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
     }
     #endregion
-
-
-    #region 채팅
+}
+    
+/*    #region 채팅
     public void Send()
     {
-        PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
+        if (PV.IsMine)
+        {
+            PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
+        }
+        *//*else
+        {
+            PV.RPC("ChatOtherRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
+            //Debug.Log(PV.Owner.NickName);
+        }
+        *//*
         ChatInput.text = "";
     }
 
     [PunRPC] // RPC는 플레이어가 속해있는 방 모든 인원에게 전달한다
     void ChatRPC(string msg)
     {
+        string[] msgSp = msg.Split(':');
+        ChatManager.GetComponent<ChatManager>().Chat(true, msgSp[1], msgSp[0], null);
+
+        //Debug.Log(msgSp[0] + "??" + msgSp[1]);
+        //string name = PhotonNetwork.NickName;
+        //Debug.Log(name.Equals(msgSp[0]));
+        //Debug.Log(msgSp[0].GetType().Name+ msgSp[0]);
+        //Debug.Log(PhotonNetwork.NickName.GetType().Name+ PhotonNetwork.NickName);
+
+
+        *//*        if (PV.IsMine)
+                {
+                    Debug.Log(msgSp[0] + "??" + msgSp[1]);
+                }
+                else
+                {
+                    Debug.Log(msgSp[0] + "!!" + msgSp[1]);
+                }*//*
 
         //bool who = PV.IsMine ? true : false;
         //string name = PV.IsMine ? PhotonNetwork.NickName : PV.Owner.NickName;
@@ -179,8 +216,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //chatManager.Chat(who, msg, name, null);
 
-        Debug.Log(msg);
-        /*
+        //
+        *//*
         bool isInput = false;
         for (int i = 0; i < ChatText.Length; i++)
             if (ChatText[i].text == "")
@@ -193,8 +230,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             for (int i = 1; i < ChatText.Length; i++) ChatText[i - 1].text = ChatText[i].text;
             ChatText[ChatText.Length - 1].text = msg;
-        }*/
+        }*//*
 
     }
-    #endregion
-}
+    *//*[PunRPC]
+    void ChatOtherRPC(string msg)
+    {
+        string[] msgSp = msg.Split(':');
+        Debug.Log(msgSp[0] + "!!" + msgSp[1]);
+    }*//*
+        #endregion
+    }*/
