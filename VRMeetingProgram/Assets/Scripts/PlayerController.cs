@@ -31,14 +31,14 @@ public class PlayerController : MonoBehaviour
             m_velocity = m_velocity.normalized;
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                m_velocity *= 2.0f;
+                m_velocity *= 1.5f;
             }
             m_animator.SetFloat("MoveSpeed", m_velocity.magnitude);
             if (Input.GetButtonDown("Jump"))
             {
                 m_velocity.y = m_jumpForce;
             }
-            else if (m_velocity.magnitude > 0.5)
+            else if (m_velocity.magnitude > 0.1)
             {
                 transform.LookAt(transform.position + m_velocity);
             }
@@ -52,10 +52,12 @@ public class PlayerController : MonoBehaviour
         if (!m_wasGrounded && m_isGrounded)
         {
             m_animator.SetTrigger("Land");
+            m_animator.ResetTrigger("Jump");
         }
         if (!m_isGrounded && m_wasGrounded)
         {
             m_animator.SetTrigger("Jump");
+            m_animator.ResetTrigger("Land");
         }
     }
 }

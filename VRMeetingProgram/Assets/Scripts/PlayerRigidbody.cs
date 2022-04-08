@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerRigidbody : MonoBehaviour
 {
     private Animator m_animator;
+
     private Rigidbody m_rigidBody;
     private bool m_wasGrounded;
     private bool m_isGrounded;
+    private bool isJump;
     private List<Collider> m_collisions = new List<Collider>();
+
     public float m_moveSpeed = 2.0f;
     public float m_jumpForce = 4.0f;
     private float m_jumpTimeStamp = 0;
@@ -21,21 +24,26 @@ public class PlayerRigidbody : MonoBehaviour
     void Update()
     {
         m_animator.SetBool("Grounded", m_isGrounded);
+        m_animator.SetBool("isJump", isJump);
         PlayerMove();
         JumpingAndLanding();
+
         m_wasGrounded = m_isGrounded;
     }
     private void PlayerMove()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+
         Vector3 moveHorizontal = Vector3.right * h;
         Vector3 moveVertical = Vector3.forward * v;
         Vector3 velocity = (moveHorizontal + moveVertical).normalized;
+
         transform.LookAt(transform.position + velocity);
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            velocity *= 2.0f;
+            velocity *= 1.5f;
         }
         transform.Translate(velocity * m_moveSpeed * Time.deltaTime, Space.World);
         //m_rigidBody.MovePosition(transform.position + velocity * m_moveSpeed * Time.deltaTime);
@@ -49,15 +57,19 @@ public class PlayerRigidbody : MonoBehaviour
         {
             m_jumpTimeStamp = Time.time;
             m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
+            m_animator.SetBool("isJump", true);
+            isJump = true;
         }
         if (!m_wasGrounded && m_isGrounded)
         {
             m_animator.SetTrigger("Land");
+            m_animator.ResetTrigger("Jump");
         }
         if (!m_isGrounded && m_wasGrounded)
         {
-            m_animator.SetTrigger("Jump");
 
+            m_animator.SetTrigger("Jump");
+            m_animator.ResetTrigger("Land");
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -71,7 +83,9 @@ public class PlayerRigidbody : MonoBehaviour
                 {
                     m_collisions.Add(collision.collider);
                 }
+                m_animator.SetBool("isJump", false);
                 m_isGrounded = true;
+                isJump = false;
             }
         }
     }
