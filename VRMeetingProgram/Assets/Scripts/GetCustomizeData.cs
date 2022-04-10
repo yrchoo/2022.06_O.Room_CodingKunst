@@ -23,6 +23,7 @@ public class GetCustomizeData : MonoBehaviour
     void Start()
     {
         // firebase에 저장된 캐릭터 커스터마이징 데이터 값을 읽어서 변수에 저장하도록 함
+        character[16*genderData + 4*modelData + skinData].SetActive(true);
         oldModelData = modelData;
         oldGenderData = genderData;
         oldSkinData = skinData;
