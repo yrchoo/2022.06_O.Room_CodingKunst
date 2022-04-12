@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform objectTofollow;
     public float followSpeed = 10f;
-    public float sensitivity = 200f;
+    public float sensitivity = 50f;
     public float clampAngle = 70f;
 
 
@@ -20,6 +20,7 @@ public class CameraMovement : MonoBehaviour
     public float maxDistance;
     public float finalDistance;
     public float smoothness = 10f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,19 +29,21 @@ public class CameraMovement : MonoBehaviour
 
         dirNormalized = realCamera.localPosition.normalized;
         finalDistance = realCamera.localPosition.magnitude;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rotX += Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        rotX += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime;
         rotY += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
 
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
         Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
         transform.rotation = rot;
     }
-    void LateUpdate() // ¾÷µ¥ÀÌÆ®°¡ ³¡³­ ´ÙÀ½¿¡ ½ÇÇàµÇ´Â ÇÔ¼ö
+    void LateUpdate() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     {
         transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime);
 

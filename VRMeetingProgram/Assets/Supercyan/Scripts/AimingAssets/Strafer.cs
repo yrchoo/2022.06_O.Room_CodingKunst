@@ -38,6 +38,7 @@ public class Strafer : MonoBehaviour, IInitializable
     public bool CanMove = true;
 
     #region "Collision"
+
     private void OnCollisionEnter(Collision collision)
     {
         ContactPoint[] contactPoints = collision.contacts;
