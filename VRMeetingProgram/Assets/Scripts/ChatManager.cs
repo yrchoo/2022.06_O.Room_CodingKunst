@@ -14,15 +14,21 @@ public class ChatManager : MonoBehaviour
     public Toggle MineToggle;
     AreaScript LastArea;
 
-    public InputField ChatInput;
+    //public InputField ChatInput;
     
 
-    public void Send()
+    public void Send(String msg)
     {
 
         //Chat(true, ChatInput.text, "³ª", null);
         //ChatInput.text = "";
-        Debug.Log(ChatInput.text);
+        Debug.Log(msg);
+        Chat(true, msg, "³ª", null);
+    }
+
+    public void Inform(String msg)
+    {
+        Debug.Log(msg);
     }
 
     public void ReceiveMessage(string text)
