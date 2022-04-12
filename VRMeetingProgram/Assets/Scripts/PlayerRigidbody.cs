@@ -16,16 +16,25 @@ public class PlayerRigidbody : MonoBehaviour
     public float m_jumpForce = 4.0f;
     private float m_jumpTimeStamp = 0;
     private float m_minJumpInterval = 0.25f;
+    public bool run;
+    public float speed = 2f;
+    public float runSpeed = 3f;
+    public float finalSpeed;
+
+    CharacterController m_controller;
+
     void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
+        m_controller = GetComponent<CharacterController>();
     }
     void Update()
     {
         m_animator.SetBool("Grounded", m_isGrounded);
         m_animator.SetBool("isJump", isJump);
-        PlayerMove();
+        //PlayerMove();
+        //InputMovement();
         JumpingAndLanding();
 
         m_wasGrounded = m_isGrounded;
@@ -49,6 +58,29 @@ public class PlayerRigidbody : MonoBehaviour
         //m_rigidBody.MovePosition(transform.position + velocity * m_moveSpeed * Time.deltaTime);
         m_animator.SetFloat("MoveSpeed", velocity.magnitude);
 
+    }
+    void InputMovement()
+    {
+        float gravity = 20.0f;
+        finalSpeed = (run) ? runSpeed : speed;
+        
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+        Vector3 m_velocity = moveDirection.normalized;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+                m_velocity.y = m_jumpForce;
+        }
+
+        m_velocity.y -= gravity * Time.deltaTime;
+        m_controller.Move(m_velocity * finalSpeed * Time.deltaTime);
+        
+        float percent = ((run) ? 1 : 0.5f) * moveDirection.magnitude;
+        m_animator.SetFloat("Blend", percent, 0.1f, Time.deltaTime);
+        m_isGrounded = m_controller.isGrounded;
     }
     private void JumpingAndLanding()
     {
