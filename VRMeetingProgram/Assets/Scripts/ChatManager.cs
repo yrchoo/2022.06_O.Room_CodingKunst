@@ -26,9 +26,20 @@ public class ChatManager : MonoBehaviour
         Chat(true, msg, "³ª", null);
     }
 
+    public void ChatTo(String msg)
+    {
+        string[] msgSp = msg.Split(':');
+        Chat(false, msgSp[1], msgSp[0], null);
+    }
+
     public void Inform(String msg)
     {
         Debug.Log(msg);
+
+        Transform CurDateArea = Instantiate(DateArea).transform;
+        CurDateArea.SetParent(ContentRect.transform, false);
+        CurDateArea.SetSiblingIndex(CurDateArea.GetSiblingIndex());       
+        CurDateArea.GetComponent<AreaScript>().DateText.text = msg;
     }
 
     public void ReceiveMessage(string text)
