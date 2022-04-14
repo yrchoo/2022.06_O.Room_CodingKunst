@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CustomizeSkinButton : MonoBehaviour
 {
     private bool IsClick;
-    public int skinN = 0;
+    public int skinN;
     private int skinData;
     public Toggle toggle;
 
@@ -14,21 +14,18 @@ public class CustomizeSkinButton : MonoBehaviour
     void Start()
     {
         IsClick = false;
-        skinData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().skinData;
+        skinData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().oldSkinData;
         CheckToggle();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void CheckToggle(){
         if(skinN == skinData){
             toggle.isOn = true;
-        }
-        else{
-            toggle.isOn = false;
         }
     }
 
