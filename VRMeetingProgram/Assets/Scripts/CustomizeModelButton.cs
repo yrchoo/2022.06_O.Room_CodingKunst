@@ -14,7 +14,7 @@ public class CustomizeModelButton : MonoBehaviour
     void Start()
     {
         IsClick = false;
-        modelData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().modelData;
+        modelData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().oldModelData;
         CheckToggle();
     }
 
@@ -27,9 +27,6 @@ public class CustomizeModelButton : MonoBehaviour
     public void CheckToggle(){
         if(modelN == modelData){
             toggle.isOn = true;
-        }
-        else{
-            toggle.isOn = false;
         }
     }
 

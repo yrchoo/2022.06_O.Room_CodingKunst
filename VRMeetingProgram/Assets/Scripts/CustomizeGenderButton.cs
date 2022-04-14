@@ -14,7 +14,7 @@ public class CustomizeGenderButton : MonoBehaviour
     void Start()
     {
         IsClick = false;
-        genderData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().genderData;
+        genderData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().oldGenderData;
         CheckToggle();
     }
 
@@ -27,9 +27,6 @@ public class CustomizeGenderButton : MonoBehaviour
     public void CheckToggle(){
         if(genderN == genderData){
             toggle.isOn = true;
-        }
-        else{
-            toggle.isOn = false;
         }
     }
 
