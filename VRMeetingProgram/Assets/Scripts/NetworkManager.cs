@@ -26,6 +26,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [Header("Chat")]
     public GameObject Chat;
+    public GameObject ChatPrefab;
+    public Transform ChatPos;
+
     public Text ListText;
     public Text RoomInfoText;
     public Text[] ChatText;
@@ -100,7 +103,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //if (num == -2) --currentPage;
         //else if (num == -1) ++currentPage;
         //else
-        PhotonNetwork.JoinRoom(myList[num].Name);
+        PhotonNetwork.JoinRoom(myList[num].Name); //onjoinedroom 호출됨
         MyListRenewal();
     }
 
@@ -153,15 +156,23 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom() => PhotonNetwork.LeaveRoom();
 
+
     public override void OnJoinedRoom()
     {
         Chat.SetActive(true);
+        Instantiate(ChatPrefab, ChatPos);
+
         SideBar2.SetActive(true);
         RoomRenewal();
         ChatInput.text = "";
+
+        //여기서 채팅 방도 초기화
+        //파베에 저장된 대화 내용까지 불러오기
+
         //for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
         //MyListRenewal();
         //SideBar2.SetActive(true);
+        //PhotonNetwork.JoinLobby();
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
@@ -187,6 +198,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
         RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / 접속 중 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
+
+
     }
     #endregion
 
