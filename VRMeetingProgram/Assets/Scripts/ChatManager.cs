@@ -4,8 +4,6 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-
-
 public class ChatManager : MonoBehaviour
 {
     public GameObject YellowArea, WhiteArea, DateArea;
@@ -16,7 +14,6 @@ public class ChatManager : MonoBehaviour
 
     //public InputField ChatInput;
     
-
     public void Send(String msg)
     {
 
@@ -49,11 +46,11 @@ public class ChatManager : MonoBehaviour
     }
 
 
-    public void LayoutVisible(bool b)
+    /*public void LayoutVisible(bool b)
     {
         AndroidJavaClass kotlin = new AndroidJavaClass("com.unity3d.player.SubActivity");
         kotlin.CallStatic("LayoutVisible", b);
-    }
+    }*/
 
     
 
@@ -139,8 +136,6 @@ public class ChatManager : MonoBehaviour
             CurDateArea.GetComponent<AreaScript>().DateText.text = t.Year + "년 " + t.Month + "월 " + t.Day + "일 " + week + "요일";
         }
 
-        
-
         Fit(Area.BoxRect);
         Fit(Area.AreaRect);
         Fit(ContentRect);
@@ -150,12 +145,8 @@ public class ChatManager : MonoBehaviour
         // 스크롤바가 위로 올라간 상태에서 메시지를 받으면 맨 아래로 내리지 않음
         if (!isSend && !isBottom) return;
         Invoke("ScrollDelay", 0.03f);
-
-        
-        
+    
     }
-
-
 
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
 
