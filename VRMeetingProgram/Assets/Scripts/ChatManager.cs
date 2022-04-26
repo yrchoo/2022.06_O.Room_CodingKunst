@@ -148,6 +148,20 @@ public class ChatManager : MonoBehaviour
     
     }
 
+    public void clean()
+    {
+        //Destroy(YellowArea);
+        //Debug.Log("??");
+        //Destroy(ContentRect.gameObject);
+
+        //Debug.Log(ContentRect.childCount);
+        for (int i = 0; i < ContentRect.childCount; i++)
+        {
+            Destroy(ContentRect.GetChild(i).gameObject);
+        }
+    }
+
+
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
 
 

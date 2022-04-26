@@ -5,6 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
+
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     //ChatManager chatManager;
@@ -30,12 +33,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [Header("Chat")]
     public GameObject Chat;
-    public GameObject ChatPrefab;
-    public Transform ChatPos;
+    //public GameObject ChatPrefab;
+    //public GameObject ChatPos;
 
     public Text ListText;
     public Text RoomInfoText;
-    public Text[] ChatText;
+    //public Text ChatText;
     public InputField ChatInput;
 
     [Header("ETC")]
@@ -65,13 +68,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         StatusText.text = PhotonNetwork.NetworkClientState.ToString();
         LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "접속";
 
-        if(Chat.activeSelf == true)
+        /*if(Chat.activeSelf == true)
         {
             if (Input.GetKeyDown(KeyCode.Return)){
                 NMSend();
             }
+        }*/
+
+        if(PhotonNetwork.InRoom && Input.GetKeyDown(KeyCode.Return))
+        {
+            
+            ChatInput.ActivateInputField();
+            ChatInput.Select();
         }
 
+        
     }
 
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
@@ -171,6 +182,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Chat.SetActive(true);
+        //Destroy(ChatPos);
         //ShowPanel(Chat);
 
         //Instantiate(ChatPrefab, ChatPos);
@@ -180,6 +192,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ChatInput.text = "";
 
         //여기서 채팅 방도 초기화
+        CM.clean();
         //파베에 저장된 대화 내용까지 불러오기
 
         //for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
@@ -218,11 +231,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
 #region 채팅
-    public void NMSend()
+    
+    public void BtnSend()
     {
-        
-        //Debug.Log(ChatInput.text);
-        //CM = GameObject.Find("ChatManager");
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             if ((PhotonNetwork.PlayerList[i].NickName).Equals(PhotonNetwork.LocalPlayer.NickName))
@@ -230,13 +241,37 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 //Debug.Log("??");
                 //CM.GetComponent<ChatManager>().Send(ChatInput.text);
                 CM.Send(ChatInput.text);
-            }           
+            }
         }
         PV.RPC("ChatRPC", RpcTarget.Others, PhotonNetwork.NickName + " : " + ChatInput.text);
+        ChatInput.text = "";
+    }
+
+    public void TFSend()
+    {
+        
+        //Debug.Log(ChatInput.text);
+        //CM = GameObject.Find("ChatManager");
+        if(Input.GetKeyDown(KeyCode.Return) && ChatInput.text != "")
+        {
+            //Debug.Log("??");
+            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {
+                if ((PhotonNetwork.PlayerList[i].NickName).Equals(PhotonNetwork.LocalPlayer.NickName))
+                {
+                    //Debug.Log("??");
+                    //CM.GetComponent<ChatManager>().Send(ChatInput.text);
+                    CM.Send(ChatInput.text);
+                }
+            }
+            PV.RPC("ChatRPC", RpcTarget.Others, PhotonNetwork.NickName + " : " + ChatInput.text);
+            ChatInput.text = "";
+        }
+        
         //PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
 
         //ChatRPC(ChatInput.text);
-        ChatInput.text = "";
+        
     }
 
     //public void 
@@ -281,4 +316,27 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+   /* #region set get
+    void SetRoomTag(int slotIndex, int value) => PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable { { slotIndex.ToString(), value } });
+    int GetRoomTag(int slotIndex) => (int)PhotonNetwork.CurrentRoom.CustomProperties[slotIndex.ToString()];
+
+    Player GetPlayer(int slotIndex)
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            if (PhotonNetwork.PlayerList[i].ActorNumber == GetRoomTag(slotIndex)) return PhotonNetwork.PlayerList[i];
+        return null;
+    }
+
+    void setLocalTag(string key, bool value) => PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { key, value } });
+    bool GetLocalTag(string key) => (bool)PhotonNetwork.LocalPlayer.CustomProperties[key];
+
+    bool isMaster() => PhotonNetwork.LocalPlayer.IsMasterClient;*/
+
+    /*void SetItemTag()
+    {
+        Item curCharacter = MyItemList.Find(x => x.Type == "Character" && x.isUsing == true);
+        Item curBalloon = MyItemList.Find(x => x.Type == "Balloon" && x.isUsing == true);
+
+        //PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { "Character", curCharacter.Name }, { "Balloon", curBalloon != null ? } })
+    }*/
 }
