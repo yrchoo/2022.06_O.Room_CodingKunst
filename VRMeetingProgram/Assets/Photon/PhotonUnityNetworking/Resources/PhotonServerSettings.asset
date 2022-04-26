@@ -16,7 +16,7 @@ MonoBehaviour:
     AppIdRealtime: 6f7b842f-6651-47ce-9eb0-4d1693a0c1ab
     AppIdFusion: 
     AppIdChat: 
-    AppIdVoice: 
+    AppIdVoice: 6dca4e78-e48e-4cf3-bf6f-cac7b98020cf
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -41,6 +41,10 @@ MonoBehaviour:
   - RespawnSpaceship
   - ChatRPC
   - ChatOtherRPC
+  - InformRPC
+  - CantHearYou
+  - ChangeColour
+  - HeresWhy
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

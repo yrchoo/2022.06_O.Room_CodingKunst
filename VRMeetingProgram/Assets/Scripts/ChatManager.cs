@@ -4,8 +4,6 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-
-
 public class ChatManager : MonoBehaviour
 {
     public GameObject YellowArea, WhiteArea, DateArea;
@@ -14,15 +12,31 @@ public class ChatManager : MonoBehaviour
     public Toggle MineToggle;
     AreaScript LastArea;
 
-    public InputField ChatInput;
+    //public InputField ChatInput;
     
-
-    public void Send()
+    public void Send(String msg)
     {
 
         //Chat(true, ChatInput.text, "나", null);
         //ChatInput.text = "";
-        Debug.Log(ChatInput.text);
+        Debug.Log(msg);
+        Chat(true, msg, "나", null);
+    }
+
+    public void ChatTo(String msg)
+    {
+        string[] msgSp = msg.Split(':');
+        Chat(false, msgSp[1], msgSp[0], null);
+    }
+
+    public void Inform(String msg)
+    {
+        Debug.Log(msg);
+
+        Transform CurDateArea = Instantiate(DateArea).transform;
+        CurDateArea.SetParent(ContentRect.transform, false);
+        CurDateArea.SetSiblingIndex(CurDateArea.GetSiblingIndex());       
+        CurDateArea.GetComponent<AreaScript>().DateText.text = msg;
     }
 
     public void ReceiveMessage(string text)
@@ -32,11 +46,11 @@ public class ChatManager : MonoBehaviour
     }
 
 
-    public void LayoutVisible(bool b)
+    /*public void LayoutVisible(bool b)
     {
         AndroidJavaClass kotlin = new AndroidJavaClass("com.unity3d.player.SubActivity");
         kotlin.CallStatic("LayoutVisible", b);
-    }
+    }*/
 
     
 
@@ -122,8 +136,6 @@ public class ChatManager : MonoBehaviour
             CurDateArea.GetComponent<AreaScript>().DateText.text = t.Year + "년 " + t.Month + "월 " + t.Day + "일 " + week + "요일";
         }
 
-        
-
         Fit(Area.BoxRect);
         Fit(Area.AreaRect);
         Fit(ContentRect);
@@ -133,12 +145,8 @@ public class ChatManager : MonoBehaviour
         // 스크롤바가 위로 올라간 상태에서 메시지를 받으면 맨 아래로 내리지 않음
         if (!isSend && !isBottom) return;
         Invoke("ScrollDelay", 0.03f);
-
-        
-        
+    
     }
-
-
 
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
 
