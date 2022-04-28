@@ -1,8 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityStandardAssets.Utiliy;
 
 public class Strafer : MonoBehaviour, IInitializable
 {
+    // ---
+    private PhotonView pv;
+
     public void Initialize(GameObject character)
     {
         m_animator = character.GetComponent<Animator>();
@@ -36,6 +43,8 @@ public class Strafer : MonoBehaviour, IInitializable
     public bool IsZombie { get; set; }
 
     public bool CanMove = true;
+
+    RaycastHit hit;
 
     #region "Collision"
 
@@ -95,11 +104,29 @@ public class Strafer : MonoBehaviour, IInitializable
     }
     #endregion
 
+    IEnumerator Start()
+    {
+        pv = GetComponent<PhotonView>();
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (pv.IsMine)
+        {
+            Camera.main.GetComponent<SmoothFollow>().target = transform.Find("AimPoint");
+        }
+        else {
+            m_rigidBody.isKinematic = true;
+        }
+    }
+
     private void Update()
     {
         if (!m_jumpInput && Input.GetKey(KeyCode.Space) && CanMove)
         {
-            m_jumpInput = true;
+            if(Physics.Raycast(transform.position, -transform.up, out hit, 0.6f)){
+                m_jumpInput = true;
+            }
+            
         }
     }
 
@@ -116,43 +143,53 @@ public class Strafer : MonoBehaviour, IInitializable
     {
         if (!CanMove) { return; }
 
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
-
-        Transform camera = Camera.main.transform;
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if(pv.IsMine) 
         {
-            v *= m_walkScale;
-            h *= m_walkScale;
-        }
+            
+            float v = Input.GetAxis("Vertical");
+            float h = Input.GetAxis("Horizontal");
 
-        m_currentV = Mathf.Lerp(m_currentV, v, Time.deltaTime * m_interpolation);
-        m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
+            // 메인 카메라의 transform에 접근
+            Transform camera = Camera.main.transform;
+            //Vector3 forward = transform.TransformDirection(Vector3.forward);
+            //Vector3 right = transform.TransformDirection(Vector3.right);
 
-        Vector3 direction = camera.right * m_currentH + camera.forward * m_currentV;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                v *= m_walkScale;
+                h *= m_walkScale;
+            }
 
-        float directionLength = direction.magnitude;
-        direction.y = 0;
-        direction = direction.normalized * directionLength;
+            m_currentV = Mathf.Lerp(m_currentV, v, Time.deltaTime * m_interpolation);
+            m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
 
-        if (direction != Vector3.zero)
-        {
-            m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * m_interpolation);
 
-            m_rigidBody.MovePosition(m_rigidBody.position + m_currentDirection * m_moveSpeed * Time.deltaTime);
-        }
+            // transform.right -> x축
+            Vector3 direction = camera.right * m_currentH + camera.forward * m_currentV;
+            //Vector3 direction = forward * v + right * h;
 
-        Vector3 animationDirection = Quaternion.Inverse(transform.rotation) * direction;
-        m_animator.SetFloat("MoveHorizontal", animationDirection.x);
-        m_animator.SetFloat("MoveVertical", animationDirection.z);
+            float directionLength = direction.magnitude;
+            direction.y = 0;
+            direction = direction.normalized * directionLength;
 
-        bool jumpCooldownOver = (Time.time - m_jumpTimeStamp) >= m_minJumpInterval;
+            if (direction != Vector3.zero)
+            {
+                m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * m_interpolation);
 
-        if (jumpCooldownOver && m_isGrounded && m_jumpInput && !IsZombie)
-        {
-            m_jumpTimeStamp = Time.time;
-            m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
+                m_rigidBody.MovePosition(m_rigidBody.position + m_currentDirection * m_moveSpeed * Time.deltaTime);
+            }
+
+            Vector3 animationDirection = Quaternion.Inverse(transform.rotation) * direction;
+            m_animator.SetFloat("MoveHorizontal", animationDirection.x);
+            m_animator.SetFloat("MoveVertical", animationDirection.z);
+
+            bool jumpCooldownOver = (Time.time - m_jumpTimeStamp) >= m_minJumpInterval;
+
+            if (jumpCooldownOver && m_isGrounded && m_jumpInput && !IsZombie)
+            {
+                m_jumpTimeStamp = Time.time;
+                m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
+            }
         }
     }
 }
