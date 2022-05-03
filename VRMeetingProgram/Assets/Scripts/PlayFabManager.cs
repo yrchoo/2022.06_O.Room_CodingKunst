@@ -16,7 +16,10 @@ public class PlayFabManager : MonoBehaviour
     public void LoginBtn()
     {
         var request = new LoginWithEmailAddressRequest { Email = EmailInput.text, Password = PasswordInput.text };       
-        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);     
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+
+        
+
     }
 
 
@@ -30,9 +33,10 @@ public class PlayFabManager : MonoBehaviour
     void OnLoginSuccess(LoginResult result) {
         print("로그인 성공");
         myID = result.PlayFabId;
+        LoadNextScene();
     }
 
-    void OnLoginFailure(PlayFabError error) => print("占싸깍옙占쏙옙 占쏙옙占쏙옙");
+    void OnLoginFailure(PlayFabError error) => print("로그인 실패");
 
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
@@ -42,7 +46,8 @@ public class PlayFabManager : MonoBehaviour
         AccountPanel.SetActive(false);
     }
 
-    void OnRegisterFailure(PlayFabError error) => print("회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙");
+    void OnRegisterFailure(PlayFabError error) => print("회원가입 실패");
+
 
     public void SetData(string name, string id, string role)
     {
@@ -60,5 +65,25 @@ public class PlayFabManager : MonoBehaviour
             (error) => print("데이터 불러오기 실패")
             );
     }
+
+
+    public void LoadNextScene()
+    {
+        // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
+        StartCoroutine(LoadMyAsyncScene());
+    }
+
+    IEnumerator LoadMyAsyncScene()
+    {
+        // AsyncOperation을 통해 Scene Load 정도를 알 수 있다.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainScene");
+
+        // Scene을 불러오는 것이 완료되면, AsyncOperation은 isDone 상태가 된다.
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
 
 }
