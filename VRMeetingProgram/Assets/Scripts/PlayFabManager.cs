@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -28,26 +27,26 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnLoginSuccess(LoginResult result) {
-        print("Î°úÍ∑∏Ïù∏ ÏÑ±Í≥µ");
+        print("∑Œ±◊¿Œ º∫∞¯");
         myID = result.PlayFabId;
     }
 
-    void OnLoginFailure(PlayFabError error) => print("Âç†Ïã∏ÍπçÏòôÂç†ÏèôÏòô Âç†ÏèôÏòôÂç†ÏèôÏòô");
 
+    void OnLoginFailure(PlayFabError error) => print("∑Œ±◊¿Œ Ω«∆–");
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        print("ÌöåÏõêÍ∞ÄÏûÖ ÏÑ±Í≥µ");
+        print("»∏ø¯∞°¿‘ º∫∞¯");
         SetData(NInput.text, IdInput.text, RoleInput.text);
         AccountPanel.SetActive(false);
     }
 
-    void OnRegisterFailure(PlayFabError error) => print("ÌöåÂç†ÏèôÏòôÂç†ÏèôÏòôÂç†ÏèôÏòô Âç†ÏèôÏòôÂç†ÏèôÏòô");
+    void OnRegisterFailure(PlayFabError error) => print("»∏ø¯∞°¿‘ Ω«∆–");
 
     public void SetData(string name, string id, string role)
     {
         var request = new UpdateUserDataRequest() { Data = new Dictionary<string, string>() { { "name", name }, { "id", id }, { "role", role } } };
-        PlayFabClientAPI.UpdateUserData(request, (result) => print("Îç∞Ïù¥ÌÑ∞ Ï†ÄÏû• ÏÑ±Í≥µ"), (error) => print("Îç∞Ïù¥ÌÑ∞ Ï†ÄÏû• Ïã§Ìå®"));
+        PlayFabClientAPI.UpdateUserData(request, (result) => print("µ•¿Ã≈Õ ¿˙¿Â º∫∞¯"), (error) => print("µ•¿Ã≈Õ ¿˙¿Â Ω«∆–"));
     }
 
     public void GetData()
@@ -57,7 +56,7 @@ public class PlayFabManager : MonoBehaviour
             foreach (var eachData in result.Data) //LogText.text += eachData.Key + " : " + eachData.Value.Value + "\n"; 
                 print(eachData.Key + ":" + eachData.Value.Value);
         }, 
-            (error) => print("Îç∞Ïù¥ÌÑ∞ Î∂àÎü¨Ïò§Í∏∞ Ïã§Ìå®")
+            (error) => print("µ•¿Ã≈Õ ∫“∑Øø¿±‚ Ω«∆–")
             );
     }
 
