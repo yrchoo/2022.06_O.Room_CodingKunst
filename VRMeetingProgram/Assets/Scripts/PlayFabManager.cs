@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -14,6 +15,25 @@ public class PlayFabManager : MonoBehaviour
     {
         var request = new LoginWithEmailAddressRequest { Email = EmailInput.text, Password = PasswordInput.text };
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+
+        LoadNextScene();
+    }
+
+    public void LoadNextScene(){
+      // ë¹„ë™ê¸°ì ìœ¼ë¡œ Sceneì„ ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•´ Coroutineì„ ì‚¬ìš©í•œë‹¤.
+      StartCoroutine(LoadMyAsyncScene());
+    }
+
+    IEnumerator LoadMyAsyncScene()
+    {    
+    // AsyncOperationì„ í†µí•´ Scene Load ì •ë„ë¥¼ ì•Œ ìˆ˜ ìžˆë‹¤.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainScene");
+
+        // Sceneì„ ë¶ˆëŸ¬ì˜¤ëŠ” ê²ƒì´ ì™„ë£Œë˜ë©´, AsyncOperationì€ isDone ìƒíƒœê°€ ëœë‹¤.
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 
 
@@ -24,12 +44,12 @@ public class PlayFabManager : MonoBehaviour
     }
 
 
-    void OnLoginSuccess(LoginResult result) => print("·Î±×ÀÎ ¼º°ø");
+    void OnLoginSuccess(LoginResult result) => print("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-    void OnLoginFailure(PlayFabError error) => print("·Î±×ÀÎ ½ÇÆÐ");
+    void OnLoginFailure(PlayFabError error) => print("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-    void OnRegisterSuccess(RegisterPlayFabUserResult result) => print("È¸¿ø°¡ÀÔ ¼º°ø");
+    void OnRegisterSuccess(RegisterPlayFabUserResult result) => print("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-    void OnRegisterFailure(PlayFabError error) => print("È¸¿ø°¡ÀÔ ½ÇÆÐ");
+    void OnRegisterFailure(PlayFabError error) => print("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 }
