@@ -112,7 +112,8 @@ public class Strafer : MonoBehaviour, IInitializable
 
         if (pv.IsMine)
         {
-            Camera.main.GetComponent<SmoothFollow>().target = transform.Find("AimPoint");
+            //Camera.main.GetComponent<SmoothFollow>().target = transform.Find("AimPoint").transform;
+            Camera.main.GetComponent<CameraMovement>().objectTofollow = transform.Find("AimPoint").transform;
         }
         else {
             m_rigidBody.isKinematic = true;
