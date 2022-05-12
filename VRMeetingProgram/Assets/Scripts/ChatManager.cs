@@ -17,10 +17,10 @@ public class ChatManager : MonoBehaviour
     public void Send(String msg)
     {
 
-        //Chat(true, ChatInput.text, "³ª", null);
+        //Chat(true, ChatInput.text, "ï¿½ï¿½", null);
         //ChatInput.text = "";
         Debug.Log(msg);
-        Chat(true, msg, "³ª", null);
+        Chat(true, msg, "ï¿½ï¿½", null);
     }
 
     public void ChatTo(String msg)
@@ -41,8 +41,8 @@ public class ChatManager : MonoBehaviour
 
     public void ReceiveMessage(string text)
     {
-        if (MineToggle.isOn) Chat(true, text, "³ª", null);
-        else Chat(false, text, "Å¸ÀÎ", null);
+        if (MineToggle.isOn) Chat(true, text, "ï¿½ï¿½", null);
+        else Chat(false, text, "Å¸ï¿½ï¿½", null);
     }
 
 
@@ -62,7 +62,7 @@ public class ChatManager : MonoBehaviour
 
         //print(text);
         
-        //º¸³»´Â »ç¶÷Àº ³ë¶û, ¹Þ´Â »ç¶÷Àº Èò»ö¿µ¿ªÀ» Å©°Ô ¸¸µé°í ÅØ½ºÆ® ´ëÀÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         AreaScript Area = Instantiate(isSend ? YellowArea : WhiteArea).GetComponent<AreaScript>();
         Area.transform.SetParent(ContentRect.transform, false);
         Area.BoxRect.sizeDelta = new Vector2(600, Area.BoxRect.sizeDelta.y);
@@ -70,7 +70,7 @@ public class ChatManager : MonoBehaviour
         Fit(Area.BoxRect);
 
         
-        // µÎ ÁÙ ÀÌ»óÀÌ¸é Å©±â¸¦ ÁÙ¿©°¡¸é¼­, ÇÑ ÁÙÀÌ ¾Æ·¡·Î ³»·Á°¡¸é ¹Ù·Î Àü Å©±â¸¦ ´ëÀÔ 
+        // ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ Å©ï¿½â¸¦ ï¿½Ù¿ï¿½ï¿½ï¿½ï¿½é¼­, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ 
         float X = Area.TextRect.sizeDelta.x + 42;
         float Y = Area.TextRect.sizeDelta.y;
         if (Y > 49)
@@ -86,26 +86,26 @@ public class ChatManager : MonoBehaviour
         else Area.BoxRect.sizeDelta = new Vector2(X, Y);
 
         
-        // ÇöÀç °Í¿¡ ºÐ±îÁö ³ª¿À´Â ³¯Â¥¿Í À¯ÀúÀÌ¸§ ´ëÀÔ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Í¿ï¿½ ï¿½Ð±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         DateTime t = DateTime.Now;
         Area.Time = t.ToString("yyyy-MM-dd-HH-mm");
         Area.User = user;
 
 
-        // ÇöÀç °ÍÀº Ç×»ó »õ·Î¿î ½Ã°£ ´ëÀÔ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         int hour = t.Hour;
         if (t.Hour == 0) hour = 12;
         else if (t.Hour > 12) hour -= 12;
-        Area.TimeText.text = (t.Hour > 12 ? "¿ÀÈÄ " : "¿ÀÀü ") + hour + ":" + t.Minute.ToString("D2");
+        Area.TimeText.text = (t.Hour > 12 ? "ï¿½ï¿½ï¿½ï¿½ " : "ï¿½ï¿½ï¿½ï¿½ ") + hour + ":" + t.Minute.ToString("D2");
 
         
-        // ÀÌÀü °Í°ú °°À¸¸é ÀÌÀü ½Ã°£, ²¿¸® ¾ø¾Ö±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
         bool isSame = LastArea != null && LastArea.Time == Area.Time && LastArea.User == Area.User;
         if (isSame) LastArea.TimeText.text = "";
         Area.Tail.SetActive(!isSame);
 
 
-        // Å¸ÀÎÀÌ ÀÌÀü °Í°ú °°À¸¸é ÀÌ¹ÌÁö, ÀÌ¸§ ¾ø¾Ö±â
+        // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½, ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
         if (!isSend)
         {
             Area.UserImage.gameObject.SetActive(!isSame);
@@ -115,7 +115,7 @@ public class ChatManager : MonoBehaviour
         }
 
         
-        // ÀÌÀü °Í°ú ³¯Â¥°¡ ´Ù¸£¸é ³¯Â¥¿µ¿ª º¸ÀÌ±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Í°ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
         if (LastArea != null && LastArea.Time.Substring(0, 10) != Area.Time.Substring(0, 10))
         {
             Transform CurDateArea = Instantiate(DateArea).transform;
@@ -125,15 +125,15 @@ public class ChatManager : MonoBehaviour
             string week = "";
             switch (t.DayOfWeek)
             {
-                case DayOfWeek.Sunday: week = "ÀÏ"; break;
-                case DayOfWeek.Monday: week = "¿ù"; break;
+                case DayOfWeek.Sunday: week = "ï¿½ï¿½"; break;
+                case DayOfWeek.Monday: week = "ï¿½ï¿½"; break;
                 case DayOfWeek.Tuesday: week = "È­"; break;
-                case DayOfWeek.Wednesday: week = "¼ö"; break;
-                case DayOfWeek.Thursday: week = "¸ñ"; break;
-                case DayOfWeek.Friday: week = "±Ý"; break;
-                case DayOfWeek.Saturday: week = "Åä"; break;
+                case DayOfWeek.Wednesday: week = "ï¿½ï¿½"; break;
+                case DayOfWeek.Thursday: week = "ï¿½ï¿½"; break;
+                case DayOfWeek.Friday: week = "ï¿½ï¿½"; break;
+                case DayOfWeek.Saturday: week = "ï¿½ï¿½"; break;
             }
-            CurDateArea.GetComponent<AreaScript>().DateText.text = t.Year + "³â " + t.Month + "¿ù " + t.Day + "ÀÏ " + week + "¿äÀÏ";
+            CurDateArea.GetComponent<AreaScript>().DateText.text = t.Year + "ï¿½ï¿½ " + t.Month + "ï¿½ï¿½ " + t.Day + "ï¿½ï¿½ " + week + "ï¿½ï¿½ï¿½ï¿½";
         }
 
         Fit(Area.BoxRect);
@@ -142,7 +142,7 @@ public class ChatManager : MonoBehaviour
         LastArea = Area;
 
         
-        // ½ºÅ©·Ñ¹Ù°¡ À§·Î ¿Ã¶ó°£ »óÅÂ¿¡¼­ ¸Þ½ÃÁö¸¦ ¹ÞÀ¸¸é ¸Ç ¾Æ·¡·Î ³»¸®Áö ¾ÊÀ½
+        // ï¿½ï¿½Å©ï¿½Ñ¹Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¶ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (!isSend && !isBottom) return;
         Invoke("ScrollDelay", 0.03f);
     
