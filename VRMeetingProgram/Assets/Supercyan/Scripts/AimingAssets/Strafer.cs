@@ -112,8 +112,8 @@ public class Strafer : MonoBehaviour, IInitializable
 
         if (pv.IsMine)
         {
+            Camera.main.GetComponentInParent<CameraMovement>().objectTofollow = transform.Find("AimPoint").transform;
             //Camera.main.GetComponent<SmoothFollow>().target = transform.Find("AimPoint").transform;
-            Camera.main.GetComponent<CameraMovement>().objectTofollow = transform.Find("AimPoint").transform;
         }
         else {
             m_rigidBody.isKinematic = true;
@@ -122,22 +122,31 @@ public class Strafer : MonoBehaviour, IInitializable
 
     private void Update()
     {
-        if (!m_jumpInput && Input.GetKey(KeyCode.Space) && CanMove)
+        if (pv.IsMine)
         {
-            if(Physics.Raycast(transform.position, -transform.up, out hit, 0.6f)){
-                m_jumpInput = true;
+            if (!m_jumpInput && Input.GetKey(KeyCode.Space) && CanMove)
+            {
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 0.6f))
+                {
+                    m_jumpInput = true;
+                }
+
             }
-            
         }
+        
     }
 
     private void FixedUpdate()
     {
-        m_animator.SetBool("Grounded", m_isGrounded);
+        if (pv.IsMine)
+        {
+            m_animator.SetBool("Grounded", m_isGrounded);
 
-        if (!IsDead) { DirectUpdate(); }
+            if (!IsDead) { DirectUpdate(); }
 
-        m_jumpInput = false;
+            m_jumpInput = false;
+        }
+        
     }
 
     private void DirectUpdate()
