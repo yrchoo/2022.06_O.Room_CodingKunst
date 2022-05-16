@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public bool isConnect = false;
     public Transform[] spawnPoints;
+    public GameObject[] PrefabsToInstantiate;
 
+    public int index;
 
     public void Awake()
     {
@@ -45,5 +47,9 @@ public class GameManager : MonoBehaviour
         Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].rotation;
 
         GameObject playerTemp = PhotonNetwork.Instantiate("Player", pos, rot, 0);
+
+        GameObject child = this.PrefabsToInstantiate[index];
+
+        Instantiate(child, new Vector3(0, 0, 0), Quaternion.identity).transform.parent = parent.transform;
     }
 }

@@ -38,7 +38,7 @@ namespace UnityStandardAssets.Utiliy{
         void Update()
         {
             rotX += -(Input.GetAxis("Mouse Y")) * sensitivity * Time.deltaTime; // 마우스 상하
-            //rotY += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime; // 마우스 좌우
+            rotY += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime; // 마우스 좌우
 
             rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle); // 좌우 범위
             Quaternion rot = Quaternion.Euler(rotX, rotY, 0); // z축 0
@@ -52,21 +52,21 @@ namespace UnityStandardAssets.Utiliy{
                 return;
 
             // Calculate the current rotation angles
-            var wantedRotationAngle = target.eulerAngles.y;
+            var wantedRotationAngleY = target.eulerAngles.y;
             var wantedHeight = target.position.y + height;
 
-            var currentRotationAngle = transform.eulerAngles.y;
+            var currentRotationAngleY = transform.eulerAngles.y;
             var currentHeight = transform.position.y;
 
             // Damp the rotation around the y-axis 
             // LerpAngle rotationDamping * Time.delta시간동안 a부터 b까지 변경되는 각도를 반환. 부드러운 회전을 위해서 사용.
-            currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
-
-            // Damp the height // 고도를 낮추다.?
+            currentRotationAngleY = Mathf.LerpAngle(currentRotationAngleY, wantedRotationAngleY, rotationDamping * Time.deltaTime);
+            
+            // Damp the height
             currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
             // Convert the angle into a rotation
-            var currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
+            var currentRotation = Quaternion.Euler(0, currentRotationAngleY, 0);
 
             // Set the position of the camera on the x-z plane to:
             // distance meters behind the target
