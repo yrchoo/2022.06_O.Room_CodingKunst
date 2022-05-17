@@ -133,18 +133,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         //PhotonNetwork.LocalPlayer.NickName = UserName;
-
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 환영합니다";
-        myList.Clear();
+        Debug.Log("here");
+        
     }
 
     void OnJoinedLobbyDelay()
     {
-        Debug.Log("here");
+        
         isLoaded = true;
+        Debug.Log(UserName);
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
-
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 환영합니다";
+        myList.Clear();
         ShowPanel(LobbyPanel);
         //ShowUserNickName();
     }
@@ -282,9 +283,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ListText.text = "";
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
+        //여기 수정!!!!!
         RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / 접속 중 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
-
-
     }
     #endregion
 
@@ -371,7 +371,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         CurPanel.SetActive(true);
     }
-
 
     public void GetMyName(string myID)
     {
