@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -31,28 +30,26 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnLoginSuccess(LoginResult result) {
-        print("로그인 성공");
+        print("�α��� ����");
         myID = result.PlayFabId;
         LoadNextScene();
     }
 
-    void OnLoginFailure(PlayFabError error) => print("로그인 실패");
-
+    void OnLoginFailure(PlayFabError error) => print("�α��� ����");
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        print("회원가입 성공");
+        print("ȸ���� ����");
         SetData(NInput.text, IdInput.text, RoleInput.text);
         AccountPanel.SetActive(false);
     }
 
     void OnRegisterFailure(PlayFabError error) => print("회원가입 실패");
 
-
     public void SetData(string name, string id, string role)
     {
         var request = new UpdateUserDataRequest() { Data = new Dictionary<string, string>() { { "name", name }, { "id", id }, { "role", role } } };
-        PlayFabClientAPI.UpdateUserData(request, (result) => print("데이터 저장 성공"), (error) => print("데이터 저장 실패"));
+        PlayFabClientAPI.UpdateUserData(request, (result) => print("������ ���� ����"), (error) => print("������ ���� ����"));
     }
 
     public void GetData()
@@ -62,7 +59,7 @@ public class PlayFabManager : MonoBehaviour
             foreach (var eachData in result.Data) //LogText.text += eachData.Key + " : " + eachData.Value.Value + "\n"; 
                 print(eachData.Key + ":" + eachData.Value.Value);
         }, 
-            (error) => print("데이터 불러오기 실패")
+            (error) => print("������ �ҷ���� ����")
             );
     }
 
