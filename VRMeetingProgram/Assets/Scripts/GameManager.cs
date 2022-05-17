@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public bool isConnect = false;
     public Transform[] spawnPoints;
+
     public GameObject[] PrefabsToInstantiate;
 
     public int index;
+
 
     public void Awake()
     {
@@ -34,19 +36,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator CreatePlayer()
     {
-        yield return new WaitUntil(()=> isConnect);
+
+        yield return new WaitUntil(() => isConnect);
 
         spawnPoints = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
 
         Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].position;
         Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].rotation;
 
-        GameObject playerTemp = PhotonNetwork.Instantiate("Player", pos, rot, 0);
+        var parent = PhotonNetwork.Instantiate("Player", pos, rot);
 
         GameObject child = this.PrefabsToInstantiate[index];
 
