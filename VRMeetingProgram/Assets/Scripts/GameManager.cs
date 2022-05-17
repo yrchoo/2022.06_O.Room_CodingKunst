@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].position;
         Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].rotation;
 
-        var parent = PhotonNetwork.Instantiate("Player", pos, rot);
+        var parent = PhotonNetwork.Instantiate("Player1", pos, rot);
 
         GameObject child = this.PrefabsToInstantiate[index];
 
