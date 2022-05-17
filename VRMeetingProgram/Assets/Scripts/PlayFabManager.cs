@@ -15,7 +15,10 @@ public class PlayFabManager : MonoBehaviour
     public void LoginBtn()
     {
         var request = new LoginWithEmailAddressRequest { Email = EmailInput.text, Password = PasswordInput.text };       
-        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);     
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+
+        
+
     }
 
 
@@ -27,26 +30,26 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnLoginSuccess(LoginResult result) {
-        print("·Î±×ÀÎ ¼º°ø");
+        print("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         myID = result.PlayFabId;
+        LoadNextScene();
     }
 
-
-    void OnLoginFailure(PlayFabError error) => print("·Î±×ÀÎ ½ÇÆĞ");
+    void OnLoginFailure(PlayFabError error) => print("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        print("È¸¿ø°¡ÀÔ ¼º°ø");
+        print("È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         SetData(NInput.text, IdInput.text, RoleInput.text);
         AccountPanel.SetActive(false);
     }
 
-    void OnRegisterFailure(PlayFabError error) => print("È¸¿ø°¡ÀÔ ½ÇÆĞ");
+    void OnRegisterFailure(PlayFabError error) => print("íšŒì›ê°€ì… ì‹¤íŒ¨");
 
     public void SetData(string name, string id, string role)
     {
         var request = new UpdateUserDataRequest() { Data = new Dictionary<string, string>() { { "name", name }, { "id", id }, { "role", role } } };
-        PlayFabClientAPI.UpdateUserData(request, (result) => print("µ¥ÀÌÅÍ ÀúÀå ¼º°ø"), (error) => print("µ¥ÀÌÅÍ ÀúÀå ½ÇÆĞ"));
+        PlayFabClientAPI.UpdateUserData(request, (result) => print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"), (error) => print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"));
     }
 
     public void GetData()
@@ -56,8 +59,28 @@ public class PlayFabManager : MonoBehaviour
             foreach (var eachData in result.Data) //LogText.text += eachData.Key + " : " + eachData.Value.Value + "\n"; 
                 print(eachData.Key + ":" + eachData.Value.Value);
         }, 
-            (error) => print("µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆĞ")
+            (error) => print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
             );
     }
+
+
+    public void LoadNextScene()
+    {
+        // ë¹„ë™ê¸°ì ìœ¼ë¡œ Sceneì„ ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•´ Coroutineì„ ì‚¬ìš©í•œë‹¤.
+        StartCoroutine(LoadMyAsyncScene());
+    }
+
+    IEnumerator LoadMyAsyncScene()
+    {
+        // AsyncOperationì„ í†µí•´ Scene Load ì •ë„ë¥¼ ì•Œ ìˆ˜ ìˆë‹¤.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainScene");
+
+        // Sceneì„ ë¶ˆëŸ¬ì˜¤ëŠ” ê²ƒì´ ì™„ë£Œë˜ë©´, AsyncOperationì€ isDone ìƒíƒœê°€ ëœë‹¤.
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
 
 }

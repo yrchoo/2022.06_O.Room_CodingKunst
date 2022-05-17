@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityStandardAssets.Utiliy;
 
 public class DirectAimController : MonoBehaviour, IInitializable
 {
+    private PhotonView pv;
 
     public void Initialize(GameObject character)
     {
@@ -52,14 +56,22 @@ public class DirectAimController : MonoBehaviour, IInitializable
         Initialize(gameObject);
     }
 
+    private void Start()
+    {
+        pv = GetComponent<PhotonView>();
+    }
+
     private void Update()
     {
-        if (!m_isDead)
-        {
-            ShootUpdate();
-            ReloadUpdate();
-            AimUpdate();
-        }
+        //if (pv.IsMine)
+        //{
+            if (!m_isDead)
+            {
+                ShootUpdate();
+                ReloadUpdate();
+                AimUpdate();
+            }
+        //}
     }
 
     private void ShootUpdate()
@@ -109,12 +121,15 @@ public class DirectAimController : MonoBehaviour, IInitializable
 
     private void InitializeAnimator(GameObject character)
     {
+
         if (m_animator != null) { return; }
         m_animator = character.GetComponent<CharacterWeaponAnimator>();
+
     }
 
     private void InitializeAimPoint(GameObject character)
     {
+
         if (m_aimPoint != null) { return; }
 
         AimPoint point = character.GetComponentInChildren<AimPoint>();
@@ -127,5 +142,6 @@ public class DirectAimController : MonoBehaviour, IInitializable
         }
 
         m_aimPoint = point.transform;
+        
     }
 }
