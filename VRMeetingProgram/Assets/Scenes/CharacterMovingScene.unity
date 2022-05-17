@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  sensitivity: 100
-  clampAngle: 60
+  sensitivity: 50
+  clampAngle: 70
   distance: 2
   height: 1
   rotationDamping: 2
@@ -328,39 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isConnect: 0
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spawnPoints: []
   PrefabsToInstantiate:
   - {fileID: 3599416575393676145, guid: 07bbd824c6c2e654a961d206253f2264, type: 3}
   - {fileID: 3599416575393676145, guid: 2fa399a7e19cdbc41ae9093e55dbce03, type: 3}
