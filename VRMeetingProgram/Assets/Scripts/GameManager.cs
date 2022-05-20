@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     public bool isConnect = false;
     public Transform[] spawnPoints;
 
-    public GameObject[] PrefabsToInstantiate;
-
     public int index; // 1~32
 
 

@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityStandardAssets.Utiliy;
 
 public class Croucher : MonoBehaviour, IInitializable
 {
+
+    private PhotonView pv;
+
     public void Initialize(GameObject character)
     {
         m_animator = character.GetComponent<Animator>();
@@ -38,41 +44,49 @@ public class Croucher : MonoBehaviour, IInitializable
         m_animator.SetInteger("MoveState", 2);
     }
 
+    private void Start()
+    {
+        pv = GetComponent<PhotonView>();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (pv.IsMine)
         {
-            switch (m_moveState)
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                case MoveState.Prone:
-                case MoveState.Standing:
-                    Crouch();
-                    break;
+                switch (m_moveState)
+                {
+                    case MoveState.Prone:
+                    case MoveState.Standing:
+                        Crouch();
+                        break;
 
-                case MoveState.Crouching:
-                    Stand();
-                    break;
+                    case MoveState.Crouching:
+                        Stand();
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            switch (m_moveState)
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                case MoveState.Prone:
-                    Stand();
-                    break;
+                switch (m_moveState)
+                {
+                    case MoveState.Prone:
+                        Stand();
+                        break;
 
-                case MoveState.Crouching:
-                case MoveState.Standing:
-                    Prone();
-                    break;
+                    case MoveState.Crouching:
+                    case MoveState.Standing:
+                        Prone();
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
         }
     }
