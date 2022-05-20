@@ -7,70 +7,74 @@ using System.Reflection;
 
 public class Emoji : MonoBehaviour
 {
-    public Transform[] spawnPoints;
-
     public GameObject[] Emojis;
 
-    public GameObject[] PrefabsToInstantiate;
-
     public int index;
+
+    private float fDestroyTime = 2f;
+    private float fTickTime = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Instantiate(Emojis[0], Emojis[0].transform.position, Emojis[0].transform.rotation);
-            Destroy(Emojis[0], 2.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Instantiate(Emojis[1], Emojis[1].transform.position, Emojis[1].transform.rotation);
-            Destroy(Emojis[1], 2.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Instantiate(Emojis[2], Emojis[2].transform.position, Emojis[2].transform.rotation);
-            Destroy(Emojis[2], 2.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Instantiate(Emojis[3], Emojis[3].transform.position, Emojis[3].transform.rotation);
-            Destroy(Emojis[3], 2.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Instantiate(Emojis[4], Emojis[4].transform.position, Emojis[4].transform.rotation);
-            Destroy(Emojis[4], 2.0f);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            Instantiate(Emojis[5], Emojis[5].transform.position, Emojis[5].transform.rotation);
-            Destroy(Emojis[5], 2.0f);
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        fTickTime += Time.deltaTime;
+        if (fTickTime >= fDestroyTime)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                CreateEmoji("crying");
+                fTickTime = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CreateEmoji("Smiley01");
+                fTickTime = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                CreateEmoji("Smiley04");
+                fTickTime = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                CreateEmoji("Smiley16");
+                fTickTime = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                CreateEmoji("Smiley40");
+                fTickTime = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                CreateEmoji("Smiley50");
+                fTickTime = 0;
+            }
+        }
+        
     }
 
-    void CreateEmoji()
+    void CreateEmoji(string emoji)
     {
-        spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentsInChildren<Transform>();
+
+        Debug.Log("CreateEmoji");
+        Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
         //Transform[] spawnPoints = GameObject.Find("SpqwnPointGroup").GetComponentsInChildren<Transform>();
-        Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].position;
-        Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].rotation;
+        Vector3 pos = spawnPoints.position;
+        Quaternion rot = spawnPoints.rotation;
 
-        var parent = PhotonNetwork.Instantiate("Emoji", pos, rot);
+        var parent = gameObject;
 
-        GameObject child = this.PrefabsToInstantiate[index];
-
-        Instantiate(child, new Vector3(0, 0, 0), Quaternion.identity).transform.parent = parent.transform;
-
+        PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
     }
 
-    
+    void merong() { }
 
     
 
