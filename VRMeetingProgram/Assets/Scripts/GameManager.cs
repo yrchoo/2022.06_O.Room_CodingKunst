@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] PrefabsToInstantiate;
 
-    public int index;
+    public int index; // 1~32
 
 
     public void Awake()
@@ -49,10 +49,7 @@ public class GameManager : MonoBehaviour
         Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].position;
         Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].rotation;
 
-        var parent = PhotonNetwork.Instantiate("Player1", pos, rot);
+        PhotonNetwork.Instantiate($"Player{index}", pos, rot);
 
-        GameObject child = this.PrefabsToInstantiate[index];
-
-        Instantiate(child, new Vector3(0, 0, 0), Quaternion.identity).transform.parent = parent.transform;
     }
 }
