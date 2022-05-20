@@ -63,15 +63,15 @@ public class DirectAimController : MonoBehaviour, IInitializable
 
     private void Update()
     {
-        //if (pv.IsMine)
-        //{
+        if (pv.IsMine)
+        {
             if (!m_isDead)
             {
                 ShootUpdate();
                 ReloadUpdate();
                 AimUpdate();
             }
-        //}
+        }
     }
 
     private void ShootUpdate()
