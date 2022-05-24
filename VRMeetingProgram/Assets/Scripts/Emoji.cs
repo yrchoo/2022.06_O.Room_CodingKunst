@@ -4,14 +4,20 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Reflection;
+using UnityEngine.UI;
 
 public class Emoji : MonoBehaviour
 {
+
+    private PhotonView pv;
     public GameObject[] Emojis;
+
+    public InputField ChatInput;
 
     public int index;
 
     private PhotonView pv;
+    public bool activeIF;
 
     private float fDestroyTime = 2f;
     private float fTickTime = 2f;
@@ -20,6 +26,7 @@ public class Emoji : MonoBehaviour
     void Start()
     {
         pv = GetComponent<PhotonView>();
+        ChatInput = GameObject.Find("ChatInput").GetComponent<InputField>();
     }
 
     // Update is called once per frame
@@ -61,6 +68,10 @@ public class Emoji : MonoBehaviour
                     fTickTime = 0;
                 }
             }
+            if(Input.GetKey(KeyCode.T)){
+                ChatInput.ActivateInputField();
+                ChatInput.Select();
+            }
         }
     }
 
@@ -80,11 +91,6 @@ public class Emoji : MonoBehaviour
         }
        
     }
-
-    void merong() { }
-
-    
-
     
 }
 
