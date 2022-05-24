@@ -4,12 +4,19 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Reflection;
+using UnityEngine.UI;
 
 public class Emoji : MonoBehaviour
 {
+
+    private PhotonView pv;
     public GameObject[] Emojis;
 
+    public InputField ChatInput;
+
     public int index;
+
+    public bool activeIF;
 
     private float fDestroyTime = 2f;
     private float fTickTime = 2f;
@@ -17,47 +24,53 @@ public class Emoji : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        pv = GetComponent<PhotonView>();
+        ChatInput = GameObject.Find("ChatInput").GetComponent<InputField>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fTickTime += Time.deltaTime;
-        if (fTickTime >= fDestroyTime)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+        if(pv.IsMine){
+            fTickTime += Time.deltaTime;
+            if (fTickTime >= fDestroyTime)
             {
-                CreateEmoji("crying");
-                fTickTime = 0;
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    CreateEmoji("crying");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    CreateEmoji("Smiley01");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    CreateEmoji("Smiley04");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    CreateEmoji("Smiley16");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    CreateEmoji("Smiley40");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    CreateEmoji("Smiley50");
+                    fTickTime = 0;
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                CreateEmoji("Smiley01");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                CreateEmoji("Smiley04");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                CreateEmoji("Smiley16");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                CreateEmoji("Smiley40");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                CreateEmoji("Smiley50");
-                fTickTime = 0;
+            if(Input.GetKey(KeyCode.T)){
+                ChatInput.ActivateInputField();
+                ChatInput.Select();
             }
         }
-        
     }
 
     void CreateEmoji(string emoji)
@@ -73,11 +86,6 @@ public class Emoji : MonoBehaviour
 
         PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
     }
-
-    void merong() { }
-
-    
-
     
 }
 
