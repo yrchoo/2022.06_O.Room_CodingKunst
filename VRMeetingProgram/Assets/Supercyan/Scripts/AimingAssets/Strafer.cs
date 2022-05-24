@@ -5,10 +5,16 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityStandardAssets.Utiliy;
 
-public class Strafer : MonoBehaviour, IInitializable
+public class Strafer : MonoBehaviour, IInitializable, IPunObservable
 {
     // ---
+    private Vector3 direction;
     private PhotonView pv;
+    private Transform tr;
+    private Animator anim;
+    private Vector3 currPos;
+    private Quaternion currRot;
+    private bool currGrounded = true;
 
     public void Initialize(GameObject character)
     {
@@ -106,6 +112,7 @@ public class Strafer : MonoBehaviour, IInitializable
 
     IEnumerator Start()
     {
+        tr = GetComponent<Transform>();
         pv = GetComponent<PhotonView>();
 
         yield return new WaitForSeconds(0.5f);
@@ -175,7 +182,7 @@ public class Strafer : MonoBehaviour, IInitializable
 
 
             // transform.right -> x축
-            Vector3 direction = camera.right * m_currentH + camera.forward * m_currentV;
+            direction = camera.right * m_currentH + camera.forward * m_currentV;
             //Vector3 direction = forward * v + right * h;
 
             float directionLength = direction.magnitude;
@@ -200,6 +207,28 @@ public class Strafer : MonoBehaviour, IInitializable
                 m_jumpTimeStamp = Time.time;
                 m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
             }
+        }
+        else // pv.IsMine이 아닐 때
+        {
+            Vector3 animationDirection = Quaternion.Inverse(transform.rotation) * direction;
+            m_animator.SetFloat("MoveHorizontal", animationDirection.x);
+            m_animator.SetFloat("MoveVertical", animationDirection.z);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //sending Datas...
+            stream.SendNext(tr.position);
+            stream.SendNext(tr.rotation);
+            currGrounded = true; 
+        } else
+        {
+            currPos = (Vector3)stream.ReceiveNext();
+            currRot = (Quaternion)stream.ReceiveNext();
+            currGrounded = (bool)stream.ReceiveNext();
         }
     }
 }
