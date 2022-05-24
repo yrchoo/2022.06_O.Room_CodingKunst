@@ -223,12 +223,12 @@ public class Strafer : MonoBehaviour, IInitializable, IPunObservable
             //sending Datas...
             stream.SendNext(tr.position);
             stream.SendNext(tr.rotation);
-            currGrounded = true; 
+            //currGrounded = true; 
         } else
         {
             currPos = (Vector3)stream.ReceiveNext();
             currRot = (Quaternion)stream.ReceiveNext();
-            currGrounded = (bool)stream.ReceiveNext();
+            //currGrounded = (bool)stream.ReceiveNext();
         }
     }
 }

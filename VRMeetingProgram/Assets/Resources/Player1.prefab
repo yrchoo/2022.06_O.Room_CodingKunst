@@ -1102,7 +1102,6 @@ GameObject:
   - component: {fileID: 2302880072483663359}
   - component: {fileID: 7357349372004145924}
   - component: {fileID: 7658526559697784055}
-  - component: {fileID: 7454733509244139376}
   - component: {fileID: 1711015186561794251}
   - component: {fileID: 8296254902532245443}
   - component: {fileID: 4405114496280991228}
@@ -1114,6 +1113,8 @@ GameObject:
   - component: {fileID: 2416276400905197758}
   - component: {fileID: 4058279036096096790}
   - component: {fileID: 7948766331149816045}
+  - component: {fileID: 986580371012476691}
+  - component: {fileID: -1232814802285092870}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -1189,171 +1190,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-7503919555932819666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728497733281275740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 1
-    SynchronizeType: 1
-    Name: MoveHorizontal
-  - Type: 1
-    SynchronizeType: 1
-    Name: MoveVertical
-  - Type: 4
-    SynchronizeType: 1
-    Name: Grounded
-  - Type: 3
-    SynchronizeType: 1
-    Name: GunType
-  - Type: 1
-    SynchronizeType: 1
-    Name: AimAngle
-  - Type: 3
-    SynchronizeType: 1
-    Name: MoveState
-  - Type: 9
-    SynchronizeType: 1
-    Name: WeaponFire
-  - Type: 9
-    SynchronizeType: 1
-    Name: WeaponReload
-  - Type: 4
-    SynchronizeType: 1
-    Name: Zombie
-  - Type: 9
-    SynchronizeType: 1
-    Name: Death1
-  - Type: 9
-    SynchronizeType: 1
-    Name: Death2
-  - Type: 9
-    SynchronizeType: 1
-    Name: Death3
-  - Type: 9
-    SynchronizeType: 1
-    Name: TakingHit1
-  - Type: 9
-    SynchronizeType: 1
-    Name: TakingHit2
-  - Type: 4
-    SynchronizeType: 1
-    Name: IsDead
-  - Type: 4
-    SynchronizeType: 1
-    Name: HoldingWeapon
-  - Type: 4
-    SynchronizeType: 1
-    Name: HoldingR
-  - Type: 9
-    SynchronizeType: 1
-    Name: InteractR
-  - Type: 9
-    SynchronizeType: 1
-    Name: DropItemR
-  - Type: 4
-    SynchronizeType: 1
-    Name: HoldingL
-  - Type: 9
-    SynchronizeType: 1
-    Name: InteractL
-  - Type: 9
-    SynchronizeType: 1
-    Name: DropItemL
-  - Type: 4
-    SynchronizeType: 1
-    Name: Animating
-  - Type: 4
-    SynchronizeType: 1
-    Name: HoldingB
-  - Type: 4
-    SynchronizeType: 1
-    Name: InteractionLoop
-  - Type: 4
-    SynchronizeType: 1
-    Name: Stunned
-  - Type: 4
-    SynchronizeType: 1
-    Name: Sitting
-  - Type: 4
-    SynchronizeType: 1
-    Name: Sleeping
-  - Type: 4
-    SynchronizeType: 1
-    Name: Typing
-  - Type: 4
-    SynchronizeType: 1
-    Name: Talking
-  - Type: 4
-    SynchronizeType: 1
-    Name: PuttingItemsOnCounterFromKnees
-  - Type: 4
-    SynchronizeType: 1
-    Name: PuttingItemsOnCounterFromStanding
-  - Type: 4
-    SynchronizeType: 1
-    Name: ScanningItems
-  m_SynchronizeLayers:
-  - SynchronizeType: 0
-    LayerIndex: 0
-  - SynchronizeType: 0
-    LayerIndex: 1
-  - SynchronizeType: 0
-    LayerIndex: 2
-  - SynchronizeType: 0
-    LayerIndex: 3
-  - SynchronizeType: 0
-    LayerIndex: 4
-  - SynchronizeType: 0
-    LayerIndex: 5
-  - SynchronizeType: 0
-    LayerIndex: 6
-  - SynchronizeType: 0
-    LayerIndex: 7
-  - SynchronizeType: 0
-    LayerIndex: 8
---- !u!114 &986580371012476691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7570813043572972411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cea616d0e4f3ca04eb98a3424f41b7a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_animator: {fileID: 0}
-  m_itemHoldLogic: {fileID: 0}
-  m_croucher: {fileID: 0}
-  m_hand: 0
-  UseBothHands: 0
-  m_allowCrouchingInteraction: 0
-  LoopingAnimationStanding: 0
-  LoopingAnimationCrouching: 0
-  m_interactionButtonType: 1
-  m_interactionMouseButton: 0
-  m_interactionButton: 
-  m_interactionKey: 102
-  m_toggleItemButtonType: 1
-  m_toggleItemMouseButton: 0
-  m_toggleItemButton: 
-  m_toggleItemKey: 103
-  m_dropItemButtonType: 1
-  m_dropItemMouseButton: 0
-  m_dropItemButton: 
-  m_dropItemKey: 116
 --- !u!114 &1711015186561794251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1476,9 +1312,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: -7503919555932819666}
-  - {fileID: 2160432479207975398}
-  - {fileID: 3476590380264583463}
+  - {fileID: 8296254902532245443}
+  - {fileID: 4482175350154980352}
+  - {fileID: -1232814802285092870}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1561,6 +1397,171 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Emojis: []
   index: 0
+--- !u!114 &986580371012476691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570813043572972411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea616d0e4f3ca04eb98a3424f41b7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animator: {fileID: 0}
+  m_itemHoldLogic: {fileID: 0}
+  m_croucher: {fileID: 0}
+  m_hand: 0
+  UseBothHands: 0
+  m_allowCrouchingInteraction: 0
+  LoopingAnimationStanding: 0
+  LoopingAnimationCrouching: 0
+  m_interactionButtonType: 1
+  m_interactionMouseButton: 0
+  m_interactionButton: 
+  m_interactionKey: 102
+  m_toggleItemButtonType: 1
+  m_toggleItemMouseButton: 0
+  m_toggleItemButton: 
+  m_toggleItemKey: 103
+  m_dropItemButtonType: 1
+  m_dropItemMouseButton: 0
+  m_dropItemButton: 
+  m_dropItemKey: 116
+--- !u!114 &-1232814802285092870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570813043572972411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: MoveHorizontal
+  - Type: 1
+    SynchronizeType: 2
+    Name: MoveVertical
+  - Type: 4
+    SynchronizeType: 1
+    Name: Grounded
+  - Type: 3
+    SynchronizeType: 1
+    Name: GunType
+  - Type: 1
+    SynchronizeType: 2
+    Name: AimAngle
+  - Type: 3
+    SynchronizeType: 2
+    Name: MoveState
+  - Type: 9
+    SynchronizeType: 1
+    Name: WeaponFire
+  - Type: 9
+    SynchronizeType: 1
+    Name: WeaponReload
+  - Type: 4
+    SynchronizeType: 1
+    Name: Zombie
+  - Type: 9
+    SynchronizeType: 1
+    Name: Death1
+  - Type: 9
+    SynchronizeType: 1
+    Name: Death2
+  - Type: 9
+    SynchronizeType: 1
+    Name: Death3
+  - Type: 9
+    SynchronizeType: 1
+    Name: TakingHit1
+  - Type: 9
+    SynchronizeType: 1
+    Name: TakingHit2
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDead
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingWeapon
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingR
+  - Type: 9
+    SynchronizeType: 1
+    Name: InteractR
+  - Type: 9
+    SynchronizeType: 1
+    Name: DropItemR
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingL
+  - Type: 9
+    SynchronizeType: 1
+    Name: InteractL
+  - Type: 9
+    SynchronizeType: 1
+    Name: DropItemL
+  - Type: 4
+    SynchronizeType: 1
+    Name: Animating
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingB
+  - Type: 4
+    SynchronizeType: 1
+    Name: InteractionLoop
+  - Type: 4
+    SynchronizeType: 1
+    Name: Stunned
+  - Type: 4
+    SynchronizeType: 1
+    Name: Sitting
+  - Type: 4
+    SynchronizeType: 1
+    Name: Sleeping
+  - Type: 4
+    SynchronizeType: 1
+    Name: Typing
+  - Type: 4
+    SynchronizeType: 1
+    Name: Talking
+  - Type: 4
+    SynchronizeType: 1
+    Name: PuttingItemsOnCounterFromKnees
+  - Type: 4
+    SynchronizeType: 1
+    Name: PuttingItemsOnCounterFromStanding
+  - Type: 4
+    SynchronizeType: 1
+    Name: ScanningItems
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
+  - SynchronizeType: 0
+    LayerIndex: 2
+  - SynchronizeType: 0
+    LayerIndex: 3
+  - SynchronizeType: 0
+    LayerIndex: 4
+  - SynchronizeType: 0
+    LayerIndex: 5
+  - SynchronizeType: 0
+    LayerIndex: 6
+  - SynchronizeType: 0
+    LayerIndex: 7
+  - SynchronizeType: 0
+    LayerIndex: 8
 --- !u!1 &8125757752652215543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,3 +1761,136 @@ Transform:
   m_Father: {fileID: 4823111221906420855}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7503919555932819666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 1
+    Name: MoveHorizontal
+  - Type: 1
+    SynchronizeType: 1
+    Name: MoveVertical
+  - Type: 4
+    SynchronizeType: 1
+    Name: Grounded
+  - Type: 3
+    SynchronizeType: 1
+    Name: GunType
+  - Type: 1
+    SynchronizeType: 1
+    Name: AimAngle
+  - Type: 3
+    SynchronizeType: 1
+    Name: MoveState
+  - Type: 9
+    SynchronizeType: 1
+    Name: WeaponFire
+  - Type: 9
+    SynchronizeType: 1
+    Name: WeaponReload
+  - Type: 4
+    SynchronizeType: 1
+    Name: Zombie
+  - Type: 9
+    SynchronizeType: 1
+    Name: Death1
+  - Type: 9
+    SynchronizeType: 1
+    Name: Death2
+  - Type: 9
+    SynchronizeType: 1
+    Name: Death3
+  - Type: 9
+    SynchronizeType: 1
+    Name: TakingHit1
+  - Type: 9
+    SynchronizeType: 1
+    Name: TakingHit2
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsDead
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingWeapon
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingR
+  - Type: 9
+    SynchronizeType: 1
+    Name: InteractR
+  - Type: 9
+    SynchronizeType: 1
+    Name: DropItemR
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingL
+  - Type: 9
+    SynchronizeType: 1
+    Name: InteractL
+  - Type: 9
+    SynchronizeType: 1
+    Name: DropItemL
+  - Type: 4
+    SynchronizeType: 1
+    Name: Animating
+  - Type: 4
+    SynchronizeType: 1
+    Name: HoldingB
+  - Type: 4
+    SynchronizeType: 1
+    Name: InteractionLoop
+  - Type: 4
+    SynchronizeType: 1
+    Name: Stunned
+  - Type: 4
+    SynchronizeType: 1
+    Name: Sitting
+  - Type: 4
+    SynchronizeType: 1
+    Name: Sleeping
+  - Type: 4
+    SynchronizeType: 1
+    Name: Typing
+  - Type: 4
+    SynchronizeType: 1
+    Name: Talking
+  - Type: 4
+    SynchronizeType: 1
+    Name: PuttingItemsOnCounterFromKnees
+  - Type: 4
+    SynchronizeType: 1
+    Name: PuttingItemsOnCounterFromStanding
+  - Type: 4
+    SynchronizeType: 1
+    Name: ScanningItems
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
+  - SynchronizeType: 0
+    LayerIndex: 2
+  - SynchronizeType: 0
+    LayerIndex: 3
+  - SynchronizeType: 0
+    LayerIndex: 4
+  - SynchronizeType: 0
+    LayerIndex: 5
+  - SynchronizeType: 0
+    LayerIndex: 6
+  - SynchronizeType: 0
+    LayerIndex: 7
+  - SynchronizeType: 0
+    LayerIndex: 8
