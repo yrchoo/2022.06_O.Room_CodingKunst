@@ -16,6 +16,7 @@ public class Emoji : MonoBehaviour
 
     public int index;
 
+    private PhotonView pv;
     public bool activeIF;
 
     private float fDestroyTime = 2f;
@@ -31,7 +32,8 @@ public class Emoji : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(pv.IsMine){
+        if (pv.IsMine)
+        {
             fTickTime += Time.deltaTime;
             if (fTickTime >= fDestroyTime)
             {
@@ -75,16 +77,19 @@ public class Emoji : MonoBehaviour
 
     void CreateEmoji(string emoji)
     {
+        if (pv.IsMine)
+        {
+            Debug.Log("CreateEmoji");
+            Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
+            Vector3 pos = spawnPoints.position;
+            Quaternion rot = spawnPoints.rotation;
 
-        Debug.Log("CreateEmoji");
-        Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
-        //Transform[] spawnPoints = GameObject.Find("SpqwnPointGroup").GetComponentsInChildren<Transform>();
-        Vector3 pos = spawnPoints.position;
-        Quaternion rot = spawnPoints.rotation;
+            var parent = gameObject;
 
-        var parent = gameObject;
-
-        PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
+            //PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
+            PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = transform;
+        }
+       
     }
     
 }
