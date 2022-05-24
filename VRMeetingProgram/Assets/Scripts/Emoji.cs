@@ -11,67 +11,74 @@ public class Emoji : MonoBehaviour
 
     public int index;
 
+    private PhotonView pv;
+
     private float fDestroyTime = 2f;
     private float fTickTime = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        pv = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fTickTime += Time.deltaTime;
-        if (fTickTime >= fDestroyTime)
+        if (pv.IsMine)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            fTickTime += Time.deltaTime;
+            if (fTickTime >= fDestroyTime)
             {
-                CreateEmoji("crying");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                CreateEmoji("Smiley01");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                CreateEmoji("Smiley04");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                CreateEmoji("Smiley16");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                CreateEmoji("Smiley40");
-                fTickTime = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                CreateEmoji("Smiley50");
-                fTickTime = 0;
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    CreateEmoji("crying");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    CreateEmoji("Smiley01");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    CreateEmoji("Smiley04");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    CreateEmoji("Smiley16");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    CreateEmoji("Smiley40");
+                    fTickTime = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    CreateEmoji("Smiley50");
+                    fTickTime = 0;
+                }
             }
         }
-        
     }
 
     void CreateEmoji(string emoji)
     {
+        if (pv.IsMine)
+        {
+            Debug.Log("CreateEmoji");
+            Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
+            Vector3 pos = spawnPoints.position;
+            Quaternion rot = spawnPoints.rotation;
 
-        Debug.Log("CreateEmoji");
-        Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
-        //Transform[] spawnPoints = GameObject.Find("SpqwnPointGroup").GetComponentsInChildren<Transform>();
-        Vector3 pos = spawnPoints.position;
-        Quaternion rot = spawnPoints.rotation;
+            var parent = gameObject;
 
-        var parent = gameObject;
-
-        PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
+            //PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
+            PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = transform;
+        }
+       
     }
 
     void merong() { }
