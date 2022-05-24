@@ -15,8 +15,7 @@ public class Emoji : MonoBehaviour
     public InputField ChatInput;
 
     public int index;
-
-    private PhotonView pv;
+    
     public bool activeIF;
 
     private float fDestroyTime = 2f;
