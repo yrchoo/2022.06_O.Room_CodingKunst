@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
 
         spawnPoints = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
 
-        Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].position;
-        Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount].rotation;
+        Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount % 2].position;
+        Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount % 2].rotation;
 
         PhotonNetwork.Instantiate($"Player{index}", pos, rot);
 
