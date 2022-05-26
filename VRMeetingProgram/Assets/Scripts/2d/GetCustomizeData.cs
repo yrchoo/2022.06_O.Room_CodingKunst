@@ -65,7 +65,7 @@ public class GetCustomizeData : MonoBehaviour
     public void saveBtn()
     {
         SetCustomData(customize);
-        CS.LoadNextScene("MainScene");
+        CS.LoadNextScene("ChatScene");
     }
 
     public void SetCustomData(int index)
