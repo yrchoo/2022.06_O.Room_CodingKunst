@@ -24,6 +24,7 @@ using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    private readonly string gameVersion = "v1.0";
     //ChatManager chatManager;
     //public GameObject CM;
     public ChatManager CM;
@@ -66,6 +67,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public PhotonView PV;
     //public Text NickNameText;
     //public InputField ChatInput;
+    public GameObject cam;
 
     [Header("Disconnect")]
     public PlayerLeaderboardEntry MyPlayFabInfo; //�� ���� �� ��
@@ -79,6 +81,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         myID = CS.Load("userId");
         GetMyName(myID);
+        PhotonNetwork.GameVersion = gameVersion;
 
         PhotonNetwork.ConnectUsingSettings();
 
@@ -123,13 +126,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         
         //ShowPanel(LobbyPanel);
-
-        if (isLoaded)
-        {
-            ShowPanel(LobbyPanel);
-            //ShowUserNickName();
-        }
-        else Invoke("OnJoinedLobbyDelay", 1);
+        //isLoaded = true;
+        Debug.Log(UserName);
+        //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
+        PhotonNetwork.LocalPlayer.NickName = UserName;
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "�� ȯ���մϴ�";
+        myList.Clear();
+        ShowPanel(LobbyPanel);
+        
+        // if (isLoaded)
+        // {
+            
+        //     //ShowUserNickName();
+        // }
+        //else Invoke("OnJoinedLobbyDelay", 1);
 
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         //PhotonNetwork.LocalPlayer.NickName = UserName;
@@ -242,12 +252,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Chat.SetActive(true);
         LobbyPanel.SetActive(true);
-
+        GameObject.Find("Background2").SetActive(false);
+        cam.SetActive(true);
         //Destroy(ChatPos);
         //ShowPanel(Chat);
 
         //Instantiate(ChatPrefab, ChatPos);
-
+        GameManager.instance.isConnect = true;
+       
+        
         RoomRenewal();
         ChatInput.text = "";
 
