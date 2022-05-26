@@ -264,6 +264,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 6816241061256405328}
   - {fileID: 7549044652534304936}
+  - {fileID: 280299821168442614}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -318,6 +319,139 @@ MonoBehaviour:
   m_directAimController: {fileID: 4797219850788633447}
   m_characterMovement: {fileID: 0}
   m_strafer: {fileID: 7549044652534304936}
+--- !u!114 &280299821168442614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404332779322421027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 0
+    Name: MoveHorizontal
+  - Type: 1
+    SynchronizeType: 0
+    Name: MoveVertical
+  - Type: 4
+    SynchronizeType: 0
+    Name: Grounded
+  - Type: 3
+    SynchronizeType: 0
+    Name: GunType
+  - Type: 1
+    SynchronizeType: 0
+    Name: AimAngle
+  - Type: 3
+    SynchronizeType: 0
+    Name: MoveState
+  - Type: 9
+    SynchronizeType: 0
+    Name: WeaponFire
+  - Type: 9
+    SynchronizeType: 0
+    Name: WeaponReload
+  - Type: 4
+    SynchronizeType: 0
+    Name: Zombie
+  - Type: 9
+    SynchronizeType: 0
+    Name: Death1
+  - Type: 9
+    SynchronizeType: 0
+    Name: Death2
+  - Type: 9
+    SynchronizeType: 0
+    Name: Death3
+  - Type: 9
+    SynchronizeType: 0
+    Name: TakingHit1
+  - Type: 9
+    SynchronizeType: 0
+    Name: TakingHit2
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsDead
+  - Type: 4
+    SynchronizeType: 0
+    Name: HoldingWeapon
+  - Type: 4
+    SynchronizeType: 0
+    Name: HoldingR
+  - Type: 9
+    SynchronizeType: 0
+    Name: InteractR
+  - Type: 9
+    SynchronizeType: 0
+    Name: DropItemR
+  - Type: 4
+    SynchronizeType: 0
+    Name: HoldingL
+  - Type: 9
+    SynchronizeType: 0
+    Name: InteractL
+  - Type: 9
+    SynchronizeType: 0
+    Name: DropItemL
+  - Type: 4
+    SynchronizeType: 0
+    Name: Animating
+  - Type: 4
+    SynchronizeType: 0
+    Name: HoldingB
+  - Type: 4
+    SynchronizeType: 0
+    Name: InteractionLoop
+  - Type: 4
+    SynchronizeType: 0
+    Name: Stunned
+  - Type: 4
+    SynchronizeType: 0
+    Name: Sitting
+  - Type: 4
+    SynchronizeType: 0
+    Name: Sleeping
+  - Type: 4
+    SynchronizeType: 0
+    Name: Typing
+  - Type: 4
+    SynchronizeType: 0
+    Name: Talking
+  - Type: 4
+    SynchronizeType: 0
+    Name: PuttingItemsOnCounterFromKnees
+  - Type: 4
+    SynchronizeType: 0
+    Name: PuttingItemsOnCounterFromStanding
+  - Type: 4
+    SynchronizeType: 0
+    Name: ScanningItems
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
+  - SynchronizeType: 0
+    LayerIndex: 2
+  - SynchronizeType: 0
+    LayerIndex: 3
+  - SynchronizeType: 0
+    LayerIndex: 4
+  - SynchronizeType: 0
+    LayerIndex: 5
+  - SynchronizeType: 0
+    LayerIndex: 6
+  - SynchronizeType: 0
+    LayerIndex: 7
+  - SynchronizeType: 0
+    LayerIndex: 8
 --- !u!114 &4429741953133100130
 MonoBehaviour:
   m_ObjectHideFlags: 0
