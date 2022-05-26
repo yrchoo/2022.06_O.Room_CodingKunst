@@ -6,13 +6,14 @@ public class LookCam : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Cam;
+    //public Transform Cam;
 
     Vector3 startScale;
-    public float distance = 3;
+    public float distance = 5;
 
     private void Start()
     {
-        Cam = GameObject.Find("MainCamera");
+        Cam = GameObject.Find("Main Camera");
         startScale = transform.localScale;
     }
 
