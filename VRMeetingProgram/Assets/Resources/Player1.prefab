@@ -1397,7 +1397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Emojis: []
+  ChatInput: {fileID: 0}
   index: 0
+  activeIF: 0
 --- !u!114 &986580371012476691
 MonoBehaviour:
   m_ObjectHideFlags: 0
