@@ -251,7 +251,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Chat.SetActive(true);
-        LobbyPanel.SetActive(true);
+        LobbyPanel.SetActive(false);
         GameObject.Find("Background2").SetActive(false);
         cam.SetActive(true);
         //Destroy(ChatPos);
