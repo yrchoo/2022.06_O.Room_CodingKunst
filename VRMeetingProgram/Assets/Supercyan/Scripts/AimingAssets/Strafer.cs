@@ -120,7 +120,6 @@ public class Strafer : MonoBehaviour, IInitializable, IPunObservable
         if (pv.IsMine)
         {
             Camera.main.GetComponentInParent<CameraMovement>().objectTofollow = transform.Find("AimPoint").transform;
-            //Camera.main.GetComponent<SmoothFollow>().target = transform.Find("AimPoint").transform;
         }
         else {
             m_rigidBody.isKinematic = true;
@@ -168,8 +167,6 @@ public class Strafer : MonoBehaviour, IInitializable, IPunObservable
 
             // 메인 카메라의 transform에 접근
             Transform camera = Camera.main.transform;
-            //Vector3 forward = transform.TransformDirection(Vector3.forward);
-            //Vector3 right = transform.TransformDirection(Vector3.right);
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -183,7 +180,6 @@ public class Strafer : MonoBehaviour, IInitializable, IPunObservable
 
             // transform.right -> x축
             direction = camera.right * m_currentH + camera.forward * m_currentV;
-            //Vector3 direction = forward * v + right * h;
 
             float directionLength = direction.magnitude;
             direction.y = 0;
