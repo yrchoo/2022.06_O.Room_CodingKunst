@@ -68,13 +68,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //public InputField ChatInput;
 
     [Header("Disconnect")]
-    public PlayerLeaderboardEntry MyPlayFabInfo; //³» Á¤º¸ ´Ù µé¾î°¨
+    public PlayerLeaderboardEntry MyPlayFabInfo; //ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½î°¨
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
 
     //int currentPage = 1, maxPage, multiple;
 
-    #region ¼­¹ö¿¬°á
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½
     void Awake()
     {
         myID = CS.Load("userId");
@@ -96,7 +96,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         //Debug.Log(PV.IsMine);
         StatusText.text = PhotonNetwork.NetworkClientState.ToString();
-        LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "Á¢¼Ó";
+
+        LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "ëª…";
+
 
         /*if(Chat.activeSelf == true)
         {
@@ -117,19 +119,28 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     //public void Connect() => PhotonNetwork.ConnectUsingSettings();
 
-    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby(); //connectÀÇ ÄÝ¹é
+    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby(); //connectï¿½ï¿½ ï¿½Ý¹ï¿½
 
     public override void OnJoinedLobby()
     {
         
         //ShowPanel(LobbyPanel);
 
-        if (isLoaded)
-        {
-            ShowPanel(LobbyPanel);
-            //ShowUserNickName();
-        }
-        else Invoke("OnJoinedLobbyDelay", 1);
+        //isLoaded = true;
+        Debug.Log(UserName);
+        //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
+        PhotonNetwork.LocalPlayer.NickName = UserName;
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "ë‹˜ ì–´ì„œì˜¤ì„¸ìš”.";
+        myList.Clear();
+        ShowPanel(LobbyPanel);
+        
+        // if (isLoaded)
+        // {
+            
+        //     //ShowUserNickName();
+        // }
+        //else Invoke("OnJoinedLobbyDelay", 1);
+
 
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         //PhotonNetwork.LocalPlayer.NickName = UserName;
@@ -144,7 +155,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(UserName);
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "´Ô È¯¿µÇÕ´Ï´Ù";
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "ï¿½ï¿½ È¯ï¿½ï¿½ï¿½Õ´Ï´ï¿½";
         myList.Clear();
         ShowPanel(LobbyPanel);
         //ShowUserNickName();
@@ -161,7 +172,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();      
     }*/
 
-    public override void OnDisconnected(DisconnectCause cause) //disconnectÄÝ¹é
+    public override void OnDisconnected(DisconnectCause cause) //disconnectï¿½Ý¹ï¿½
     {
         isLoaded = false;
         ShowPanel(SideBar);
@@ -169,27 +180,27 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region ¹æ¸®½ºÆ® °»½Å
-    // ¢¸¹öÆ° -2 , ¢º¹öÆ° -1 , ¼¿ ¼ýÀÚ
+    #region ï¿½æ¸®ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½Æ° -2 , ï¿½ï¿½ï¿½ï¿½Æ° -1 , ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void MyListClick(int num)
     {
         //if (num == -2) --currentPage;
         //else if (num == -1) ++currentPage;
         //else
-        PhotonNetwork.JoinRoom(myList[num].Name); //onjoinedroom È£ÃâµÊ
+        PhotonNetwork.JoinRoom(myList[num].Name); //onjoinedroom È£ï¿½ï¿½ï¿½
         MyListRenewal();
     }
 
     void MyListRenewal()
     {
-        // ÃÖ´ëÆäÀÌÁö
+        // ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         //maxPage = (myList.Count % CellBtn.Length == 0) ? myList.Count / CellBtn.Length : myList.Count / CellBtn.Length + 1;
 
-        // ÀÌÀü, ´ÙÀ½¹öÆ°
+        // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Æ°
         //PreviousBtn.interactable = (currentPage <= 1) ? false : true;
         //NextBtn.interactable = (currentPage >= maxPage) ? false : true;
 
-        // ÆäÀÌÁö¿¡ ¸Â´Â ¸®½ºÆ® ´ëÀÔ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         //multiple = (currentPage - 1) * CellBtn.Length;
         for (int i = 0; i < CellBtn.Length; i++)
         {
@@ -217,7 +228,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #endregion
 
 
-    #region ¹æ
+    #region ï¿½ï¿½
     public void CreateConfirmBtn()
     {
         
@@ -227,7 +238,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             byte numByte = byte.Parse(RoomNum.text);            
             PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = numByte });
         }
-          //¼º°øÀûÀ¸·Î ¸¸µé¾îÁö¸é onJoinedRoomÀ¸·Î
+          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ onJoinedRoomï¿½ï¿½ï¿½
         RoomInput.text = "";
         RoomNum.text = "";
         //RoomRenewal();
@@ -244,16 +255,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         LobbyPanel.SetActive(true);
 
         //Destroy(ChatPos);
-        //ShowPanel(Chat);
+        ShowPanel(Chat);
 
         //Instantiate(ChatPrefab, ChatPos);
 
         RoomRenewal();
         ChatInput.text = "";
 
-        //¿©±â¼­ Ã¤ÆÃ ¹æµµ ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½â¼­ Ã¤ï¿½ï¿½ ï¿½æµµ ï¿½Ê±ï¿½È­
         CM.clean();
-        //ÆÄº£¿¡ ÀúÀåµÈ ´ëÈ­ ³»¿ë±îÁö ºÒ·¯¿À±â
+        //ï¿½Äºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½
 
         //for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
         //MyListRenewal();
@@ -265,17 +276,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     //public override void OnJoinRandomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
 
-    //player°¡ ¹æ¿¡ ÀÖÀ» ¶§ È£Ãâ
+    //playerï¿½ï¿½ ï¿½æ¿¡ ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        RoomRenewal(); //»ç¶÷ÀÌ µé¾î¿Ô´Ù ³ª°¬´Ù ÇÒ ¶§ ¹æ °»½Å
-        InformRPC(newPlayer.NickName + "´ÔÀÌ ÀÔÀåÇÏ¼Ì½À´Ï´Ù");
+
+        RoomRenewal(); //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        InformRPC(newPlayer.NickName + "ë‹˜ì´ ìž…ìž¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
+
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
-        InformRPC(otherPlayer.NickName + "´ÔÀÌ ÅðÀåÇÏ¼Ì½À´Ï´Ù");
+
+        InformRPC(otherPlayer.NickName + "ë‹˜ì´ í‡´ìž¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
+
     }
 
     void RoomRenewal()
@@ -283,13 +298,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ListText.text = "";
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
-        //¿©±â ¼öÁ¤!!!!!
-        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / Á¢¼Ó Áß : " + PhotonNetwork.CurrentRoom.PlayerCount + "¸í / " + PhotonNetwork.CurrentRoom.MaxPlayers + "ÃÖ´ë";
+
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!!!!
+        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / í˜„ìž¬ ì¸ì› : " + PhotonNetwork.CurrentRoom.PlayerCount + "ëª… / " + PhotonNetwork.CurrentRoom.MaxPlayers + "ëª…";
+
     }
     #endregion
 
 
-#region Ã¤ÆÃ
+#region Ã¤ï¿½ï¿½
     
     public void BtnSend()
     {
@@ -350,7 +367,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region ±âÅ¸
+    #region ï¿½ï¿½Å¸
     /*public override void OnDisconnected(DisconnectCause cause)
     {
         ShowPanel(DisconnectPanel);
@@ -381,7 +398,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             UserName = result.Data["name"].Value;
 
         },
-            (error) => print("µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆÐ")
+            (error) => print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
             );
     }
 
