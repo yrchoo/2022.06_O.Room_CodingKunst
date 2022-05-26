@@ -10,7 +10,6 @@ public class Emoji : MonoBehaviour
 {
 
     private PhotonView pv;
-    public GameObject[] Emojis;
 
     public InputField ChatInput;
 
@@ -79,11 +78,13 @@ public class Emoji : MonoBehaviour
         if (pv.IsMine)
         {
             Debug.Log("CreateEmoji");
-            Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
-            Vector3 pos = spawnPoints.position;
-            Quaternion rot = spawnPoints.rotation;
+            //Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
+            Transform spawnPoints = transform.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
+            Vector3 pos = spawnPoints.transform.position;
+            Quaternion rot = spawnPoints.transform.rotation;
+            //Quaternion rot = transform.parent.transform.rotation;
 
-            var parent = gameObject;
+            //rot.y += 180.0f;
 
             //PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
             PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = transform;
