@@ -235,7 +235,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 600, y: 0}
-  m_SizeDelta: {x: 1200, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8759873313284805152
 MonoBehaviour:
@@ -289,6 +289,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb7aabbf2c602c4ab3ce26f0e3f9825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ListAreaRect: {fileID: 0}
+  ListBoxRect: {fileID: 0}
+  ListTextRect: {fileID: 0}
+  State: {fileID: 0}
+  Name: {fileID: 0}
+  Role: {fileID: 0}
+  Image: {fileID: 0}
   AreaRect: {fileID: 6109153779294193756}
   BoxRect: {fileID: 1128007796456079862}
   TextRect: {fileID: 869956347006217484}
@@ -397,7 +404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8884811496407590589
 RectTransform:
   m_ObjectHideFlags: 0
