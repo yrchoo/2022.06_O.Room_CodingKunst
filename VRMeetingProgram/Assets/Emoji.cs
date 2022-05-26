@@ -78,7 +78,6 @@ public class Emoji : MonoBehaviour
         if (pv.IsMine)
         {
             Debug.Log("CreateEmoji");
-            //Transform spawnPoints = GameObject.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
             Transform spawnPoints = transform.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
             Vector3 pos = spawnPoints.transform.position;
             Quaternion rot = spawnPoints.transform.rotation;

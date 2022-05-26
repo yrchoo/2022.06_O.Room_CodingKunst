@@ -67,6 +67,5 @@ public class CameraMovement : MonoBehaviour
         // 메인 카메라의 위치 설정
         realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, Time.deltaTime * smoothness);
 
-        //transform.LookAt(objectTofollow);
     }
 }

@@ -354,11 +354,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2423702380490648053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0c21a88a6826c4e988d86ce867eb1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a6896e5c5734bff8256b5903168468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Emojis: []
+  ChatInput: {fileID: 0}
   index: 0
+  activeIF: 0
 --- !u!114 &5641399024993920063
 MonoBehaviour:
   m_ObjectHideFlags: 0

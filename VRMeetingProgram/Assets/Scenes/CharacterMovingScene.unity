@@ -670,6 +670,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031144352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b34c1f3b8f147dabe639761fcdae84, type: 3}
+  m_Script: {fileID: 11500000, guid: a42bac48a9fceaa4692f0d36248a02de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CM: {fileID: 0}
+  CS: {fileID: 0}
+  UserName: 
+  ID: 
+  SideBar: {fileID: 0}
+  NickNameInput: {fileID: 0}
+  LobbyPanel: {fileID: 0}
+  WelcomeText: {fileID: 0}
+  LobbyInfoText: {fileID: 0}
+  CellBtn: []
+  RoomInput: {fileID: 0}
+  RoomNum: {fileID: 0}
+  Chat: {fileID: 0}
+  ListText: {fileID: 0}
+  RoomInfoText: {fileID: 0}
+  ChatInput: {fileID: 0}
+  StatusText: {fileID: 0}
+  PV: {fileID: 0}
+  cam: {fileID: 0}
+  MyPlayFabInfo:
+    DisplayName: 
+    PlayFabId: 
+    Position: 0
+    Profile:
+      AdCampaignAttributions: []
+      AvatarUrl: 
+      ContactEmailAddresses: []
+      DisplayName: 
+      ExperimentVariants: []
+      LinkedAccounts: []
+      Locations: []
+      Memberships: []
+      PlayerId: 
+      PublisherId: 
+      PushNotificationRegistrations: []
+      Statistics: []
+      Tags: []
+      TitleId: 
+      ValuesToDate: []
+    StatValue: 0
+  PlayFabUserList: []

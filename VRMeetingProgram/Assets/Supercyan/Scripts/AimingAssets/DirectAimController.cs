@@ -59,6 +59,8 @@ public class DirectAimController : MonoBehaviour, IInitializable
     private void Start()
     {
         pv = GetComponent<PhotonView>();
+        Cursor.lockState = CursorLockMode.Locked; // 마우스
+        Cursor.visible = false;
     }
 
     private void Update()
