@@ -8,6 +8,91 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
+    public string playfabId;
+    public GameObject userObject;
+
+    /*    public void call()
+        {
+            DontDestroyOnLoad(userObject);
+        }
+    */
+
+    public int customize =0;
+    public string userName ="";
+    public string userRole="";
+    public string userTeam="";
+
+    #region 저장
+    public void SaveStr(string val)
+    {
+        PlayerPrefs.SetString("userId", val);
+        
+        //PlayerPrefs.SetString
+        SetData(val);       
+    }
+    public void SaveInt(int val)
+    {
+        PlayerPrefs.SetInt("userChar", val);
+    }
+    
+    public string Load(string key)
+    {
+        string myID = PlayerPrefs.GetString(key);
+        return myID;
+    }
+    #endregion
+
+    public int SetData(string myID)
+    {
+        var request = new GetUserDataRequest() { PlayFabId = myID };
+
+        PlayFabClientAPI.GetUserData(request, 
+            (result) => {
+            userName = result.Data["name"].Value;              
+            userRole = result.Data["role"].Value;
+            userTeam = result.Data["team"].Value;
+            },
+            (error) => print("데이터 불러오기 실패")
+        );
+       
+        
+        PlayFabClientAPI.GetPlayerStatistics(
+            new GetPlayerStatisticsRequest(),
+            (result) =>
+            {
+                foreach (var eachStat in result.Statistics)
+                {
+                    switch (eachStat.StatisticName)
+                    {
+                        case "customize": customize = eachStat.Value; print(customize); break;
+
+                    }
+                }
+            },
+            (error) => { print("값 불러오기 실패"); }
+         );
+
+        return 0;
+       
+    }
+    
+    public int getCustomize()
+    {
+        return customize;
+    }
+    public string getName()
+    {
+        return userName;
+    }
+    public string getRole()
+    {
+        return userRole;
+    }
+    public string getTeam()
+    {
+        return userTeam;
+    }
+
     #region 씬 전환
     public void LoadNextScene(string scene)
     {
@@ -29,15 +114,5 @@ public class ChangeScene : MonoBehaviour
     }
     #endregion
 
-    #region 저장
-    public void Save(string id)
-    {
-        PlayerPrefs.SetString("userId", id);
-    }
-    public string Load(string key)
-    {
-        string myID = PlayerPrefs.GetString(key);
-        return myID;
-    }
-    #endregion
+   
 }

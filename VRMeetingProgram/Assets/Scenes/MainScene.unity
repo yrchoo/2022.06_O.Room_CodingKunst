@@ -904,7 +904,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 546567894}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1291517626}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: SettingClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &546567894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,6 +1681,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1d3e00fdb10db4dac6e43a54869098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playfabId: 
+  userObject: {fileID: 0}
+  customize: 0
+  userName: 
+  userRole: 
+  userTeam: 
 --- !u!4 &1212049053
 Transform:
   m_ObjectHideFlags: 0
@@ -1871,6 +1889,10 @@ MonoBehaviour:
       ValuesToDate: []
     StatValue: 0
   PlayFabUserList: []
+  customize: 0
+  userName: 
+  userRole: 
+  userTeam: 
 --- !u!4 &1291517627
 Transform:
   m_ObjectHideFlags: 0
