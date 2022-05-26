@@ -22,7 +22,6 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
 
     public ChangeScene CS;
 
-
     void Awake()
     {
         Screen.SetResolution(960, 540, false);
@@ -46,7 +45,27 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
     void OnLoginSuccess(LoginResult result) {
         print("로그인 성공");
         myID = result.PlayFabId;
-        CS.Save(myID);
+        CS.SaveStr(myID);
+        CS.playfabId = myID;
+        //CS.call();
+        int customize =1;
+        PlayFabClientAPI.GetPlayerStatistics(
+            new GetPlayerStatisticsRequest(),
+            (result) =>
+            {
+                foreach (var eachStat in result.Statistics)
+                {
+                    switch (eachStat.StatisticName)
+                    {
+                        case "customize": customize = eachStat.Value; print(customize); break;
+
+                    }
+                }
+            },
+            (error) => { print("값 불러오기 실패"); }
+         );
+
+        CS.SaveInt(customize);
 
         //PhotonNetwork.ConnectUsingSettings();
         try
@@ -55,10 +74,8 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         }
         catch (NullReferenceException ex)
         {
-            Debug.Log("null");
-        }
-        
-
+            Debug.Log(ex+"null");
+        }       
     }
     void OnLoginFailure(PlayFabError error) => print("로그인 실패");
 
@@ -67,14 +84,20 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         print("회원가입 성공");
         SetStat();
         SetData(UsernameInput.text, IdInput.text, RoleInput.text, TeamInput.text);
+        //SetCustomData();
         AccountPanel.SetActive(false);
     }
     void OnRegisterFailure(PlayFabError error) => print("회원가입 실패");
 
     void SetStat()
     {
-        var request = new UpdatePlayerStatisticsRequest { Statistics = new List<StatisticUpdate> { new StatisticUpdate { StatisticName = "IDInfo", Value = 0 } } };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => { }, (error) => print("값 저장실패"));
+        var request = new UpdatePlayerStatisticsRequest { 
+            Statistics = new List<StatisticUpdate> { 
+            new StatisticUpdate { StatisticName = "IDInfo", Value = 0 },
+            new StatisticUpdate {StatisticName = "customize", Value = 1},
+            } 
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => print("값 저장성공"), (error) => print("값 저장실패"));
     }
 
     /*public void Save(string id)
@@ -86,7 +109,7 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
     {
         var request = new UpdateUserDataRequest() { 
             Data = new Dictionary<string, string>() { 
-                { "name", name }, { "id", id }, { "role", role } ,{"team",team}
+                { "name", name }, { "id", id }, { "role", role } ,{ "team",team },
             },
             Permission = UserDataPermission.Public
 
@@ -94,26 +117,20 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.UpdateUserData(request, (result) => print("데이터 저장 성공"), (error) => print("데이터 저장 실패"));
     }
 
-    //public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
-
-    /*public void LoadNextScene()
+    /*public void SetCustomData()
     {
-        
-        // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
-        StartCoroutine(LoadMyAsyncScene());
-    }*/
-
-    /*IEnumerator LoadMyAsyncScene()
-    {
-        // AsyncOperation을 통해 Scene Load 정도를 알 수 있다.
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainScene");
-
-        // Scene을 불러오는 것이 완료되면, AsyncOperation은 isDone 상태가 된다.
-        while (!asyncLoad.isDone)
+        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
         {
-            yield return null;
-        }
-    }*/
+            Statistics = new List<StatisticUpdate>
+            {
+                new StatisticUpdate {StatisticName = "customize", Value = 1},
+                
+            }
+        },
+        (result) => print("데이터 저장 성공"), 
+        (error) => print("데이터 저장 실패"));
+    }
+*/
 
 
 }

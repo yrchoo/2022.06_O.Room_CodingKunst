@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/CustomizeScene.unity
-    guid: 55b92f09e76ea406f8b29c103f0b0f27
   - enabled: 1
     path: Assets/Scenes/LoginScene.unity
     guid: 010f0abdde6d6394c855a84c0d239805
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: f74e09b531daf79429e0122e16bfb2ef
+  - enabled: 1
+    path: Assets/Scenes/CustomizeScene.unity
+    guid: 55b92f09e76ea406f8b29c103f0b0f27
   - enabled: 1
     path: Assets/Scenes/ChatScene.unity
     guid: 7be48b58bdac690438d48cb9a585eb0e

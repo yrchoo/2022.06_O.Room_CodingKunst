@@ -1,10 +1,14 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class SaveCustomizeButton : MonoBehaviour
 {
+    public ChangeScene CS;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +21,32 @@ public class SaveCustomizeButton : MonoBehaviour
         
     }
 
-    public void LoadNextScene(){
+    /*public void saveBtn()
+    {
+        try
+        {
+            CS.LoadNextScene("MainScene");
+        }
+        catch (NullReferenceException ex)
+        {
+            Debug.Log("null");
+        }
+    }
+    public void SetCustomData(int index)
+    {
+        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
+        {
+            Statistics = new List<StatisticUpdate>
+            {
+                new StatisticUpdate {StatisticName = "customize", Value = index},
+
+            }
+        },
+        (result) => print("데이터 저장 성공"),
+        (error) => print("데이터 저장 실패"));
+    }*/
+
+    /*public void LoadNextScene(){
       // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
       StartCoroutine(LoadMyAsyncScene());
     }
@@ -32,5 +61,5 @@ public class SaveCustomizeButton : MonoBehaviour
         {
             yield return null;
         }
-    }
+    }*/
 }

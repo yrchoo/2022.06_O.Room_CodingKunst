@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3014,6 +3014,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1d3e00fdb10db4dac6e43a54869098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playfabId: 
+  userObject: {fileID: 0}
+  customize: 0
+  userName: 
+  userRole: 
+  userTeam: 
 --- !u!4 &1266811083
 Transform:
   m_ObjectHideFlags: 0
@@ -5357,7 +5363,6 @@ MonoBehaviour:
   ChatInput: {fileID: 610966756}
   StatusText: {fileID: 2005856242}
   PV: {fileID: 1980989445}
-  cam: {fileID: 320077845}
   MyPlayFabInfo:
     DisplayName: 
     PlayFabId: 
@@ -7213,7 +7218,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2130838129952851937}
   m_HandleRect: {fileID: 2130838129952851936}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7487,7 +7492,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 330, y: -100}
+  m_SizeDelta: {x: 330, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2130838130456003343
 MonoBehaviour:
