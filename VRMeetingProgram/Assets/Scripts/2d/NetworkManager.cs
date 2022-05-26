@@ -99,7 +99,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         //Debug.Log(PV.IsMine);
         StatusText.text = PhotonNetwork.NetworkClientState.ToString();
-        LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "����";
+        LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "명";
 
         /*if(Chat.activeSelf == true)
         {
@@ -130,7 +130,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(UserName);
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "�� ȯ���մϴ�";
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 어서오세요.";
         myList.Clear();
         ShowPanel(LobbyPanel);
         
@@ -255,7 +255,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         GameObject.Find("Background2").SetActive(false);
         cam.SetActive(true);
         //Destroy(ChatPos);
-        //ShowPanel(Chat);
+        ShowPanel(Chat);
 
         //Instantiate(ChatPrefab, ChatPos);
         GameManager.instance.isConnect = true;
@@ -282,13 +282,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         RoomRenewal(); //����� ���Դ� ������ �� �� �� ����
-        InformRPC(newPlayer.NickName + "���� �����ϼ̽��ϴ�");
+        InformRPC(newPlayer.NickName + "님이 입장하셨습니다.");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
-        InformRPC(otherPlayer.NickName + "���� �����ϼ̽��ϴ�");
+        InformRPC(otherPlayer.NickName + "님이 퇴장하셨습니다.");
     }
 
     void RoomRenewal()
@@ -297,7 +297,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
         //���� ����!!!!!
-        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / ���� �� : " + PhotonNetwork.CurrentRoom.PlayerCount + "�� / " + PhotonNetwork.CurrentRoom.MaxPlayers + "�ִ�";
+        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / 현재 인원 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "명";
     }
     #endregion
 
