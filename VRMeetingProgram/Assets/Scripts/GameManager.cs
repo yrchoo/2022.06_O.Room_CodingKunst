@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance = null;
     public bool isConnect = false;
@@ -53,5 +54,10 @@ public class GameManager : MonoBehaviour
 
         myPlayer = PhotonNetwork.Instantiate($"Player{index}", pos, rot);
 
+    }
+
+    public override void OnLeftRoom()
+    {
+        StartCoroutine(CreatePlayer());
     }
 }
