@@ -24,25 +24,39 @@ public class GetCustomizeData : MonoBehaviour
     public int getCustom;
     public int customize;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //getCustom = GetCustomVal();
-        //customize = CS.getCustomize();
-        //Debug.Log("???"+ customize);
+    void Awake(){
         getCustom = PlayerPrefs.GetInt("userCustom");
+
+        //float waitTime = 1f;
+
+
         Debug.Log("customize" + getCustom);
-        genderData = getCustom % 16;
-        getCustom = getCustom - (16 * genderData);
-        modelData = getCustom % 4;
-        getCustom = getCustom - (4 * modelData);
+        getCustom = getCustom - 1;
+
+        genderData = getCustom / 16;
+        getCustom = getCustom % 16;
+        modelData = getCustom / 4;
+        getCustom = getCustom % 4;
         skinData = getCustom;
 
         // firebase에 저장된 캐릭터 커스터마이징 데이터 값을 읽어서 변수에 저장하도록 함
         oldModelData = modelData;
         oldGenderData = genderData;
         oldSkinData = skinData;
+
+        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //getCustom = GetCustomVal();
+        //customize = CS.getCustomize();
+        //Debug.Log("???"+ customize);
+        Debug.Log("oldGenderData : "+ oldGenderData + "  oldModelData : " + oldModelData + "  oldSkinData : " + oldSkinData);
+        Debug.Log("GenderData : "+ genderData + "  ModelData : " + modelData + "  SkinData : " + skinData);
         character[16*genderData + 4*modelData + skinData].SetActive(true);
+        
     }
 
     // Update is called once per frame
@@ -50,6 +64,15 @@ public class GetCustomizeData : MonoBehaviour
     {
         // 데이터가 하나라도 변경되면 출력되는 모델을 바꿈
         if(oldModelData != modelData || oldGenderData != genderData || oldSkinData != skinData){
+            int deactiveNum = 16*oldGenderData+4*oldModelData+oldSkinData;
+            Debug.Log("Deactive"+deactiveNum);
+            Debug.Log("oldGenderData : "+ oldGenderData + "  oldModelData : " + oldModelData + "  oldSkinData : " + oldSkinData);
+            int activeNum = (16*genderData)+(4*modelData)+skinData;
+            Debug.Log("Active"+activeNum);
+            Debug.Log("GenderData : "+ genderData + "  ModelData : " + modelData + "  SkinData : " + skinData);
+            
+            
+
             character[16*oldGenderData+4*oldModelData+oldSkinData].SetActive(false);
             character[16*genderData+4*modelData+skinData].SetActive(true);
             // 데이터 갱신
@@ -57,7 +80,7 @@ public class GetCustomizeData : MonoBehaviour
             oldGenderData = genderData;
             oldSkinData = skinData;
 
-            customize = 16 * genderData + 4 * modelData + skinData;
+            customize = 16 * genderData + 4 * modelData + skinData + 1;
             
         }
     }
