@@ -20,6 +20,8 @@ public class Emoji : MonoBehaviour
     private float fDestroyTime = 2f;
     private float fTickTime = 2f;
 
+    public Transform spawnPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,14 +80,9 @@ public class Emoji : MonoBehaviour
         if (pv.IsMine)
         {
             Debug.Log("CreateEmoji");
-            Transform spawnPoints = transform.Find("EmojiSpawnPoint").GetComponentInChildren<Transform>();
             Vector3 pos = spawnPoints.transform.position;
             Quaternion rot = spawnPoints.transform.rotation;
-            //Quaternion rot = transform.parent.transform.rotation;
 
-            //rot.y += 180.0f;
-
-            //PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = parent.transform;
             PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = transform;
         }
        
