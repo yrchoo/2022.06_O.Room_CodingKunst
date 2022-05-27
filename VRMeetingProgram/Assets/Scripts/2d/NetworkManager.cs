@@ -176,6 +176,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+    //content추가
+    //public void List(string room, string num)
+    //{
+    //    Transform CurListArea = Instantiate(RoomArea).transform;
+    //    CurListArea.SetParent(ContentRect.transform, false);
+    //    CurListArea.SetSiblingIndex(CurListArea.GetSiblingIndex());
+    //    CurListArea.GetComponent<AreaScript>().TeamText.text = team;
+    //    CurListArea.GetComponent<AreaScript>().RoleText.text = role;
+    //    CurListArea.GetComponent<AreaScript>().NameText.text = name;
+    //}
+
     #region �渮��Ʈ ����
     // ����ư -2 , ����ư -1 , �� ����
     public void MyListClick(int num)
@@ -193,6 +204,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < CellBtn.Length; i++)
         {
             CellBtn[i].interactable = (i < myList.Count) ? true : false;
+            //CellBtn[i].enabled = (i < myList.Count) ? true : false;
+            //Debug.Log("myList.count" + myList.Count);
+            //Debug.Log("CellBtn.Length" + CellBtn.Length);
+            if (i >= myList.Count) { CellBtn[i].gameObject.SetActive(false); }
+            else { CellBtn[i].gameObject.SetActive(true); }
             CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : "";
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < myList.Count) ? myList[i].PlayerCount + "/" + myList[i].MaxPlayers : "";
         }
