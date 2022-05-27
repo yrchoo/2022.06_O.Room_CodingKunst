@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public bool isConnect = false;
     public Transform[] spawnPoints;
 
+    public GameObject myPlayer;
+
     public int index; // 1~32
 
 
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
         Vector3 pos = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount % 2].position;
         Quaternion rot = spawnPoints[PhotonNetwork.CurrentRoom.PlayerCount % 2].rotation;
 
-        PhotonNetwork.Instantiate($"Player{index}", pos, rot);
+        myPlayer = PhotonNetwork.Instantiate($"Player{index}", pos, rot);
 
     }
 }
