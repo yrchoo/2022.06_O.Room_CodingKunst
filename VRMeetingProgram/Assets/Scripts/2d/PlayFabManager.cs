@@ -7,6 +7,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 //using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.UI;
 
@@ -71,7 +72,8 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
 
         try
         {
-            CS.LoadNextScene("MainScene");
+            //CS.LoadNextScene("MainScene");
+            LoadingSceneManager.LoadScene("MainScene");
         }
         catch (NullReferenceException ex)
         {
