@@ -22,18 +22,41 @@ public class ChangeScene : MonoBehaviour
     public string userRole="";
     public string userTeam="";
 
+    #region 씬 전환
+    public void LoadNextScene(string scene)
+    {
+
+        // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
+        StartCoroutine(LoadMyAsyncScene(scene));
+    }
+
+    IEnumerator LoadMyAsyncScene(string scene)
+    {
+        // AsyncOperation을 통해 Scene Load 정도를 알 수 있다.
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        // Scene을 불러오는 것이 완료되면, AsyncOperation은 isDone 상태가 된다.
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+    #endregion
+
+
+
     #region 저장
-    public void SaveStr(string val)
+    /*public void SaveStr(string val)
     {
         PlayerPrefs.SetString("userId", val);
         
         //PlayerPrefs.SetString
         SetData(val);       
-    }
-    public void SaveInt(int val)
+    }*/
+    /*public void SaveInt(int val)
     {
         PlayerPrefs.SetInt("userChar", val);
-    }
+    }*/
     
     public string Load(string key)
     {
@@ -76,7 +99,7 @@ public class ChangeScene : MonoBehaviour
        
     }
     
-    public int getCustomize()
+    /*public int getCustomize()
     {
         return customize;
     }
@@ -92,27 +115,19 @@ public class ChangeScene : MonoBehaviour
     {
         return userTeam;
     }
+    */
 
-    #region 씬 전환
-    public void LoadNextScene(string scene)
+    
+   public void GetStat()
+    {
+        PlayFabClientAPI.GetPlayerStatistics(
+            new GetPlayerStatisticsRequest(),
+            (result) => Callback(),
+            (error) => { print("값 불러오기 실패"); }
+         );       
+    }
+    void Callback()
     {
 
-        // 비동기적으로 Scene을 불러오기 위해 Coroutine을 사용한다.
-        StartCoroutine(LoadMyAsyncScene(scene));
     }
-
-    IEnumerator LoadMyAsyncScene(string scene)
-    {
-        // AsyncOperation을 통해 Scene Load 정도를 알 수 있다.
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
-
-        // Scene을 불러오는 것이 완료되면, AsyncOperation은 isDone 상태가 된다.
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
-    #endregion
-
-   
 }

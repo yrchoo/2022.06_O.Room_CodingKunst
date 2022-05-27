@@ -40,15 +40,16 @@ public class MainManager : MonoBehaviour
     {
         /*SceneManager = GameObject.Find("PFuserID");
         Debug.Log(SceneManager.GetComponent<DonDestroyObject>().PFuserID);*/
-        
-        myID = CS.Load("userId");
+
+        //myID = CS.Load("userId");
         //CS.GetUserData(myID);
 
+        myID = PlayerPrefs.GetString("userId");
         GetLeaderboard(myID);
         ShowMyProfile(myID);
+
         //GetStat();
         //Debug.Log(id);
-
     }
 
     // Update is called once per frame
@@ -72,7 +73,7 @@ public class MainManager : MonoBehaviour
         }
         catch (NullReferenceException ex)
         {
-            Debug.Log("null");
+            Debug.Log(ex+"null");
         }
     }
    
@@ -85,7 +86,7 @@ public class MainManager : MonoBehaviour
         }
         catch (NullReferenceException ex)
         {
-            Debug.Log("null");
+            Debug.Log(ex+"null");
         }
     }
     #endregion
@@ -120,7 +121,6 @@ public class MainManager : MonoBehaviour
         Area.ListTextRect.GetComponent<Text>().text = "??";
         Fit(Area.ListBoxRect);
 
-        //Area.State = 
     } 
 
     void GetLeaderboard(string myID)
@@ -160,105 +160,7 @@ public class MainManager : MonoBehaviour
             },
             (error) => print("데이터 불러오기 실패")
         );
-
-
-        /*PlayFabClientAPI.GetPlayerStatistics(
-            new GetPlayerStatisticsRequest(),
-            (result) =>
-            {
-                foreach (var eachStat in result.Statistics)
-                {
-                    switch (eachStat.StatisticName)
-                    {
-                        case "customize": customize = eachStat.Value; print(customize); break;
-
-                    }
-                }
-            },
-            (error) => { print("값 불러오기 실패"); }
-         );
-
-        CS.SaveInt(customize);*/
-
-    }
-
-    /*public void GetData(string myID)
-    {
-        var request = new GetUserDataRequest() { PlayFabId = myID };
-        PlayFabClientAPI.GetUserData(request, (result) => {
-            foreach (var eachData in result.Data) //LogText.text += eachData.Key + " : " + eachData.Value.Value + "\n"; 
-                print(eachData.Key + ":" + eachData.Value.Value);
-        },
-            (error) => print("데이터 불러오기 실패")
-            );
-    }*/
-
-    /*public void GetStat()
-    {
-        PlayFabClientAPI.GetPlayerStatistics(
-            new GetPlayerStatisticsRequest(),
-            (result) =>
-            {
-                foreach (var eachStat in result.Statistics)
-                {
-                    switch (eachStat.StatisticName)
-                    {
-                        case "customize": print(eachStat.Value); break;
-                    }
-                }
-            },
-            (error) => { print("값 불러오기 실패"); });  
-    }*/
-
-
-    /*public void SetCustomData()
-    {
-        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
-        {
-            Statistics = new List<StatisticUpdate>
-            {
-                new StatisticUpdate {StatisticName = "customize", Value = 2},
-
-            }
-        },
-        (result) => print("데이터 저장 성공"),
-        (error) => print("데이터 저장 실패"));
-    }*/
-    /*public void GetStat()
-    {
-        int id = 0;
-        string customize = "";
-        PlayFabClientAPI.GetPlayerStatistics(
-            new GetPlayerStatisticsRequest(),
-            (result) =>
-            {
-                //var eachStat = result.Statistics[1];
-                //id = eachStat.Value;
-                foreach (var eachStat in result.Statistics)
-                {
-                    customize = eachStat.StatisticName;
-                    id = eachStat.Value;
-                }
-                Debug.Log(customize);
-                Debug.Log(id);
-            },
-            (error) => { print("값 불러오기 실패"); });
-        //return id;
-    }*/
-
-    /*public void GetStat()
-    {
-        PlayFabClientAPI.GetPlayerStatistics(
-            new GetPlayerStatisticsRequest(),
-            (result) =>
-            {
-                StatText.text = "";
-                foreach (var eachStat in result.Statistics)
-                    StatText.text += eachStat.StatisticName + " : " + eachStat.Value + "\n";
-            },
-            (error) => { StatText.text = "값 불러오기 실패"; });
-    }
-*/
+    } 
 
     void ShowUserNickName()
     {
@@ -276,11 +178,4 @@ public class MainManager : MonoBehaviour
     }
 
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
-
-
-/*    public void Load()
-    {
-        myID = PlayerPrefs.GetString("userId");
-
-    }*/
 }

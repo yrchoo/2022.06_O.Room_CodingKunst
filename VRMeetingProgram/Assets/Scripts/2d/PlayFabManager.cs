@@ -41,14 +41,16 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnRegisterFailure);
        
     }
-
     void OnLoginSuccess(LoginResult result) {
         print("로그인 성공");
         myID = result.PlayFabId;
-        CS.SaveStr(myID);
-        CS.playfabId = myID;
+        PlayerPrefs.SetString("userId", myID);
+
+        //CS.SaveStr(myID);
+        //CS.playfabId = myID;
         //CS.call();
-        int customize =1;
+
+        int customize = 1;
         PlayFabClientAPI.GetPlayerStatistics(
             new GetPlayerStatisticsRequest(),
             (result) =>
@@ -57,17 +59,16 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
                 {
                     switch (eachStat.StatisticName)
                     {
-                        case "customize": customize = eachStat.Value; print(customize); break;
-
+                        case "customize": customize = eachStat.Value; PlayerPrefs.SetInt("userCustom", customize); break;
                     }
                 }
             },
             (error) => { print("값 불러오기 실패"); }
          );
 
-        CS.SaveInt(customize);
-
+        //CS.SaveInt(customize);
         //PhotonNetwork.ConnectUsingSettings();
+
         try
         {
             CS.LoadNextScene("MainScene");
@@ -88,7 +89,6 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         AccountPanel.SetActive(false);
     }
     void OnRegisterFailure(PlayFabError error) => print("회원가입 실패");
-
     void SetStat()
     {
         var request = new UpdatePlayerStatisticsRequest { 
@@ -99,11 +99,6 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, (result) => print("값 저장성공"), (error) => print("값 저장실패"));
     }
-
-    /*public void Save(string id)
-    {
-        PlayerPrefs.SetString("userId", id);
-    }*/
 
     public void SetData(string name, string id, string role, string team)
     {
@@ -116,21 +111,4 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         };
         PlayFabClientAPI.UpdateUserData(request, (result) => print("데이터 저장 성공"), (error) => print("데이터 저장 실패"));
     }
-
-    /*public void SetCustomData()
-    {
-        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
-        {
-            Statistics = new List<StatisticUpdate>
-            {
-                new StatisticUpdate {StatisticName = "customize", Value = 1},
-                
-            }
-        },
-        (result) => print("데이터 저장 성공"), 
-        (error) => print("데이터 저장 실패"));
-    }
-*/
-
-
 }
