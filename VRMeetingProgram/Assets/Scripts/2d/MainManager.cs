@@ -12,6 +12,11 @@ public class MainManager : MonoBehaviour
     public ChangeScene CS;
     static public string myID;
 
+    [Header("LoadingPanel")]
+    public GameObject LoadingPanel;
+
+
+
     [Header("MemberPanel")]
     public GameObject MemberPanel;
     public GameObject ListArea;
@@ -25,7 +30,7 @@ public class MainManager : MonoBehaviour
     //bool isLoaded;
     
     [Header("Disconnect")]
-    public PlayerLeaderboardEntry MyPlayFabInfo; //³» Á¤º¸ ´Ù µé¾î°¨
+    public PlayerLeaderboardEntry MyPlayFabInfo; //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½î°¨
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
     public int customize = 0;
@@ -49,6 +54,10 @@ public class MainManager : MonoBehaviour
         //Debug.Log(id);
     }
 
+    void Start(){
+        LoadingPanel.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -56,7 +65,7 @@ public class MainManager : MonoBehaviour
     }
 
     
-    #region ¹öÆ° Å¬¸¯
+    #region ï¿½ï¿½Æ° Å¬ï¿½ï¿½
     /*
     public void MemberClick()
     {
@@ -104,10 +113,10 @@ public class MainManager : MonoBehaviour
 
             Name.text = result.Data["name"].Value;
             Role.text = result.Data["role"].Value;
-            Team.text = result.Data["team"].Value+"ÆÀ";
+            Team.text = result.Data["team"].Value+"ï¿½ï¿½";
 
         },
-            (error) => print("µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆÐ")
+            (error) => print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
             );
 
         //Fit(Area.ListBoxRect);
@@ -178,7 +187,7 @@ public class MainManager : MonoBehaviour
                 userTeam = result.Data["team"].Value;
                 List(userTeam, userRole, userName);
             },
-            (error) => print("µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆÐ")
+            (error) => print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
         );
         
     }
@@ -205,4 +214,5 @@ public class MainManager : MonoBehaviour
     }
 
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
+
 }
