@@ -339,6 +339,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //ChatRPC(ChatInput.text);
         ChatInput.DeactivateInputField();
+
+        GameObject myPlayer = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer;
+        myPlayer.GetComponent<Strafer>().enabled = true;
+        myPlayer.GetComponent<Croucher>().enabled = true;
+        myPlayer.GetComponent<Emoji>().enabled = true;
     }
 
     //public void 
