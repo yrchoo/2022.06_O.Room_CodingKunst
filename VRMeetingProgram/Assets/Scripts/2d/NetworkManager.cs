@@ -372,9 +372,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ChatInput.DeactivateInputField();
 
         GameObject myPlayer = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer;
+
         myPlayer.GetComponent<Strafer>().enabled = true;
         myPlayer.GetComponent<Croucher>().enabled = true;
         myPlayer.GetComponent<Emoji>().enabled = true;
+        myPlayer.GetComponent<DirectAimController>().enabled = true;
+        GameObject.Find("PauseRoom").GetComponent<PauseRoom>().cam.GetComponent<CameraMovement>().enabled = true;
+        
+        Cursor.lockState = CursorLockMode.Locked; // 마우스
+        Cursor.visible = false;
     }
 
     //public void 

@@ -66,14 +66,7 @@ public class Emoji : MonoBehaviour
                     fTickTime = 0;
                 }
             }
-            if(Input.GetKey(KeyCode.T)){
-                GameObject myPlayer = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer;
-                ChatInput.ActivateInputField();
-                ChatInput.Select();
-                myPlayer.GetComponent<Strafer>().enabled = false;
-                myPlayer.GetComponent<Croucher>().enabled = false;
-                myPlayer.GetComponent<Emoji>().enabled = false;
-            }
+            
         }
     }
 
