@@ -30,8 +30,8 @@ public class GetCustomizeData : MonoBehaviour
         //getCustom = GetCustomVal();
         //customize = CS.getCustomize();
         //Debug.Log("???"+ customize);
-        getCustom = PlayerPrefs.GetInt("userChar");
-        
+        getCustom = PlayerPrefs.GetInt("userCustom");
+        Debug.Log("customize" + getCustom);
         genderData = getCustom % 16;
         getCustom = getCustom - (16 * genderData);
         modelData = getCustom % 4;
@@ -65,7 +65,8 @@ public class GetCustomizeData : MonoBehaviour
     public void saveBtn()
     {
         SetCustomData(customize);
-        CS.LoadNextScene("ChatScene");
+        //CS.LoadNextScene("ChatScene");
+        CS.LoadNextScene("MainScene");
     }
 
     public void SetCustomData(int index)
@@ -78,32 +79,7 @@ public class GetCustomizeData : MonoBehaviour
 
             }
         },
-        (result) => print("데이터 저장 성공"),
+        (result) => { print("데이터 저장 성공" + index); PlayerPrefs.SetInt("userCustom", index); },
         (error) => print("데이터 저장 실패"));
     }
-
-    /*public int GetCustomVal()
-    {
-        int cVal = 0;
-        PlayFabClientAPI.GetPlayerStatistics(
-            new GetPlayerStatisticsRequest(),
-            (result) =>
-            {
-                foreach (var eachStat in result.Statistics)
-                {
-                    switch (eachStat.StatisticName)
-                    {
-                        case "customize": cVal = eachStat.Value;  print("customize"+eachStat.Value); break;
-                        case "IDInfo": print("idinfo"+eachStat.Value); break;
-                    }
-                }
-            },
-            (error) => { print("값 불러오기 실패"); }
-         );
-
-        return cVal;
-    }*/
-
-    
-
 }
