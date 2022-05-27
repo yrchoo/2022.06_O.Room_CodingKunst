@@ -72,9 +72,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public PlayerLeaderboardEntry MyPlayFabInfo; //�� ���� �� ��
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
+    [Header("LoadingPanel")]
+    public GameObject LoadingPanel;
     #region ��������
     void Awake()
     {
+        LoadingPanel.SetActive(true);
         //myID = CS.Load("userId");
         myID = PlayerPrefs.GetString("userId");
         GetMyName(myID);
@@ -264,6 +267,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        LoadingPanel.SetActive(true);
         Chat.SetActive(true);
         LobbyPanel.SetActive(false);
         GameObject.Find("Background2").SetActive(false);

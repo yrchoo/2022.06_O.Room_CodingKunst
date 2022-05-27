@@ -9,9 +9,10 @@ using UnityEngine.UI;
 public class ChangeScene : MonoBehaviour
 {
     public string playfabId;
-    
+   // public GameObject LoadingPanel;
+
     //public GameObject MemberPanel;
-    
+
     #region ¾À ÀüÈ¯
     public void LoadNextScene(string scene)
     {
@@ -42,6 +43,7 @@ public class ChangeScene : MonoBehaviour
 
     public void ChatClick()
     {
+       // LoadingPanel.SetActive(true);
         LoadNextScene("ChatScene");
         
     }
