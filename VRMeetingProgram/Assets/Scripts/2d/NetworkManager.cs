@@ -268,7 +268,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        LoadingPanel.GetComponent<LoadingManager>().timer = 0f;
+        LoadingPanel.GetComponent<LoadingManager>().progressBar.fillAmount = 0;
         LoadingPanel.SetActive(true);
+
+
         Chat.SetActive(true);
         LobbyPanel.SetActive(false);
         GameObject.Find("Background2").SetActive(false);
