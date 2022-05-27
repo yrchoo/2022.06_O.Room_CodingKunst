@@ -7,8 +7,8 @@ public class AreaScript : MonoBehaviour
 {   
     [Header("Main")]
     public RectTransform ListAreaRect;
-    public Text TeamText, NameText, RoleText;
-    public string Team, Name, Role;
+    public Text TeamText, NameText, RoleText, StateText;
+    public string Team, Name, Role, State;
 
     [Header("Chat")]
     public RectTransform AreaRect, BoxRect, TextRect;

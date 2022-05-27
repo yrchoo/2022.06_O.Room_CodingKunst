@@ -24,19 +24,20 @@ public class MainManager : MonoBehaviour
     public Scrollbar scrollBar;
     public Toggle MineToggle;
 
-    public Text Team, Name, Role;
-    public Image Image;
+    public Text Team, Name, Role, State;
+    //public Image Image;
 
     //bool isLoaded;
     
     [Header("Disconnect")]
-    public PlayerLeaderboardEntry MyPlayFabInfo; //�� ���� �� ��
+    public PlayerLeaderboardEntry MyPlayFabInfo; //내 정보 다 들어감
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
     public int customize = 0;
     public string userName = "";
     public string userRole = "";
     public string userTeam = "";
+    public string userState = "";
 
     void Awake()
     {
@@ -64,8 +65,8 @@ public class MainManager : MonoBehaviour
         //Load();
     }
 
-    
-    #region ��ư Ŭ��
+
+    #region 버튼 클릭
     /*
     public void MemberClick()
     {
@@ -113,10 +114,10 @@ public class MainManager : MonoBehaviour
 
             Name.text = result.Data["name"].Value;
             Role.text = result.Data["role"].Value;
-            Team.text = result.Data["team"].Value+"��";
-
+            Team.text = result.Data["team"].Value+"팀";
+            State.text = result.Data["state"].Value;
         },
-            (error) => print("������ �ҷ����� ����")
+            (error) => print("데이터 불러오기 실패")
             );
 
         //Fit(Area.ListBoxRect);
@@ -185,14 +186,16 @@ public class MainManager : MonoBehaviour
                 userName = result.Data["name"].Value;
                 userRole = result.Data["role"].Value;
                 userTeam = result.Data["team"].Value;
-                List(userTeam, userRole, userName);
+                userState = result.Data["state"].Value;
+                List(userTeam, userRole, userName, userState);
+                
             },
-            (error) => print("������ �ҷ����� ����")
+            (error) => print("데이터 불러오기 실패")
         );
         
     }
 
-    public void List(string team, string role, string name)
+    public void List(string team, string role, string name, string state)
     {
         Transform CurListArea = Instantiate(ListArea).transform;
         CurListArea.SetParent(ContentRect.transform, false);
@@ -200,9 +203,10 @@ public class MainManager : MonoBehaviour
         CurListArea.GetComponent<AreaScript>().TeamText.text = team;
         CurListArea.GetComponent<AreaScript>().RoleText.text = role;
         CurListArea.GetComponent<AreaScript>().NameText.text = name;
+        CurListArea.GetComponent<AreaScript>().StateText.text = state;
     }
 
-    
+
 
     public void clean()
     {
@@ -215,4 +219,9 @@ public class MainManager : MonoBehaviour
 
     void Fit(RectTransform Rect) => LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);
 
+    public void XBtn()
+    {
+        CS.UpdateState("오프라인");
+        CS.LoadNextScene("LoginScene");
+    }
 }

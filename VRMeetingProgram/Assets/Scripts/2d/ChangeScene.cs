@@ -54,6 +54,22 @@ public class ChangeScene : MonoBehaviour
     }
     #endregion
 
+    public void UpdateState(string state)
+    {
+        var request = new UpdateUserDataRequest()
+        {
+            Data = new Dictionary<string, string>() {
+                { "state", state },
+            },
+            Permission = UserDataPermission.Public
+
+        };
+        PlayFabClientAPI.UpdateUserData(request, (result) => print("상태 저장 성공"), (error) => print("상태 저장 실패"));
+    }
+
+
+
+
     #region 저장
     /*public void SaveStr(string val)
     {
@@ -144,4 +160,7 @@ public class ChangeScene : MonoBehaviour
     }
     */
     #endregion
+
+
+
 }
