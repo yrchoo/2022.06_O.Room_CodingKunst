@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: f74e09b531daf79429e0122e16bfb2ef
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChatScene.unity
     guid: 7be48b58bdac690438d48cb9a585eb0e
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 9cf4f2ebbe0e0b3478886b1eb82c1434
   m_configObjects: {}

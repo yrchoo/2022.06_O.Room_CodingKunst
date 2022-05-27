@@ -70,7 +70,8 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.ConnectUsingSettings();
         try
         {
-            CS.LoadNextScene("MainScene");
+           CS.LoadNextScene("MainScene");
+          // LoadingSceneController.LoadScene("MainScene");
         }
         catch (NullReferenceException ex)
         {

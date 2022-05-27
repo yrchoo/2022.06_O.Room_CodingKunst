@@ -43,6 +43,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject LobbyPanel; 
     public Text WelcomeText;
     public Text LobbyInfoText;
+    public Text Role;
+    public Text Team;
     List<RoomInfo> myList = new List<RoomInfo>();
     public Button[] CellBtn;
     //public Button PreviousBtn;
@@ -130,7 +132,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(UserName);
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 환영합니다.";
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName +" "+ Role.text+ "님 환영합니다.";
         myList.Clear();
         ShowPanel(LobbyPanel);
         
@@ -394,6 +396,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
             ID = result.Data["id"].Value;
             UserName = result.Data["name"].Value;
+            Role.text = result.Data["role"].Value;
+            Team.text = result.Data["team"].Value+"팀";
 
         },
             (error) => print("������ �ҷ����� ����")

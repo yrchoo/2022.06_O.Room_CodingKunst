@@ -35,6 +35,9 @@ public class MainManager : MonoBehaviour
     public string userRole = "";
     public string userTeam = "";
 
+    //[Header("LoadingPanel")]
+
+
 
     void Awake()
     {
