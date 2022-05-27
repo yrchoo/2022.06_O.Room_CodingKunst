@@ -40,8 +40,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [Header("Lobby")]
     public GameObject LobbyPanel; 
-    public Text WelcomeText;
-    public Text LobbyInfoText;
+    //public Text WelcomeText;
+    //public Text LobbyInfoText;
     List<RoomInfo> myList = new List<RoomInfo>();
     public Button[] CellBtn;
     //public Button PreviousBtn;
@@ -62,7 +62,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public InputField ChatInput;
 
     [Header("ETC")]
-    public Text StatusText;
+    //public Text StatusText;
     public PhotonView PV;
     //public Text NickNameText;
     //public InputField ChatInput;
@@ -98,8 +98,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Update()
     {
         //Debug.Log(PV.IsMine);
-        StatusText.text = PhotonNetwork.NetworkClientState.ToString(); //여기서 내 상태 받아와서 playfab에 업데이트??
-        LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "명";
+        //StatusText.text = PhotonNetwork.NetworkClientState.ToString(); //여기서 내 상태 받아와서 playfab에 업데이트??
+        //LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "명";
 
         /*if(Chat.activeSelf == true)
         {
@@ -130,7 +130,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(UserName);
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님";
+        //WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님";
         myList.Clear();
         ShowPanel(LobbyPanel);
         

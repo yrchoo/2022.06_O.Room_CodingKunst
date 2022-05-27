@@ -9234,7 +9234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD658\uC601\uD569\uB2C8\uB2E4. "
+  m_Text: 
 --- !u!222 &675731170
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10922,7 +10922,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC624\uC218\uBBFC\uB2D8"
+  m_Text: 
 --- !u!222 &814078808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16313,7 +16313,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "0\uC811\uC18D"
+  m_Text: 
 --- !u!222 &1273600287
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25940,8 +25940,6 @@ MonoBehaviour:
   SideBar: {fileID: 2130838130385655366}
   NickNameInput: {fileID: 1494035611}
   LobbyPanel: {fileID: 2130838130456003345}
-  WelcomeText: {fileID: 814078807}
-  LobbyInfoText: {fileID: 1273600286}
   CellBtn:
   - {fileID: 467094610}
   - {fileID: 1279384668}
@@ -25961,7 +25959,6 @@ MonoBehaviour:
   ListText: {fileID: 389142992}
   RoomInfoText: {fileID: 465099064}
   ChatInput: {fileID: 610966756}
-  StatusText: {fileID: 2005856242}
   PV: {fileID: 1980989445}
   cam: {fileID: 320077845}
   MyPlayFabInfo:
