@@ -44,7 +44,7 @@ public class MainManager : MonoBehaviour
         myID = PlayerPrefs.GetString("userId");
         GetLeaderboard(myID);
         ShowMyProfile(myID);
-
+        
         //GetStat();
         //Debug.Log(id);
     }
@@ -55,7 +55,9 @@ public class MainManager : MonoBehaviour
         //Load();
     }
 
+    
     #region 버튼 클릭
+    /*
     public void MemberClick()
     {
         MemberPanel.SetActive(true);
@@ -86,6 +88,7 @@ public class MainManager : MonoBehaviour
             Debug.Log(ex+"null");
         }
     }
+    */
     #endregion
 
 
@@ -121,6 +124,8 @@ public class MainManager : MonoBehaviour
 
     } */
 
+    
+
     void GetLeaderboard(string myID)
     {
         PlayFabUserList.Clear();
@@ -142,12 +147,33 @@ public class MainManager : MonoBehaviour
                     PlayFabUserList.Add(result.Leaderboard[j]);
                     if (result.Leaderboard[j].PlayFabId == myID) MyPlayFabInfo = result.Leaderboard[j];
                 }
+                //////////////
+                ShowOtherUserNickName();
             },
             (error) => { });
         }
     }
+
+    void ShowOtherUserNickName()
+    {
+        //Debug.Log("count"+PlayFabUserList.Count);
+        for (int i = 0; i < PlayFabUserList.Count; i++)
+        {
+            //Debug.Log(PlayFabUserList[i].DisplayName);
+            //UserNickNameText.text += PlayFabUserList[i].DisplayName + "\n";
+            string otherId = PlayFabUserList[i].PlayFabId;
+            
+            //Debug.Log("here??"+otherId);
+            SetData(otherId);
+
+        }
+    }
+
     public void SetData(string myID)
     {
+        userName = "";
+        userRole = "";
+        userTeam = "";
         var request = new GetUserDataRequest() { PlayFabId = myID };
 
         PlayFabClientAPI.GetUserData(request,
@@ -155,17 +181,24 @@ public class MainManager : MonoBehaviour
                 userName = result.Data["name"].Value;
                 userRole = result.Data["role"].Value;
                 userTeam = result.Data["team"].Value;
+                List(userTeam, userRole, userName);
             },
             (error) => print("데이터 불러오기 실패")
         );
-    } 
-
-    void ShowUserNickName()
-    {
-        //UserNickNameText.text = "";
-        //for (int i = 0; i < PlayFabUserList.Count; i++) UserNickNameText.text += PlayFabUserList[i].DisplayName + "\n";
+        
     }
 
+    public void List(string team, string role, string name)
+    {
+        Transform CurListArea = Instantiate(ListArea).transform;
+        CurListArea.SetParent(ContentRect.transform, false);
+        CurListArea.SetSiblingIndex(CurListArea.GetSiblingIndex());
+        CurListArea.GetComponent<AreaScript>().TeamText.text = team;
+        CurListArea.GetComponent<AreaScript>().RoleText.text = role;
+        CurListArea.GetComponent<AreaScript>().NameText.text = name;
+    }
+
+   
     public void clean()
     {
         

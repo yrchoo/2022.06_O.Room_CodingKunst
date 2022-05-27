@@ -9,19 +9,9 @@ using UnityEngine.UI;
 public class ChangeScene : MonoBehaviour
 {
     public string playfabId;
-    public GameObject userObject;
-
-    /*    public void call()
-        {
-            DontDestroyOnLoad(userObject);
-        }
-    */
-
-    public int customize =0;
-    public string userName ="";
-    public string userRole="";
-    public string userTeam="";
-
+    
+    //public GameObject MemberPanel;
+    
     #region 씬 전환
     public void LoadNextScene(string scene)
     {
@@ -43,7 +33,24 @@ public class ChangeScene : MonoBehaviour
     }
     #endregion
 
+    #region 버튼 클릭
+    public void MemberClick()
+    {
+        //MemberPanel.SetActive(true);
+        LoadNextScene("MainScene"); //이걸하면 누를때마다 계속 플래이팹에서 받아오게됨
+    }
 
+    public void ChatClick()
+    {
+        LoadNextScene("ChatScene");
+        
+    }
+
+    public void SettingClick()
+    {
+        LoadNextScene("CustomizeScene");       
+    }
+    #endregion
 
     #region 저장
     /*public void SaveStr(string val)
@@ -53,11 +60,13 @@ public class ChangeScene : MonoBehaviour
         //PlayerPrefs.SetString
         SetData(val);       
     }*/
+
     /*public void SaveInt(int val)
     {
         PlayerPrefs.SetInt("userChar", val);
     }*/
-    
+
+    /*
     public string Load(string key)
     {
         string myID = PlayerPrefs.GetString(key);
@@ -98,7 +107,8 @@ public class ChangeScene : MonoBehaviour
         return 0;
        
     }
-    
+    */
+
     /*public int getCustomize()
     {
         return customize;
@@ -117,7 +127,7 @@ public class ChangeScene : MonoBehaviour
     }
     */
 
-    
+    /*
    public void GetStat()
     {
         PlayFabClientAPI.GetPlayerStatistics(
@@ -130,4 +140,6 @@ public class ChangeScene : MonoBehaviour
     {
 
     }
+    */
+    #endregion
 }

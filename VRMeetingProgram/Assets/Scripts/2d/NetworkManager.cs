@@ -78,7 +78,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #region ��������
     void Awake()
     {
-        myID = CS.Load("userId");
+        //myID = CS.Load("userId");
+        myID = PlayerPrefs.GetString("userId");
         GetMyName(myID);
         PhotonNetwork.GameVersion = gameVersion;
 
