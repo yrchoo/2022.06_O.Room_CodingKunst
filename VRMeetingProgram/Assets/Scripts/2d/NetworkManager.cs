@@ -273,7 +273,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //Instantiate(ChatPrefab, ChatPos);
         GameManager.instance.isConnect = true;
-       
+        
+        Cursor.lockState = CursorLockMode.Locked; // 마우스
+        Cursor.visible = false;
         
         RoomRenewal();
         ChatInput.text = "";
@@ -392,6 +394,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void XBtn()
     {
+        GameManager.instance.isConnect = false;
         if (PhotonNetwork.InLobby) PhotonNetwork.Disconnect(); //ondisconnected
         else if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
     }

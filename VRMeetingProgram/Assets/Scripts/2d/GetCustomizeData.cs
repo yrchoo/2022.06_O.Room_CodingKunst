@@ -44,7 +44,7 @@ public class GetCustomizeData : MonoBehaviour
         oldGenderData = genderData;
         oldSkinData = skinData;
 
-        
+        customize = 16 * genderData + 4 * modelData + skinData + 1;
     }
 
     // Start is called before the first frame update

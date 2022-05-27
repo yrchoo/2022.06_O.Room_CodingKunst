@@ -566,7 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccecc59c55b68264bae1de644cb50ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadingPanel: {fileID: 0}
   progressBar: {fileID: 848591220}
   timer: 0
 --- !u!1 &399806623
@@ -1285,7 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.27797368, g: 0.5566038, b: 0.25939834, a: 1}
+  m_Color: {r: 0.7058824, g: 0.8117647, b: 0.4, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
