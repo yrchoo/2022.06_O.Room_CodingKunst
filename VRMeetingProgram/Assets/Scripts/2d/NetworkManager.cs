@@ -278,6 +278,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //Instantiate(ChatPrefab, ChatPos);
         GameManager.instance.isConnect = true;
+
+        Cursor.lockState = CursorLockMode.Locked; // 마우스
+        Cursor.visible = false;
        
         
         RoomRenewal();

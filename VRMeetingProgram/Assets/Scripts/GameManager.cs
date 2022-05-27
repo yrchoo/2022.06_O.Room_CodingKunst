@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
+        instance.isConnect = false;
         StartCoroutine(CreatePlayer());
     }
 }
