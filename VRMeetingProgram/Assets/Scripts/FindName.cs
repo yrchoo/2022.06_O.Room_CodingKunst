@@ -33,7 +33,7 @@ public class FindName : MonoBehaviour
         var request = new GetUserDataRequest() { PlayFabId = myID };
         PlayFabClientAPI.GetUserData(request, (result) => {
 
-            GameObject.Find("PlayerName").GetComponent<TextMesh>().text = result.Data["name"].Value;
+            transform.GetComponent<TextMesh>().text = result.Data["name"].Value;
             
         },
             (error) => print("데이터 불러오기 실패")
