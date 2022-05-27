@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
+        index = PlayerPrefs.GetInt("userCustom");
+        
         if (instance == null)
         {
             instance = this;
