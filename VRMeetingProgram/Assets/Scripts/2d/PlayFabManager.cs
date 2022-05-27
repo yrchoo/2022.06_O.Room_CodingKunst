@@ -72,8 +72,8 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
 
         try
         {
-            //CS.LoadNextScene("MainScene");
-            LoadingSceneManager.LoadScene("MainScene");
+            CS.LoadNextScene("MainScene");
+            //LoadingSceneManager.LoadScene("MainScene");
         }
         catch (NullReferenceException ex)
         {
