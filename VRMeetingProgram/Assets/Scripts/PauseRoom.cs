@@ -72,7 +72,7 @@ public class PauseRoom : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked; // 마우스
         Cursor.visible = false;
         
-
+        
         
     }
 }
