@@ -4,13 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AreaScript : MonoBehaviour
-{
-    
-
+{   
     [Header("Main")]
-    public RectTransform ListAreaRect, ListBoxRect, ListTextRect;
-    public Text State, Name, Role;
-    public Image Image;
+    public RectTransform ListAreaRect;
+    public Text TeamText, NameText, RoleText;
+    public string Team, Name, Role;
 
     [Header("Chat")]
     public RectTransform AreaRect, BoxRect, TextRect;
@@ -18,6 +16,4 @@ public class AreaScript : MonoBehaviour
     public Text TimeText, UserText, DateText;
     public Image UserImage;
     public string Time, User;
-
 }
-

@@ -25,15 +25,14 @@ using UnityEngine.UI;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     private readonly string gameVersion = "v1.0";
-    //ChatManager chatManager;
-    //public GameObject CM;
+   
     public ChatManager CM;
     public ChangeScene CS;
 
     static public string myID;
     public string UserName;
     public string ID;
-    bool isLoaded;
+    //bool isLoaded;
 
     [Header("SideBar")]
     public GameObject SideBar;
@@ -130,7 +129,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(UserName);
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 환영합니다.";
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님";
         myList.Clear();
         ShowPanel(LobbyPanel);
         
@@ -147,7 +146,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         
     }
 
-    void OnJoinedLobbyDelay()
+    /*void OnJoinedLobbyDelay()
     {
         
         isLoaded = true;
@@ -158,7 +157,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         myList.Clear();
         ShowPanel(LobbyPanel);
         //ShowUserNickName();
-    }
+    }*/
 
     /*void ShowUserNickName()
     {
@@ -173,9 +172,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause) //disconnect�ݹ�
     {
-        isLoaded = false;
+        //isLoaded = false;
         ShowPanel(SideBar);
-
     }
     #endregion
 
@@ -192,21 +190,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void MyListRenewal()
     {
-        // �ִ�������
-        //maxPage = (myList.Count % CellBtn.Length == 0) ? myList.Count / CellBtn.Length : myList.Count / CellBtn.Length + 1;
-
-        // ����, ������ư
-        //PreviousBtn.interactable = (currentPage <= 1) ? false : true;
-        //NextBtn.interactable = (currentPage >= maxPage) ? false : true;
-
-        // �������� �´� ����Ʈ ����
-        //multiple = (currentPage - 1) * CellBtn.Length;
+       //original coding
         for (int i = 0; i < CellBtn.Length; i++)
         {
             CellBtn[i].interactable = (i < myList.Count) ? true : false;
             CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : "";
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < myList.Count) ? myList[i].PlayerCount + "/" + myList[i].MaxPlayers : "";
         }
+        /////////////////////////
+        
+
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)

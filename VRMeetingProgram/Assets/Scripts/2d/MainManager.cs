@@ -19,22 +19,19 @@ public class MainManager : MonoBehaviour
     public Scrollbar scrollBar;
     public Toggle MineToggle;
 
-    public Text State, Name, Role;
+    public Text Team, Name, Role;
     public Image Image;
 
     //bool isLoaded;
     
-
     [Header("Disconnect")]
     public PlayerLeaderboardEntry MyPlayFabInfo; //내 정보 다 들어감
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
-
 
     public int customize = 0;
     public string userName = "";
     public string userRole = "";
     public string userTeam = "";
-
 
     void Awake()
     {
@@ -104,6 +101,7 @@ public class MainManager : MonoBehaviour
 
             Name.text = result.Data["name"].Value;
             Role.text = result.Data["role"].Value;
+            Team.text = result.Data["team"].Value+"팀";
 
         },
             (error) => print("데이터 불러오기 실패")
@@ -113,7 +111,7 @@ public class MainManager : MonoBehaviour
         //Fit(MyRect);
     }
 
-    public void List(Texture2D picture)
+    /*public void List(Texture2D picture)
     {
         AreaScript Area = Instantiate(ListArea).GetComponent<AreaScript>();
         Area.transform.SetParent(ContentRect.transform, false);
@@ -121,7 +119,7 @@ public class MainManager : MonoBehaviour
         Area.ListTextRect.GetComponent<Text>().text = "??";
         Fit(Area.ListBoxRect);
 
-    } 
+    } */
 
     void GetLeaderboard(string myID)
     {
