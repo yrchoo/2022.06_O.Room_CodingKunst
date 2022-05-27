@@ -254,7 +254,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             byte numByte = byte.Parse(RoomNum.text);            
             PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = numByte });
         }
-          //���������� ��������� onJoinedRoom����
+        //���������� ��������� onJoinedRoom����
+        CS.UpdateState("접속중");
         RoomInput.text = "";
         RoomNum.text = "";
         //RoomRenewal();
@@ -301,12 +302,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         RoomRenewal(); //����� ���Դ� ������ �� �� �� ����
         InformRPC(newPlayer.NickName + "님이 입장하였습니다");
+        CS.UpdateState("접속중");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
         InformRPC(otherPlayer.NickName + "님이 퇴장하였습니다.");
+        CS.UpdateState("온라인");
     }
 
     void RoomRenewal()
@@ -422,8 +425,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             (error) => print("������ �ҷ����� ����")
             );
     }
-
-
 
     /* #region set get
      void SetRoomTag(int slotIndex, int value) => PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable { { slotIndex.ToString(), value } });

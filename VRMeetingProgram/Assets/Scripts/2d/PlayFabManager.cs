@@ -47,6 +47,8 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
         myID = result.PlayFabId;
         PlayerPrefs.SetString("userId", myID);
 
+        CS.UpdateState("온라인");
+
         //CS.SaveStr(myID);
         //CS.playfabId = myID;
         //CS.call();
@@ -104,9 +106,10 @@ public class PlayFabManager : MonoBehaviourPunCallbacks
 
     public void SetData(string name, string id, string role, string team)
     {
-        var request = new UpdateUserDataRequest() { 
-            Data = new Dictionary<string, string>() { 
-                { "name", name }, { "id", id }, { "role", role } ,{ "team",team },
+        var request = new UpdateUserDataRequest()
+        {
+            Data = new Dictionary<string, string>() {
+                { "name", name }, { "id", id }, { "role", role } ,{ "team",team },{"state","offline"},
             },
             Permission = UserDataPermission.Public
 
