@@ -72,9 +72,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public PlayerLeaderboardEntry MyPlayFabInfo; //�� ���� �� ��
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
-
-    //int currentPage = 1, maxPage, multiple;
-
     #region ��������
     void Awake()
     {
@@ -98,7 +95,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Update()
     {
         //Debug.Log(PV.IsMine);
-        StatusText.text = PhotonNetwork.NetworkClientState.ToString();
+        StatusText.text = PhotonNetwork.NetworkClientState.ToString(); //여기서 내 상태 받아와서 playfab에 업데이트??
         LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "명";
 
         /*if(Chat.activeSelf == true)
@@ -143,7 +140,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         //PhotonNetwork.LocalPlayer.NickName = UserName;
-        Debug.Log("here");
+        //Debug.Log("here");
         
     }
 
@@ -174,7 +171,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause) //disconnect�ݹ�
     {
         //isLoaded = false;
-        ShowPanel(SideBar);
+        //ShowPanel(SideBar);
+        CS.MemberClick();
     }
     #endregion
 
@@ -203,6 +201,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     }
 
+    /*
+     -로비에 접속 시
+    -새로운 룸이 만들어질 경우
+    -룸이 삭제되는 경우
+    -룸의 IsOpen 값이 변화할 경우(아예 RoomInfo 내 데이터가 바뀌는 경우 전체일 수도 있습니다)
+     */
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         int roomCount = roomList.Count;

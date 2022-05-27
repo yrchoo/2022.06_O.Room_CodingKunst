@@ -1681,7 +1681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playfabId: 
-  MemberPanel: {fileID: 906606436}
 --- !u!4 &1212049053
 Transform:
   m_ObjectHideFlags: 0
@@ -2512,7 +2511,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD64D\uAE38\uB3D9"
+  m_Text: 
 --- !u!222 &425406007711847309
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2630,7 +2629,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC601\uC5C5\uD300"
+  m_Text: 
 --- !u!222 &425406008025358519
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2908,7 +2907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC0AC\uC6D0"
+  m_Text: 
 --- !u!114 &4429168670250161568
 MonoBehaviour:
   m_ObjectHideFlags: 0
