@@ -9,7 +9,7 @@ public class LoadingManager : MonoBehaviour
     //public GameObject LoadingPanel;
 
     [SerializeField]
-    Image progressBar;
+    public Image progressBar;
     
     public float timer;
 
