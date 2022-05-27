@@ -32,7 +32,8 @@ public class PauseRoom : MonoBehaviour
         {
 
             myPlayer = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer;
-            cam.SetActive(false);
+            //cam.SetActive(false);
+            cam.GetComponent<CameraMovement>().enabled = false;
             myPlayer.GetComponent<Strafer>().enabled = false;
             myPlayer.GetComponent<Croucher>().enabled = false;
             myPlayer.GetComponent<Emoji>().enabled = false;
@@ -49,7 +50,7 @@ public class PauseRoom : MonoBehaviour
         Debug.Log("LeaveRoomBtn Pressed");
         pausePanel.SetActive(false);
         Destroy(myPlayer);
-        //cam.SetActive(false);
+        cam.SetActive(false);
         Chat.SetActive(false);
 
 
@@ -64,7 +65,8 @@ public class PauseRoom : MonoBehaviour
         Debug.Log("BackToRoomBtn Pressed");
 
         pausePanel.SetActive(false);
-        cam.SetActive(true);
+        //cam.SetActive(true);
+        cam.GetComponent<CameraMovement>().enabled = true;
         myPlayer.GetComponent<Strafer>().enabled = true;
         myPlayer.GetComponent<Croucher>().enabled = true;
         myPlayer.GetComponent<Emoji>().enabled = true;
