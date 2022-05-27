@@ -16,4 +16,9 @@ public class AreaScript : MonoBehaviour
     public Text TimeText, UserText, DateText;
     public Image UserImage;
     public string Time, User;
+
+    [Header("Lobby")]
+    public RectTransform RoomAreaRect;
+    public Text RoomText, NumText;
+    public string room, num;
 }

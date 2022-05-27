@@ -156,16 +156,11 @@ public class MainManager : MonoBehaviour
 
     void ShowOtherUserNickName()
     {
-        //Debug.Log("count"+PlayFabUserList.Count);
         for (int i = 0; i < PlayFabUserList.Count; i++)
         {
-            //Debug.Log(PlayFabUserList[i].DisplayName);
-            //UserNickNameText.text += PlayFabUserList[i].DisplayName + "\n";
-            string otherId = PlayFabUserList[i].PlayFabId;
-            
-            //Debug.Log("here??"+otherId);
+            if (MyPlayFabInfo == PlayFabUserList[i]) continue;
+            string otherId = PlayFabUserList[i].PlayFabId;            
             SetData(otherId);
-
         }
     }
 
@@ -198,7 +193,8 @@ public class MainManager : MonoBehaviour
         CurListArea.GetComponent<AreaScript>().NameText.text = name;
     }
 
-   
+    
+
     public void clean()
     {
         
