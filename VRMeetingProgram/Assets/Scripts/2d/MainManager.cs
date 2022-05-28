@@ -33,7 +33,7 @@ public class MainManager : MonoBehaviour
     public PlayerLeaderboardEntry MyPlayFabInfo; //내 정보 다 들어감
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
-    public int customize = 0;
+    public int customize = 1;
     public string userName = "";
     public string userRole = "";
     public string userTeam = "";
@@ -113,9 +113,13 @@ public class MainManager : MonoBehaviour
         PlayFabClientAPI.GetUserData(request, (result) => {
 
             Name.text = result.Data["name"].Value;
+            PlayerPrefs.SetString("userName", Name.text);
             Role.text = result.Data["role"].Value;
+            PlayerPrefs.SetString("userRole", Role.text);
             Team.text = result.Data["team"].Value+"팀";
+            PlayerPrefs.SetString("userTeam", result.Data["team"].Value);
             State.text = result.Data["state"].Value;
+            PlayerPrefs.SetString("userState", State.text);
         },
             (error) => print("데이터 불러오기 실패")
             );
