@@ -10,18 +10,11 @@ public class CustomizeSkinButton : MonoBehaviour
     private int skinData;
     public Toggle toggle;
 
-    public float waitTime = 1f;
-    public float ttime = 0f;
-
     // Start is called before the first frame update
     void Start()
     {
-        // while(true){
-        //     ttime += Time.deltaTime;
-        //     if (ttime>waitTime) break;
-        // }
         IsClick = false;
-        skinData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().oldSkinData;
+        skinData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().skinData;
         CheckToggle();
     }
 
@@ -30,6 +23,7 @@ public class CustomizeSkinButton : MonoBehaviour
     {
 
     }
+
     public void CheckToggle(){
         if(skinN == skinData){
             toggle.isOn = true;
@@ -38,8 +32,7 @@ public class CustomizeSkinButton : MonoBehaviour
 
     public void ChangeSkin(bool clicked){
         IsClick = clicked;
-        skinData = skinN;
-        GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().skinData = skinData;
+        GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().skinData = skinN;
         clicked = false;
     }
 }

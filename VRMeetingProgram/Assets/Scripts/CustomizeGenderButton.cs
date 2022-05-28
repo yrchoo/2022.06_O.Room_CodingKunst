@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CustomizeGenderButton : MonoBehaviour
 {
     private bool IsClick;
-    public int genderN = 0;
+    public int genderN;
     private int genderData;
     public Toggle toggle;
 
@@ -14,7 +14,7 @@ public class CustomizeGenderButton : MonoBehaviour
     void Start()
     {
         IsClick = false;
-        genderData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().oldGenderData;
+        genderData = GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().genderData;
         CheckToggle();
     }
 
@@ -32,8 +32,7 @@ public class CustomizeGenderButton : MonoBehaviour
 
     public void ChangeGender(bool clicked){
         IsClick = clicked;
-        genderData = genderN;
-        GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().genderData = genderData;
+        GameObject.Find("MyCharacter").GetComponent<GetCustomizeData>().genderData = genderN;
         clicked = false;
     }
 }
