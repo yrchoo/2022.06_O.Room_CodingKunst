@@ -67,9 +67,6 @@ public class ChangeScene : MonoBehaviour
         PlayFabClientAPI.UpdateUserData(request, (result) => print("상태 저장 성공"), (error) => print("상태 저장 실패"));
     }
 
-
-
-
     #region 저장
     /*public void SaveStr(string val)
     {
