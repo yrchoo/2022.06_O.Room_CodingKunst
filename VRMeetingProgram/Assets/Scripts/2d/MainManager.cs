@@ -115,11 +115,16 @@ public class MainManager : MonoBehaviour
             Name.text = result.Data["name"].Value;
             PlayerPrefs.SetString("userName", Name.text);
             Role.text = result.Data["role"].Value;
+//<<<<<<< Updated upstream
             PlayerPrefs.SetString("userRole", Role.text);
             Team.text = result.Data["team"].Value+"팀";
             PlayerPrefs.SetString("userTeam", result.Data["team"].Value);
             State.text = result.Data["state"].Value;
             PlayerPrefs.SetString("userState", State.text);
+//=======
+            Team.text = result.Data["team"].Value+"팀";
+
+//>>>>>>> Stashed changes
         },
             (error) => print("데이터 불러오기 실패")
             );

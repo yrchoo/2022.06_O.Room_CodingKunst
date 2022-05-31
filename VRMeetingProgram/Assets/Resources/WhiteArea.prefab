@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9058824, g: 0.9294118, b: 0.82745105, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -579,12 +579,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAreaRect: {fileID: 0}
-  ListBoxRect: {fileID: 0}
-  ListTextRect: {fileID: 0}
-  State: {fileID: 0}
-  Name: {fileID: 0}
-  Role: {fileID: 0}
-  Image: {fileID: 0}
+  TeamText: {fileID: 0}
+  NameText: {fileID: 0}
+  RoleText: {fileID: 0}
+  StateText: {fileID: 0}
+  Team: 
+  Name: 
+  Role: 
+  State: 
   AreaRect: {fileID: 3110849380772935291}
   BoxRect: {fileID: 8089761136653959121}
   TextRect: {fileID: 8354550356859999019}
@@ -595,6 +597,11 @@ MonoBehaviour:
   UserImage: {fileID: 4511127223414253750}
   Time: 
   User: 
+  RoomAreaRect: {fileID: 0}
+  RoomText: {fileID: 0}
+  NumText: {fileID: 0}
+  room: 
+  num: 
 --- !u!1 &8574664166898169887
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.882353, g: 0.9058824, b: 0.8078432, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
