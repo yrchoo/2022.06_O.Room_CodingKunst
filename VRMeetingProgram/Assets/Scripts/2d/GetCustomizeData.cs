@@ -27,6 +27,13 @@ public class GetCustomizeData : MonoBehaviour
     public int customize;
 
     void Awake(){
+        
+        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         getCustom = PlayerPrefs.GetInt("userCustom");
 
         Debug.Log("customize" + getCustom);
@@ -49,12 +56,6 @@ public class GetCustomizeData : MonoBehaviour
         nameInput.text = PlayerPrefs.GetString("userName");
         teamInput.text = PlayerPrefs.GetString("userTeam");
         roleInput.text = PlayerPrefs.GetString("userRole");
-        
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         //getCustom = GetCustomVal();
         //customize = CS.getCustomize();
         //Debug.Log("???"+ customize);
