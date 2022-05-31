@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2719025009766188592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2879126905560435641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5130e8dcfa13eb342a0edc8d2ef497fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_side: 0
 --- !u!54 &1567642795237630447
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82,6 +69,19 @@ MonoBehaviour:
   m_handBoneR: {fileID: 2879126905560537055}
   m_itemInHandL: {fileID: 0}
   m_itemInHandR: {fileID: 0}
+--- !u!114 &3561830351529178826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879126905560435643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7fbc9098ec843f38378436153d3ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChatInput: {fileID: 0}
 --- !u!114 &4059963053230080205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   speakerInUse: {fileID: 8807656237375782678}
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
-  SetupDebugSpeaker: 1
+  SetupDebugSpeaker: 0
 --- !u!114 &7455477218793641681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,19 +435,19 @@ MonoBehaviour:
   ChatInput: {fileID: 0}
   index: 0
   activeIF: 0
---- !u!114 &3561830351529178826
+--- !u!114 &2719025009766188592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2879126905560435643}
+  m_GameObject: {fileID: 2879126905560435641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7fbc9098ec843f38378436153d3ddf, type: 3}
+  m_Script: {fileID: 11500000, guid: 5130e8dcfa13eb342a0edc8d2ef497fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatInput: {fileID: 0}
+  m_side: 0
 --- !u!114 &768267704985460000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,6 +1334,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100058, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
   m_PrefabInstance: {fileID: 2879126905560403297}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2879126905560537055 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400062, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
+  m_PrefabInstance: {fileID: 2879126905560403297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2879126905560537051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400058, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
+  m_PrefabInstance: {fileID: 2879126905560403297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2879126905560435647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100062, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
@@ -1347,15 +1357,5 @@ Transform:
 --- !u!1 &2879126905560435641 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100056, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
-  m_PrefabInstance: {fileID: 2879126905560403297}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2879126905560537051 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400058, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
-  m_PrefabInstance: {fileID: 2879126905560403297}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2879126905560537055 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400062, guid: fda37df79b468f942a1e6a97abc290ac, type: 3}
   m_PrefabInstance: {fileID: 2879126905560403297}
   m_PrefabAsset: {fileID: 0}
