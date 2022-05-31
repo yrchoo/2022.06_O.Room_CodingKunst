@@ -30,9 +30,6 @@ public class followPlayer : MonoBehaviour, IPunObservable
         if (pv.IsMine)
         {
             gameObject.transform.position = new Vector3(player.position.x, player.position.y + 1.4f, player.position.z);
-            //gameObject.transform.rotation = Quaternion.Euler(player.rotation.x, player.rotation.y, player.rotation.z);
-            //realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, Time.deltaTime * smoothness);
-            //emoji.position = Vector3.Lerp(emoji.localPosition, currentPos, Time.deltaTime * 10.0f);
         }
         else
         {
