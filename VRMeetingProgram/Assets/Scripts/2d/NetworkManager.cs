@@ -58,6 +58,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public Text ListText;
     public Text RoomInfoText;
+    public Text CountInfoText;
     //public Text ChatText;
     public InputField ChatInput;
 
@@ -325,7 +326,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
         //���� ����!!!!!
-        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / 현재 인원 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "명";
+        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name;
+        CountInfoText.text = "현재 인원 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "명";
     }
     #endregion
 

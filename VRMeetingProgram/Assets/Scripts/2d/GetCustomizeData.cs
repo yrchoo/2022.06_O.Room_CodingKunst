@@ -95,6 +95,10 @@ public class GetCustomizeData : MonoBehaviour
     {
         SetCustomData(customize);
         SetChangedData(nameInput.text, roleInput.text, teamInput.text);
+        /*PlayerPrefs.SetString("userName", nameInput.text);    
+        PlayerPrefs.SetString("userRole", roleInput.text);        
+        PlayerPrefs.SetString("userTeam", teamInput.text);  */
+        
         //CS.LoadNextScene("ChatScene");
         CS.LoadNextScene("MainScene");
     }
