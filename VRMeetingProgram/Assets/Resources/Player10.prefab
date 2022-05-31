@@ -400,7 +400,7 @@ MonoBehaviour:
   recorderInUse: {fileID: 0}
   speakerInUse: {fileID: 2102137304402589946}
   AutoCreateRecorderIfNotFound: 0
-  UsePrimaryRecorder: 0
+  UsePrimaryRecorder: 1
   SetupDebugSpeaker: 0
 --- !u!114 &5625836615557600888
 MonoBehaviour:

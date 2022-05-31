@@ -568,7 +568,7 @@ MonoBehaviour:
   speakerInUse: {fileID: 1579424988174573574}
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
-  SetupDebugSpeaker: 1
+  SetupDebugSpeaker: 0
 --- !u!114 &9148310015045406306
 MonoBehaviour:
   m_ObjectHideFlags: 0

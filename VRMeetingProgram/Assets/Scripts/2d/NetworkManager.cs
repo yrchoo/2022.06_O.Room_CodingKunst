@@ -72,6 +72,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public PlayerLeaderboardEntry MyPlayFabInfo; //�� ���� �� ��
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
 
+    public GameObject voiceController;
     #region ��������
     void Awake()
     {

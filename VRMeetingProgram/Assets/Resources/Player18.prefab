@@ -73,6 +73,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b42eeac55dedc444aad3cc1953aabf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5186209276577422785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250438237913665577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5130e8dcfa13eb342a0edc8d2ef497fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_side: 0
 --- !u!54 &2264520659191019009
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,7 +350,7 @@ MonoBehaviour:
   speakerInUse: {fileID: 6724053606402004842}
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
-  SetupDebugSpeaker: 1
+  SetupDebugSpeaker: 0
 --- !u!114 &1704308768023497499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,19 +503,6 @@ MonoBehaviour:
   m_directAimController: {fileID: 0}
   m_characterMovement: {fileID: 0}
   m_strafer: {fileID: 1479854448380560315}
---- !u!114 &5186209276577422785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2250438237913665577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5130e8dcfa13eb342a0edc8d2ef497fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_side: 0
 --- !u!114 &4049170203790168419
 MonoBehaviour:
   m_ObjectHideFlags: 0
