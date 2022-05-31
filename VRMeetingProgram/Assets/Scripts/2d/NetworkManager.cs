@@ -414,7 +414,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void XBtn()
     {
-        if (PhotonNetwork.InLobby) PhotonNetwork.Disconnect(); //ondisconnected
+        if (PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.Disconnect(); //ondisconnected
+            CS.UpdateState("온라인");
+        }
         else if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
     }
     #endregion
