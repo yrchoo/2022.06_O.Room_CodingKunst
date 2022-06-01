@@ -20,7 +20,7 @@ public class cshMute : MonoBehaviour
         pv = GetComponent<PhotonView>();
         count = 0;
         //muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute").GetComponent<Image>();
-        muteImage = GameObject.Find("Mute").GetComponent<Image>();
+        //muteImage = GameObject.Find("Mute").GetComponent<Image>();
         muteImage.enabled = false;
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
         isMute = false;
@@ -36,30 +36,18 @@ public class cshMute : MonoBehaviour
             {
                 isMute = true;
                 recorder.IsRecording = false;
+                muteImage.enabled = true;
                 count++;
-                if (pv.IsMine)
-                {
-
-                    muteImage.enabled = true;
-
-                }
             }
             else
             {
                 recorder.IsRecording = true;
+                muteImage.enabled = false;
                 count++;
                 isMute = false;
-
-                if (pv.IsMine)
-                {
-                    muteImage.enabled = false;
-
-                }
             }
-
         }
-
-        
+ 
     }
 
 }
