@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class followPlayerMute : MonoBehaviour, IPunObservable
+public class followPlayer : MonoBehaviour, IPunObservable
 {
     // Start is called before the first frame update
     public Transform player;
@@ -29,7 +29,8 @@ public class followPlayerMute : MonoBehaviour, IPunObservable
     {
         if (pv.IsMine)
         {
-            gameObject.transform.position = new Vector3(player.position.x, player.position.y + 1.6f, player.position.z);
+            Transform spawnPoints = transform.Find("MuteSpawnPoint").GetComponentInChildren<Transform>();
+            gameObject.transform.position = spawnPoints.transform.position;
         }
         else
         {

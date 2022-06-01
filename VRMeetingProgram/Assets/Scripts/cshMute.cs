@@ -72,7 +72,7 @@ public class cshMute : MonoBehaviour
                 else
                 {
                     recorder.IsRecording = true;
-                    Destroy(muteImage);
+                    PhotonNetwork.Destroy(muteImage);
                     count++;
                     isMute = false;
                 }
