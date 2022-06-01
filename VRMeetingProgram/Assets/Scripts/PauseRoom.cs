@@ -53,7 +53,6 @@ public class PauseRoom : MonoBehaviour
         cam.SetActive(false);
         Chat.SetActive(false);
 
-
         NetworkManager.GetComponent<NetworkManager>().XBtn();
 
         LobbyPanel.SetActive(true);

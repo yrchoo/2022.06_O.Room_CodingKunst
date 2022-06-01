@@ -415,7 +415,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.Disconnect(); //ondisconnected
             CS.UpdateState("온라인");
         }
-        else if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
+        else if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            CS.UpdateState("온라인");
+        }
     }
 
     void ShowPanel(GameObject CurPanel)
