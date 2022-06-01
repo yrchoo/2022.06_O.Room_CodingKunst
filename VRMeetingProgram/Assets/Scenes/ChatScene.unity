@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10944,17 +10944,17 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9167a9a547f5db94681623fdc82bda4b, type: 3}
-    m_FontSize: 35
+    m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: '<Emoji>
 
     1 : Crying
@@ -11731,14 +11731,14 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "C - \uCE74\uBA54\uB77C \uC804\uD658\n\nT - \uCC44\uD305 \uC785\uB825\n\nZ
-    - \uC5CE\uB4DC\uB9AC\uAE30\n\nSPACE - \uB6F0\uAE30"
+    m_LineSpacing: 1.5
+  m_Text: "C - \uCE74\uBA54\uB77C \uC804\uD658\nT - \uCC44\uD305 \uC785\uB825\nZ
+    - \uC5CE\uB4DC\uB9AC\uAE30\nSPACE - \uC810\uD504\nM - \uB9C8\uC774\uD06C \uB044\uAE30"
 --- !u!222 &718373276838914135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11764,7 +11764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &963273671982243349
 RectTransform:
   m_ObjectHideFlags: 0
