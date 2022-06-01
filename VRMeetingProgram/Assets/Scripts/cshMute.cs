@@ -41,13 +41,17 @@ public class cshMute : MonoBehaviour
 
     void Start()
     {
-        pv = GetComponent<PhotonView>();
+        pv = gameObject.GetComponent<PhotonView>();
         count = 0;
-
+        
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
         //muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute");
-        
-        
+        //recorder.IsRecording = false;
+
+        if (pv.IsMine)
+        {
+            pv.RPC("mute2", RpcTarget.All);
+        }
         isMute = false;
     }
 
