@@ -47,7 +47,7 @@ public class Emoji : MonoBehaviour
             fTickTime += Time.deltaTime;
             if (fTickTime >= fDestroyTime)
             {
-                emoji.SetActive(false);
+                pv.RPC("DeActiveEmoji", RpcTarget.All);
 
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
