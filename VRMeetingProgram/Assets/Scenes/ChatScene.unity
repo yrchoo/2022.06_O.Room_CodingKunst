@@ -10472,12 +10472,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32566514634f143bfbb41853d2809a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  NetworkManager: {fileID: 0}
-  pausePanel: {fileID: 0}
-  LobbyPanel: {fileID: 0}
-  Chat: {fileID: 0}
-  bg: {fileID: 0}
+  cam: {fileID: 320077845}
+  NetworkManager: {fileID: 1980989444}
+  pausePanel: {fileID: 963273671982243348}
+  LobbyPanel: {fileID: 2130838130456003345}
+  Chat: {fileID: 2130838129077968036}
+  bg: {fileID: 2130838129199481158}
 --- !u!114 &2130838129077968034
 MonoBehaviour:
   m_ObjectHideFlags: 0
