@@ -10,7 +10,7 @@ public class cshMute : MonoBehaviour
 {
     public Recorder recorder;
     public PhotonView pv;
-    public Image muteImage;
+    public GameObject muteImage;
 
     private int count;
     private bool isMute;
@@ -22,7 +22,7 @@ public class cshMute : MonoBehaviour
     {
         if (pv.IsMine)
         {
-            muteImage.enabled = true;
+            muteImage.SetActive(true);
         }
         
     }
@@ -32,7 +32,7 @@ public class cshMute : MonoBehaviour
     {
         if (pv.IsMine)
         {
-            muteImage.enabled = false;
+            muteImage.SetActive(false);
         }
         
     }
@@ -45,34 +45,35 @@ public class cshMute : MonoBehaviour
         count = 0;
 
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
-        muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute").GetComponent<Image>();
+        //muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute");
 
-        muteImage.enabled = false;
+        muteImage.SetActive(false);
         isMute = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.M))
+        if (pv.IsMine)
         {
-            if (count % 2 == 0)
+            if (Input.GetKeyDown(KeyCode.M))
             {
-                isMute = true;
-                recorder.IsRecording = false;
-                muteImage.enabled = true;
-                count++;
-            }
-            else
-            {
-                recorder.IsRecording = true;
-                muteImage.enabled = false;
-                count++;
-                isMute = false;
+                if (count % 2 == 0)
+                {
+                    isMute = true;
+                    recorder.IsRecording = false;
+                    muteImage.SetActive(true);
+                    count++;
+                }
+                else
+                {
+                    recorder.IsRecording = true;
+                    muteImage.SetActive(false);
+                    count++;
+                    isMute = false;
+                }
             }
         }
- 
     }
 
 }
