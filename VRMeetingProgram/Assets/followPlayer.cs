@@ -31,11 +31,11 @@ public class followPlayer : MonoBehaviour, IPunObservable
         {
             gameObject.transform.position = new Vector3(player.position.x, player.position.y + 1.6f, player.position.z);
         }
-        else
-        {
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.localPosition, currentPos, Time.deltaTime * 10.0f);
-            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.localRotation, currentRot, Time.deltaTime * 10.0f);
-        }
+        // else
+        // {
+        //     gameObject.transform.position = Vector3.Lerp(gameObject.transform.localPosition, currentPos, Time.deltaTime * 10.0f);
+        //     gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.localRotation, currentRot, Time.deltaTime * 10.0f);
+        // }
         
     }
 
