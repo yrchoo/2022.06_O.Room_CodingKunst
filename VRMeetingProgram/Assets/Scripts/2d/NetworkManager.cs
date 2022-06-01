@@ -96,7 +96,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause) //disconnect�ݹ�
     {        
-        CS.MemberClick();
+        //CS.MemberClick();
     }
     #endregion
 
@@ -263,7 +263,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }         
         }        
         
-        CS.UpdateState("접속중");
+        CS.UpdateState(RoomInput.text);
         RoomInput.text = "";
         RoomNum.text = "";
         SecretToggle.isOn = false;
@@ -328,6 +328,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
         else { RoomInfoText.text = roomName; }
 
+        CS.UpdateState(RoomInfoText.text);
         CountInfoText.text = "현재 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명";
         MaxInfoText.text = "최대 "+PhotonNetwork.CurrentRoom.MaxPlayers + "명";
     }
@@ -414,7 +415,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.Disconnect(); //ondisconnected
             CS.UpdateState("온라인");
         }
-        else if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
+        else if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            CS.UpdateState("온라인");
+        }
     }
 
     void ShowPanel(GameObject CurPanel)
