@@ -41,7 +41,7 @@ public class cshMute : MonoBehaviour
 
     void Start()
     {
-        pv = gameObject.GetComponent<PhotonView>();
+        pv = GameObject.Find("NetworkManager").GetComponent<PhotonView>();
         count = 0;
         
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
