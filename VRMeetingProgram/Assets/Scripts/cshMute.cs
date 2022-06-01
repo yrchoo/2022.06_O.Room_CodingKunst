@@ -46,8 +46,8 @@ public class cshMute : MonoBehaviour
 
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
         //muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute");
-
-        muteImage.SetActive(false);
+        
+        
         isMute = false;
     }
 
@@ -62,13 +62,17 @@ public class cshMute : MonoBehaviour
                 {
                     isMute = true;
                     recorder.IsRecording = false;
-                    muteImage.SetActive(true);
+                    Transform spawnPoints = transform.Find("MuteSpawnPoint").GetComponentInChildren<Transform>();
+                    Vector3 pos = spawnPoints.transform.position;
+                    Quaternion rot = spawnPoints.transform.rotation;
+                    muteImage = PhotonNetwork.Instantiate("MuteObject", pos, rot);
+                    muteImage.transform.parent = transform;
                     count++;
                 }
                 else
                 {
                     recorder.IsRecording = true;
-                    muteImage.SetActive(false);
+                    Destroy(muteImage);
                     count++;
                     isMute = false;
                 }
