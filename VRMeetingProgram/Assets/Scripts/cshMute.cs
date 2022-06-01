@@ -18,22 +18,16 @@ public class cshMute : MonoBehaviour
 
 
     [PunRPC]
-    void mute()
+    public void mute()
     {
-        if (pv.IsMine)
-        {
             muteImage.SetActive(true);
-        }
         
     }
 
     [PunRPC]
-    void mute2()
+    public void mute2()
     {
-        if (pv.IsMine)
-        {
             muteImage.SetActive(false);
-        }
         
     }
 
@@ -41,7 +35,7 @@ public class cshMute : MonoBehaviour
 
     void Start()
     {
-        pv = GameObject.Find("NetworkManager").GetComponent<PhotonView>();
+        pv = gameObject.GetComponent<PhotonView>();
         count = 0;
         
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
