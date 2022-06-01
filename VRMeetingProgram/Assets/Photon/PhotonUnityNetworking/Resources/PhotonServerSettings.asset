@@ -48,6 +48,8 @@ MonoBehaviour:
   - mute
   - mute2
   - OnMute
+  - CreateEmoji
+  - DeActiveEmoji
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
