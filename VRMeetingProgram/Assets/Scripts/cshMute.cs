@@ -15,12 +15,41 @@ public class cshMute : MonoBehaviour
     private int count;
     private bool isMute;
 
+
+
+    [PunRPC]
+    void mute()
+    {
+        if (pv.IsMine)
+        {
+            muteImage.enabled = true;
+        }
+        
+    }
+
+    [PunRPC]
+    void mute2()
+    {
+        if (pv.IsMine)
+        {
+            muteImage.enabled = false;
+        }
+        
+    }
+
+    // Start is called before the first frame update
+
     void Start()
     {
         pv = GetComponent<PhotonView>();
         count = 0;
+
         //muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute").GetComponent<Image>();
         //muteImage = GameObject.Find("Mute").GetComponent<Image>();
+
+        recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
+        muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute").GetComponent<Image>();
+
         muteImage.enabled = false;
         recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
         isMute = false;
