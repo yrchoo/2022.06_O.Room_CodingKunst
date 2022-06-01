@@ -32,10 +32,7 @@ public class Emoji : MonoBehaviour
         for (int i = 0; i<Emojis.Length; i++){
             Emojis[i] = gameObject.transform.Find($"Emoji{i+1}").gameObject;
             emoji = Emojis[i];
-            if (pv.IsMine)
-            {
-                pv.RPC("DeActiveEmoji", RpcTarget.All);
-            }
+            pv.RPC("DeActiveEmoji", RpcTarget.All);
         }
     }
 
