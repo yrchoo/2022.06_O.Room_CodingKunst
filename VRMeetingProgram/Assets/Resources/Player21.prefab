@@ -411,7 +411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPv: {fileID: 8791545043971489709}
   text: {fileID: 7874107112620414417}
-  muteImage: {fileID: 0}
 --- !u!1 &4439705058815336452
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,19 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b42eeac55dedc444aad3cc1953aabf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1248566028742255208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4456675788440308761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5130e8dcfa13eb342a0edc8d2ef497fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_side: 1
 --- !u!54 &200549980071252946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -633,8 +619,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recorder: {fileID: 0}
-  muteImage: {fileID: 8769383548672068882}
   pv: {fileID: 0}
+  muteImage: {fileID: 8769383548672068882}
 --- !u!114 &5514986439244939977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +917,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_side: 0
+--- !u!114 &1248566028742255208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456675788440308761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5130e8dcfa13eb342a0edc8d2ef497fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_side: 1
 --- !u!1 &7117707502878085890
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117707502878085890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 1.33, z: 0}
+  m_LocalPosition: {x: 0, y: 1.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4456675788440604797}
@@ -1350,21 +1349,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a352480ed790e38459f74c631e8352a4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
---- !u!4 &4456675788440604797 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400058, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
-  m_PrefabInstance: {fileID: 4456675788440210119}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4456675788440604793 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400062, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
-  m_PrefabInstance: {fileID: 4456675788440210119}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4456675788440308761 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100062, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
-  m_PrefabInstance: {fileID: 4456675788440210119}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4456675788440604799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400056, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
@@ -1378,6 +1362,21 @@ GameObject:
 --- !u!1 &4456675788440308765 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100058, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
+  m_PrefabInstance: {fileID: 4456675788440210119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4456675788440604797 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400058, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
+  m_PrefabInstance: {fileID: 4456675788440210119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4456675788440604793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400062, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
+  m_PrefabInstance: {fileID: 4456675788440210119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4456675788440308761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100062, guid: d5273f89bfd7453428a13d4e7bd4298a, type: 3}
   m_PrefabInstance: {fileID: 4456675788440210119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5191385749603914241
