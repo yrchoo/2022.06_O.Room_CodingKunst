@@ -9,14 +9,14 @@ public class followPlayer : MonoBehaviour, IPunObservable
     // Start is called before the first frame update
     public Transform player;
 
-    private PhotonView pv;
+    public PhotonView pv;
     private Vector3 currentPos;
     private Quaternion currentRot;
     //private bool  
 
     void Start()
     {
-        pv = GetComponent<PhotonView>();
+        pv = transform.parent.GetComponent<PhotonView>();
         //emoji = GetComponent<Transform>();
         if (pv.IsMine)
         {
