@@ -601,7 +601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recorder: {fileID: 0}
-  muteImage: {fileID: 0}
   pv: {fileID: 0}
 --- !u!114 &3435004068334386397
 MonoBehaviour:
@@ -863,11 +862,11 @@ RectTransform:
   m_Father: {fileID: 5557009152702938446}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7414162378868263366
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1035,6 +1034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPv: {fileID: 3435004068334386397}
   text: {fileID: 3367563360654417692}
+  muteImage: {fileID: 0}
 --- !u!1001 &3795483145860877517
 PrefabInstance:
   m_ObjectHideFlags: 0

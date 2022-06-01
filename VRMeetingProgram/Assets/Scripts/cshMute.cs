@@ -9,71 +9,57 @@ using Photon.Voice.Unity;
 public class cshMute : MonoBehaviour
 {
     public Recorder recorder;
-    public Image muteImage;
     public PhotonView pv;
-    private bool isMute;
+    public Image muteImage;
 
     private int count;
+    private bool isMute;
 
-    [PunRPC]
-    void mute()
-    {
-        if (isMute)
-        {
-            muteImage.enabled = true;
-        }
-        
-    }
-
-    [PunRPC]
-    void mute2()
-    {
-        if (!isMute)
-        {
-            muteImage.enabled = false;
-        }    
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         pv = GetComponent<PhotonView>();
         count = 0;
-        recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
         //muteImage = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer.transform.Find("Mute").GetComponent<Image>();
+        muteImage = GameObject.Find("Mute").GetComponent<Image>();
         muteImage.enabled = false;
-        //muteImage.SetActive(false);
+        recorder = GameObject.Find("VoiceController").GetComponent<Recorder>();
+        isMute = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (pv.IsMine)
-        {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                if (count % 2 == 0)
-                {
-                    recorder.IsRecording = false;
-                    isMute = true;
-                    pv.RPC("mute", RpcTarget.AllBuffered);
-                    //mute();
-                    //PhotonNetwork.Instantiate("Mute", transform.position, transform.rotation).transform.parent = transform;
-                    count++;
-                }
-                else
-                {
-                    recorder.IsRecording = true;
-                    isMute = false;
-                    pv.RPC("mute2", RpcTarget.AllBuffered);
-                    //mute2();
-                    count++;
-                }
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (count % 2 == 0)
+            {
+                isMute = true;
+                recorder.IsRecording = false;
+                count++;
+                if (pv.IsMine)
+                {
+
+                    muteImage.enabled = true;
+
+                }
             }
+            else
+            {
+                recorder.IsRecording = true;
+                count++;
+                isMute = false;
+
+                if (pv.IsMine)
+                {
+                    muteImage.enabled = false;
+
+                }
+            }
+
         }
+
         
     }
-
 
 }
