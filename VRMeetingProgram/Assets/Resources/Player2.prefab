@@ -602,6 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recorder: {fileID: 0}
   pv: {fileID: 0}
+  muteImage: {fileID: 7414162378868263367}
 --- !u!114 &3435004068334386397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1035,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPv: {fileID: 3435004068334386397}
   text: {fileID: 3367563360654417692}
-  muteImage: {fileID: 0}
 --- !u!1001 &3795483145860877517
 PrefabInstance:
   m_ObjectHideFlags: 0
