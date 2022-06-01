@@ -62,17 +62,16 @@ public class cshMute : MonoBehaviour
                 {
                     isMute = true;
                     recorder.IsRecording = false;
-                    Transform spawnPoints = transform.Find("MuteSpawnPoint").GetComponentInChildren<Transform>();
-                    Vector3 pos = spawnPoints.transform.position;
-                    Quaternion rot = spawnPoints.transform.rotation;
-                    muteImage = PhotonNetwork.Instantiate("MuteObject", pos, rot);
-                    muteImage.transform.parent = transform;
+                    // Transform spawnPoints = transform.Find("MuteSpawnPoint").GetComponentInChildren<Transform>();
+                    // Vector3 pos = spawnPoints.transform.position;
+                    // Quaternion rot = spawnPoints.transform.rotation;
+                    pv.RPC("mute", RpcTarget.All);
                     count++;
                 }
                 else
                 {
                     recorder.IsRecording = true;
-                    PhotonNetwork.Destroy(muteImage);
+                    pv.RPC("mute2", RpcTarget.All);
                     count++;
                     isMute = false;
                 }
