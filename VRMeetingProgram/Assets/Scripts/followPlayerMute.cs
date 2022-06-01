@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class followPlayer : MonoBehaviour, IPunObservable
+public class followPlayerMute : MonoBehaviour, IPunObservable
 {
     // Start is called before the first frame update
     public Transform player;
