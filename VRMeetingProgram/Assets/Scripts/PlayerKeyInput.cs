@@ -23,7 +23,7 @@ public class PlayerKeyInput : MonoBehaviour
             
             ChatInput.ActivateInputField();
             ChatInput.Select();
-            
+            myPlayer.GetComponent<cshMute>().enabled = false;
             myPlayer.GetComponent<Strafer>().enabled = false;
             myPlayer.GetComponent<Croucher>().enabled = false;
             myPlayer.GetComponent<Emoji>().enabled = false;
