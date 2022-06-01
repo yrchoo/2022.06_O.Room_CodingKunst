@@ -96,7 +96,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause) //disconnect�ݹ�
     {        
-        CS.MemberClick();
+        //CS.MemberClick();
     }
     #endregion
 
