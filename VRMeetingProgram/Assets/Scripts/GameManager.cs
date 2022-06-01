@@ -61,4 +61,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         instance.isConnect = false;
         StartCoroutine(CreatePlayer());
     }
+
+    public override void OnDisconnected(DisconnectCause cause){
+        Destroy(this.gameObject);
+    }
 }
