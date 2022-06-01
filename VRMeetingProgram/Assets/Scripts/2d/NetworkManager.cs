@@ -1,15 +1,3 @@
-//using System.Collections;
-/*using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.UI;
-using System;
-using UnityEngine.SceneManagement;
-using PlayFab;
-using PlayFab.ClientModels;
-using Hashtable = ExitGames.Client.Photon.Hashtable;*/
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +6,6 @@ using PlayFab;
 using PlayFab.ClientModels;
 using Photon.Pun;
 using Photon.Realtime;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.UI;
 
 
@@ -32,7 +19,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     static public string myID;
     public string UserName;
     public string ID;
-    //bool isLoaded;
 
     [Header("SideBar")]
     public GameObject SideBar;
@@ -40,42 +26,49 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [Header("Lobby")]
     public GameObject LobbyPanel; 
-    //public Text WelcomeText;
-    //public Text LobbyInfoText;
     List<RoomInfo> myList = new List<RoomInfo>();
+    List<RoomInfo> CurRoomList = new List<RoomInfo>();
     public Button[] CellBtn;
-    //public Button PreviousBtn;
-    //public Button NextBtn;
+    //
+    public Dropdown RoomSortDropdown;
+
+    [Header("SecretPanel")]
+    public GameObject SecretPanel;
+    public InputField PWInput;
+    public Text CurRoomNameText;
+    
 
     [Header("CreatePanel")]
     public InputField RoomInput;
     public InputField RoomNum;
+    public Toggle SecretToggle;
+    public InputField SecretInput;
+    //SecretInput.characterLimit = 6;
 
     [Header("Chat")]
     public GameObject Chat;
-    //public GameObject ChatPrefab;
-    //public GameObject ChatPos;
-
     public Text ListText;
     public Text RoomInfoText;
     public Text CountInfoText;
-    //public Text ChatText;
+    public Text MaxInfoText;
     public InputField ChatInput;
+    
 
     [Header("ETC")]
-    //public Text StatusText;
     public PhotonView PV;
-    //public Text NickNameText;
-    //public InputField ChatInput;
     public GameObject cam;
 
     [Header("Disconnect")]
-    public PlayerLeaderboardEntry MyPlayFabInfo; //�� ���� �� ��
+    public PlayerLeaderboardEntry MyPlayFabInfo; 
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
+
+
 
     [Header("LoadingPanel")]
     public GameObject LoadingPanel;
-    #region ��������
+
+
+    #region 서버연결
     void Awake()
     {
         LoadingPanel.SetActive(true);
@@ -84,98 +77,25 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         GetMyName(myID);
         PhotonNetwork.GameVersion = gameVersion;
 
-        PhotonNetwork.ConnectUsingSettings();
-
-        //Screen.SetResolution(960, 540, false);
-
-        /*PhotonNetwork.SendRate = 60;
-        PhotonNetwork.SerializationRate = 30;*/
-
-        //NickNameText.text = PV.IsMine ? PhotonNetwork.NickName : PV.Owner.NickName;
-        //NickNameText.color = PV.IsMine ? Color.green : Color.red;
-        //CM = GameObject.Find("ChatManager");
-    }
-
-    void Update()
-    {
-        //Debug.Log(PV.IsMine);
-        //StatusText.text = PhotonNetwork.NetworkClientState.ToString(); //여기서 내 상태 받아와서 playfab에 업데이트??
-        //LobbyInfoText.text = PhotonNetwork.CountOfPlayers + "명";
-
-        /*if(Chat.activeSelf == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Return)){
-                NMSend();
-            }
-        }*/
-
-        // if(PhotonNetwork.InRoom && Input.GetKeyDown(KeyCode.Return))
-        // {
-            
-        //     ChatInput.ActivateInputField();
-        //     ChatInput.Select();
-        // }
-
-        
-    }
-
-    //public void Connect() => PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectUsingSettings();       
+    }   
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby(); //connect�� �ݹ�
 
     public override void OnJoinedLobby()
-    {
+    {       
+        Debug.Log("OnJoinedLobby" + UserName);
         
-        //ShowPanel(LobbyPanel);
-        //isLoaded = true;
-        Debug.Log(UserName);
-        //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
         PhotonNetwork.LocalPlayer.NickName = UserName;
         //WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님";
+
         myList.Clear();
         ShowPanel(LobbyPanel);
-        
-        // if (isLoaded)
-        // {
-            
-        //     //ShowUserNickName();
-        // }
-        //else Invoke("OnJoinedLobbyDelay", 1);
-
-        //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
-        //PhotonNetwork.LocalPlayer.NickName = UserName;
-        //Debug.Log("here");
-        
-    }
-
-    /*void OnJoinedLobbyDelay()
-    {
-        
-        isLoaded = true;
-        Debug.Log(UserName);
-        //PhotonNetwork.LocalPlayer.NickName = MyPlayFabInfo.DisplayName;
-        PhotonNetwork.LocalPlayer.NickName = UserName;
-        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님이 참여하셨습니다.";
-        myList.Clear();
-        ShowPanel(LobbyPanel);
-        //ShowUserNickName();
-    }*/
-
-    /*void ShowUserNickName()
-    {
-        UserNickNameText.text = "";
-        for (int i = 0; i < PlayFabUserList.Count; i++) UserNickNameText.text += PlayFabUserList[i].DisplayName + "\n";
-    }*/
-
-    /*public void Disconnect()
-    {
-        PhotonNetwork.Disconnect();      
-    }*/
+           
+    }   
 
     public override void OnDisconnected(DisconnectCause cause) //disconnect�ݹ�
-    {
-        //isLoaded = false;
-        //ShowPanel(SideBar);
+    {        
         CS.MemberClick();
     }
     #endregion
@@ -191,35 +111,113 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //    CurListArea.GetComponent<AreaScript>().NameText.text = name;
     //}
 
-    #region �渮��Ʈ ����
-    // ����ư -2 , ����ư -1 , �� ����
+    #region 방리스트 갱신
     public void MyListClick(int num)
     {
-        //if (num == -2) --currentPage;
-        //else if (num == -1) ++currentPage;
-        //else
-        PhotonNetwork.JoinRoom(myList[num].Name); //onjoinedroom ȣ���
+        if (myList[num].Name.Contains("@PW@"))
+        {
+            SecretPanel.SetActive(true);
+            PWInput.text = "";
+            CurRoomNameText.text = myList[num].Name;           
+        }
+        else PhotonNetwork.JoinRoom(myList[num].Name); //onjoinedroom
         MyListRenewal();
     }
+    public void SecretConfirmBtn()
+    {
+        SecretPanel.SetActive(false);
 
+        string pw = CurRoomNameText.text.Substring(CurRoomNameText.text.IndexOf("@PW@") + 4);
+        
+        if(PWInput.text == pw) PhotonNetwork.JoinRoom(CurRoomNameText.text);
+    }
+    //original
     void MyListRenewal()
     {
-       //original coding
-        for (int i = 0; i < CellBtn.Length; i++)
+        //original coding
+        
+        /*for (int i = 0; i < CellBtn.Length; i++)
         {
-            CellBtn[i].interactable = (i < myList.Count) ? true : false;
-            //CellBtn[i].enabled = (i < myList.Count) ? true : false;
-            //Debug.Log("myList.count" + myList.Count);
-            //Debug.Log("CellBtn.Length" + CellBtn.Length);
+            CellBtn[i].interactable = (i < myList.Count);
             if (i >= myList.Count) { CellBtn[i].gameObject.SetActive(false); }
             else { CellBtn[i].gameObject.SetActive(true); }
+
+            Debug.Log("myList[i].Name" + myList[i].Name+ myList[i].PlayerCount+ myList[i].MaxPlayers);
             CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : "";
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < myList.Count) ? myList[i].PlayerCount + "/" + myList[i].MaxPlayers : "";
+
+            //CellBtn[i].transform.GetChild(2).gameObject.SetActive(i< myList.Count && myList[i].Name.Contains("@PW@")
+            *//*if (myList[i].Name.Contains("@PW@"))
+            {
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = myList[i].Name.Substring(0, myList[i].Name.IndexOf("@PW@"));
+            }
+            else { CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : ""; }
+            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].PlayerCount + "/" + CurRoomList[i].MaxPlayers : "";*//*
+        }*/
+        /////////////////////////   
+        ///
+        for (int i = 0; i < CellBtn.Length; i++)
+        {
+            CellBtn[i].interactable = (i < myList.Count);
+            
+            if (i >= myList.Count) { CellBtn[i].gameObject.SetActive(false); }
+            else { CellBtn[i].gameObject.SetActive(true); }
+
+            //string roomName = myList[i].Name;
+            if (i < myList.Count && myList[i].Name.Contains("@PW@"))
+            {
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name.Substring(0, myList[i].Name.IndexOf("@PW@")) : "";
+            }
+            else { CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : ""; }
+            
+                      
+            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < myList.Count) ? myList[i].PlayerCount + "/" + myList[i].MaxPlayers : "";
+            CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < myList.Count && myList[i].Name.Contains("@PW@"));
         }
-        /////////////////////////
-        
 
     }
+
+    /*public void MyLis()
+    {
+        CurRoomList = new List<RoomInfo>();
+        //CurRoomList = myList;
+
+        *//*//전체
+        if (RoomSortDropdown.value == 0) CurRoomList = myList;
+        //공개
+        else if (RoomSortDropdown.value == 1)
+        {
+            for (int i = 0; i < myList.Count; i++)
+            {
+                if (!myList[i].Name.Contains("@PW@")) CurRoomList.Add(myList[i]);
+            }
+        }
+        //비밀
+        else if (RoomSortDropdown.value == 2)
+        {
+            for (int i = 0; i < myList.Count; i++)
+            {
+                if (myList[i].Name.Contains("@PW@")) CurRoomList.Add(myList[i]);
+            }
+        }
+*//*
+
+        for (int i = 0; i < CellBtn.Length; i++)
+        {
+            CellBtn[i].interactable = (i < CurRoomList.Count) ? true : false;
+
+            if (i >= CurRoomList.Count) { CellBtn[i].gameObject.SetActive(false); }
+            else { CellBtn[i].gameObject.SetActive(true); }
+
+            if (CurRoomList[i].Name.Contains("@PW@"))
+            {
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = CurRoomList[i].Name.Substring(0, CurRoomList[i].Name.IndexOf("@PW@"));
+            }
+            else { CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].Name : ""; }
+            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].PlayerCount + "/" + CurRoomList[i].MaxPlayers : "";
+        }
+
+    }*/
 
     /*
      -로비에 접속 시
@@ -230,7 +228,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         int roomCount = roomList.Count;
-        //Debug.Log(roomCount);
+        //Debug.Log("roomCount"+roomCount);
         for (int i = 0; i < roomCount; i++)
         {
             if (!roomList[i].RemovedFromList)
@@ -245,27 +243,31 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #endregion
 
 
-    #region ��
+    #region 방
     public void CreateConfirmBtn()
     {
         
         if(RoomInput.text != "" && RoomNum.text != "")
-        {
-           
-            byte numByte = byte.Parse(RoomNum.text);            
-            PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = numByte });
-        }
-        //���������� ��������� onJoinedRoom����
+        {           
+            byte numByte = byte.Parse(RoomNum.text);      
+            if(!SecretToggle.isOn) //일반방
+            {
+                //PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = numByte });
+                Debug.Log("일반방");
+                PhotonNetwork.CreateRoom(RoomInput.text, new RoomOptions { MaxPlayers = numByte });
+            }
+            else if(SecretToggle.isOn && SecretInput.text != "") //비밀방
+            {
+                Debug.Log("비밀방");
+                PhotonNetwork.CreateRoom(RoomInput.text+"@PW@" + SecretInput.text, new RoomOptions { MaxPlayers = numByte });
+            }         
+        }        
+        
         CS.UpdateState("접속중");
         RoomInput.text = "";
         RoomNum.text = "";
-        //RoomRenewal();
+        SecretToggle.isOn = false;
     }
-
-    //public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
-
-    /*public void LeaveRoom() => PhotonNetwork.LeaveRoom();*/
-
 
     public override void OnJoinedRoom()
     {
@@ -274,14 +276,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         LoadingPanel.SetActive(true);
 
 
-        Chat.SetActive(true);
-        LobbyPanel.SetActive(false);
+        //Chat.SetActive(true);
+        //LobbyPanel.SetActive(false);
+        ShowPanel(Chat);
+
         GameObject.Find("Background2").SetActive(false);
         cam.SetActive(true);
-        //Destroy(ChatPos);
-        //ShowPanel(Chat);
-
-        //Instantiate(ChatPrefab, ChatPos);
+        
         GameManager.instance.isConnect = true;
 
         Cursor.lockState = CursorLockMode.Locked; // 마우스
@@ -289,16 +290,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
        
         
         RoomRenewal();
-        ChatInput.text = "";
-
-        //���⼭ ä�� �浵 �ʱ�ȭ
         CM.clean();
-        //�ĺ��� ����� ��ȭ ������� �ҷ�����
-
-        //for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
-        //MyListRenewal();
-        //SideBar2.SetActive(true);
-        //PhotonNetwork.JoinLobby();
+        ChatInput.text = "";        
+        
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) { RoomInput.text = ""; CreateConfirmBtn(); }
@@ -310,14 +304,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         RoomRenewal(); //����� ���Դ� ������ �� �� �� ����
         InformRPC(newPlayer.NickName + "님이 입장하였습니다");
-        CS.UpdateState("접속중");
+        //CS.UpdateState("접속중");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
         InformRPC(otherPlayer.NickName + "님이 퇴장하였습니다.");
-        CS.UpdateState("온라인");
+        //CS.UpdateState("온라인");
     }
 
     void RoomRenewal()
@@ -325,23 +319,29 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ListText.text = "";
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
-        //���� ����!!!!!
-        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name;
-        CountInfoText.text = "현재 인원 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "명";
+
+        string roomName = PhotonNetwork.CurrentRoom.Name;
+        if (roomName.Contains("@PW@"))
+        {
+            RoomInfoText.text = roomName.Substring(0, roomName.IndexOf("@PW@"));
+
+        }
+        else { RoomInfoText.text = roomName; }
+
+        CountInfoText.text = "현재 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명";
+        MaxInfoText.text = "최대 "+PhotonNetwork.CurrentRoom.MaxPlayers + "명";
     }
     #endregion
 
 
-#region ä��
+#region send
     
     public void BtnSend()
     {
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             if ((PhotonNetwork.PlayerList[i].NickName).Equals(PhotonNetwork.LocalPlayer.NickName))
-            {
-                //Debug.Log("??");
-                //CM.GetComponent<ChatManager>().Send(ChatInput.text);
+            {                
                 CM.Send(ChatInput.text);
             }
         }
@@ -352,18 +352,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void TFSend()
     {
-        
-        //Debug.Log(ChatInput.text);
-        //CM = GameObject.Find("ChatManager");
+             
         if(Input.GetKeyDown(KeyCode.Return) && ChatInput.text != "")
-        {
-            //Debug.Log("??");
+        {            
             for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             {
                 if ((PhotonNetwork.PlayerList[i].NickName).Equals(PhotonNetwork.LocalPlayer.NickName))
-                {
-                    //Debug.Log("??");
-                    //CM.GetComponent<ChatManager>().Send(ChatInput.text);
+                {                   
                     CM.Send(ChatInput.text);
                     
                 }
@@ -371,10 +366,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PV.RPC("ChatRPC", RpcTarget.Others, PhotonNetwork.NickName + " : " + ChatInput.text);
             ChatInput.text = "";
         }
-        
-        //PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
-
-        //ChatRPC(ChatInput.text);
+            
         ChatInput.DeactivateInputField();
 
         GameObject myPlayer = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer;
@@ -389,49 +381,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Cursor.visible = false;
     }
 
-    //public void 
-
     void InformRPC(string msg)
     {
-
-        //CM.GetComponent<ChatManager>().Inform(msg);
         CM.Inform(msg);
     }
 
     [PunRPC]
     void ChatRPC(string msg)
     {
-        //CM.GetComponent<ChatManager>().ChatTo(msg);
         CM.ChatTo(msg);
     }
     #endregion
 
-    #region ��Ÿ
-    /*public override void OnDisconnected(DisconnectCause cause)
-    {
-        ShowPanel(DisconnectPanel);
-    }*/
-
-    public void XBtn()
-    {
-        if (PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.Disconnect(); //ondisconnected
-            CS.UpdateState("온라인");
-        }
-        else if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
-    }
-    #endregion
-
-    void ShowPanel(GameObject CurPanel)
-    {
-        SideBar.SetActive(false);
-        LobbyPanel.SetActive(false);
-        Chat.SetActive(false);
-
-        CurPanel.SetActive(true);
-    }
-
+    #region 기타
     public void GetMyName(string myID)
     {
         var request = new GetUserDataRequest() { PlayFabId = myID };
@@ -445,27 +407,35 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             );
     }
 
-    /* #region set get
-     void SetRoomTag(int slotIndex, int value) => PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable { { slotIndex.ToString(), value } });
-     int GetRoomTag(int slotIndex) => (int)PhotonNetwork.CurrentRoom.CustomProperties[slotIndex.ToString()];
-
-     Player GetPlayer(int slotIndex)
-     {
-         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-             if (PhotonNetwork.PlayerList[i].ActorNumber == GetRoomTag(slotIndex)) return PhotonNetwork.PlayerList[i];
-         return null;
-     }
-
-     void setLocalTag(string key, bool value) => PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { key, value } });
-     bool GetLocalTag(string key) => (bool)PhotonNetwork.LocalPlayer.CustomProperties[key];
-
-     bool isMaster() => PhotonNetwork.LocalPlayer.IsMasterClient;*/
-
-    /*void SetItemTag()
+    public void XBtn()
     {
-        Item curCharacter = MyItemList.Find(x => x.Type == "Character" && x.isUsing == true);
-        Item curBalloon = MyItemList.Find(x => x.Type == "Balloon" && x.isUsing == true);
+        if (PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.Disconnect(); //ondisconnected
+            CS.UpdateState("온라인");
+        }
+        else if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
+    }
 
-        //PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { "Character", curCharacter.Name }, { "Balloon", curBalloon != null ? } })
-    }*/
+    void ShowPanel(GameObject CurPanel)
+    {
+        SideBar.SetActive(false);
+        LobbyPanel.SetActive(false);
+        Chat.SetActive(false);
+
+        CurPanel.SetActive(true);
+    }
+
+    public void ToggleChange()
+    {
+        SecretInput.interactable = SecretToggle.isOn;
+
+        if (!SecretToggle.isOn)
+        {
+            SecretInput.text = "";
+        }
+    }
+    #endregion
+
+
 }
