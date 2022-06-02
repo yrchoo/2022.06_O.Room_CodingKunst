@@ -371,7 +371,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ChatInput.DeactivateInputField();
 
         GameObject myPlayer = GameObject.Find("GameManager").GetComponent<GameManager>().myPlayer;
-
+        myPlayer.GetComponent<cshMute>().enabled = true;
         myPlayer.GetComponent<Strafer>().enabled = true;
         myPlayer.GetComponent<Croucher>().enabled = true;
         myPlayer.GetComponent<Emoji>().enabled = true;
