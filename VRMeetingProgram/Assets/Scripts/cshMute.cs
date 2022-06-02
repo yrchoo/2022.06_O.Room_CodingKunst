@@ -44,7 +44,7 @@ public class cshMute : MonoBehaviour
 
         if (pv.IsMine)
         {
-            pv.RPC("mute2", RpcTarget.All);
+            pv.RPC("mute2", RpcTarget.AllBuffered);
         }
         isMute = false;
     }
@@ -63,13 +63,13 @@ public class cshMute : MonoBehaviour
                     // Transform spawnPoints = transform.Find("MuteSpawnPoint").GetComponentInChildren<Transform>();
                     // Vector3 pos = spawnPoints.transform.position;
                     // Quaternion rot = spawnPoints.transform.rotation;
-                    pv.RPC("mute", RpcTarget.All);
+                    pv.RPC("mute", RpcTarget.AllBuffered);
                     count++;
                 }
                 else
                 {
                     recorder.IsRecording = true;
-                    pv.RPC("mute2", RpcTarget.All);
+                    pv.RPC("mute2", RpcTarget.AllBuffered);
                     count++;
                     isMute = false;
                 }

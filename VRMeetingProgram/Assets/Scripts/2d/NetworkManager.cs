@@ -352,6 +352,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         LoadingPanel.GetComponent<LoadingManager>().progressBar.fillAmount = 0;
         LoadingPanel.SetActive(true);
 
+        GameObject.Find("PauseRoom").GetComponent<PauseRoom>().cam.GetComponent<CameraMovement>().enabled = true;
 
         //Chat.SetActive(true);
         //LobbyPanel.SetActive(false);
@@ -455,7 +456,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         myPlayer.GetComponent<Emoji>().enabled = true;
         myPlayer.GetComponent<DirectAimController>().enabled = true;
         GameObject.Find("PauseRoom").GetComponent<PauseRoom>().cam.GetComponent<CameraMovement>().enabled = true;
-        
+        GameObject.Find("PauseRoom").GetComponent<PauseRoom>().cam.GetComponent<ChangeCamera>().isKeyboardOn = false;
         Cursor.lockState = CursorLockMode.Locked; // 마우스
         Cursor.visible = false;
     }
