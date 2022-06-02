@@ -29,6 +29,7 @@ public class PlayerKeyInput : MonoBehaviour
             myPlayer.GetComponent<Emoji>().enabled = false;
             myPlayer.GetComponent<DirectAimController>().enabled = false;
             GameObject.Find("PauseRoom").GetComponent<PauseRoom>().cam.GetComponent<CameraMovement>().enabled = false;
+            GameObject.Find("PauseRoom").GetComponent<PauseRoom>().cam.GetComponent<ChangeCamera>().isKeyboardOn = true;
             
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
