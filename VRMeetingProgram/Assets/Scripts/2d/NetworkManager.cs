@@ -114,6 +114,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #region 방리스트 갱신
     public void MyListClick(int num)
     {
+        string roomNum = myList[num].Name.Substring(myList[num].Name.IndexOf("@R@") + 3,1);
+        if (roomNum == "0")
+        {
+            ChangeRoom(Conference);
+        }
+        else if(roomNum == "1")
+        {
+            ChangeRoom(School);
+        }
+        else if (roomNum == "2")
+        {
+            ChangeRoom(Office);
+        }
+
         if (myList[num].Name.Contains("@PW@"))
         {
             SecretPanel.SetActive(true);
@@ -126,8 +140,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void SecretConfirmBtn()
     {
         SecretPanel.SetActive(false);
-
-        string pw = CurRoomNameText.text.Substring(CurRoomNameText.text.IndexOf("@PW@") + 4);
+        string roomName = CurRoomNameText.text;        
+        string pw = roomName.Substring(CurRoomNameText.text.IndexOf("@PW@") + 4);      
         
         if(PWInput.text == pw) PhotonNetwork.JoinRoom(CurRoomNameText.text);
     }
@@ -220,19 +234,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             if (i >= CurRoomList.Count) { CellBtn[i].gameObject.SetActive(false); }
             else { CellBtn[i].gameObject.SetActive(true); }
 
-            if (i < CurRoomList.Count && CurRoomList[i].Name.Contains("@PW@"))
+            /*if (i < CurRoomList.Count && CurRoomList[i].Name.Contains("@PW@"))
             {
-                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple+i < CurRoomList.Count) ? CurRoomList[multiple+i].Name.Substring(0, CurRoomList[multiple+i].Name.IndexOf("@PW@")) : "";
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple+i < CurRoomList.Count) ? CurRoomList[multiple+i].Name.Substring(0, CurRoomList[multiple+i].Name.IndexOf("@R@")) : "";
                 CellBtn[i].transform.GetChild(2).gameObject.SetActive(true);
             }
             else
             {
-                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].Name : "";
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].Name.Substring(0, CurRoomList[multiple + i].Name.IndexOf("@R@")) : "";
                 CellBtn[i].transform.GetChild(2).gameObject.SetActive(false);
-            }
+            }*/
 
-            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].PlayerCount + "/" + CurRoomList[multiple + i].MaxPlayers : "";           
-           
+            CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].Name.Substring(0, CurRoomList[multiple + i].Name.IndexOf("@R@")) : "";           
+            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].PlayerCount + "/" + CurRoomList[multiple + i].MaxPlayers : "";
+            CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < CurRoomList.Count && CurRoomList[i].Name.Contains("@PW@"));
         }
 
 
@@ -291,25 +306,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         //Debug.Log("??" + RoomKindDropdown.value);
         //1
-        if (RoomKindDropdown.value == 0)
+        int kind = 0;
+        kind = RoomKindDropdown.value;
+        if (kind == 0)
         {
-            Conference.SetActive(true);
-            School.SetActive(false);
-            Office.SetActive(false);
+            ChangeRoom(Conference);           
         }
         //2
-        else if (RoomKindDropdown.value == 1)
+        else if (kind == 1)
         {
-            Conference.SetActive(false);
-            School.SetActive(true);
-            Office.SetActive(false);
+            ChangeRoom(School);
         }
         //3
-        else if (RoomKindDropdown.value == 2)
+        else if (kind == 2)
         {
-            Conference.SetActive(false);
-            School.SetActive(false);
-            Office.SetActive(true);
+            ChangeRoom(Office);
         }
 
         if (RoomInput.text != "" && RoomNum.text != "")
@@ -319,13 +330,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             {
                 //PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = numByte });
                 Debug.Log("일반방");
-                PhotonNetwork.CreateRoom(RoomInput.text, new RoomOptions { MaxPlayers = numByte });
+                PhotonNetwork.CreateRoom(RoomInput.text+"@R@"+ kind, new RoomOptions { MaxPlayers = numByte });
             }
             else if(SecretToggle.isOn && SecretInput.text != "") //비밀방
             {
                 Debug.Log("비밀방");
-                PhotonNetwork.CreateRoom(RoomInput.text+"@PW@" + SecretInput.text, new RoomOptions { MaxPlayers = numByte });
-            }         
+                PhotonNetwork.CreateRoom(RoomInput.text+ "@R@" + kind +"@PW@" + SecretInput.text, new RoomOptions { MaxPlayers = numByte });
+            }  
+            
         }        
         
         CS.UpdateState(RoomInput.text);
@@ -386,12 +398,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
 
         string roomName = PhotonNetwork.CurrentRoom.Name;
-        if (roomName.Contains("@PW@"))
+        RoomInfoText.text = roomName.Substring(0, roomName.IndexOf("@R@"));
+        /*if (roomName.Contains("@PW@"))
         {
             RoomInfoText.text = roomName.Substring(0, roomName.IndexOf("@PW@"));
 
         }
-        else { RoomInfoText.text = roomName; }
+        else { RoomInfoText.text = roomName.Substring(0, roomName.IndexOf("@R@")); }*/
 
         CS.UpdateState(RoomInfoText.text);
         CountInfoText.text = "현재 : " + PhotonNetwork.CurrentRoom.PlayerCount + "명";
@@ -494,6 +507,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Chat.SetActive(false);
 
         CurPanel.SetActive(true);
+    }
+    void ChangeRoom(GameObject CurRoom)
+    {
+        Conference.SetActive(false);
+        School.SetActive(false);
+        Office.SetActive(false);
+
+        CurRoom.SetActive(true);
     }
 
     public void ToggleChange()
