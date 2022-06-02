@@ -7,8 +7,6 @@ using PlayFab.ClientModels;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
-
-
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     private readonly string gameVersion = "v1.0";
@@ -25,18 +23,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public InputField NickNameInput;
 
     [Header("Lobby")]
-    public GameObject LobbyPanel; 
+    public GameObject LobbyPanel;     
+    public Dropdown RoomSortDropdown;
+    public Button PreviousBtn;
+    public Button NextBtn;
     List<RoomInfo> myList = new List<RoomInfo>();
     List<RoomInfo> CurRoomList = new List<RoomInfo>();
     public Button[] CellBtn;
-    //
-    public Dropdown RoomSortDropdown;
+    int currentPage = 1, maxPage, multiple;
 
     [Header("SecretPanel")]
     public GameObject SecretPanel;
     public InputField PWInput;
     public Text CurRoomNameText;
-    
 
     [Header("CreatePanel")]
     public InputField RoomInput;
@@ -52,7 +51,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public Text CountInfoText;
     public Text MaxInfoText;
     public InputField ChatInput;
-    
 
     [Header("ETC")]
     public PhotonView PV;
@@ -61,8 +59,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [Header("Disconnect")]
     public PlayerLeaderboardEntry MyPlayFabInfo; 
     public List<PlayerLeaderboardEntry> PlayFabUserList = new List<PlayerLeaderboardEntry>();
-
-
 
     [Header("LoadingPanel")]
     public GameObject LoadingPanel;
@@ -204,6 +200,39 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }
         }
 
+        // 최대페이지
+        maxPage = (CurRoomList.Count % CellBtn.Length == 0) ? CurRoomList.Count / CellBtn.Length : CurRoomList.Count / CellBtn.Length + 1;
+
+        // 이전, 다음버튼
+        PreviousBtn.interactable = (currentPage <= 1) ? false : true;
+        NextBtn.interactable = (currentPage >= maxPage) ? false : true;
+
+        // 페이지에 맞는 리스트 대입
+        multiple = (currentPage - 1) * CellBtn.Length;
+        for (int i = 0; i < CellBtn.Length; i++)
+        {           
+            CellBtn[i].interactable = (multiple + i < CurRoomList.Count) ? true : false;
+
+            if (i >= CurRoomList.Count) { CellBtn[i].gameObject.SetActive(false); }
+            else { CellBtn[i].gameObject.SetActive(true); }
+
+            if (i < CurRoomList.Count && CurRoomList[i].Name.Contains("@PW@"))
+            {
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple+i < CurRoomList.Count) ? CurRoomList[multiple+i].Name.Substring(0, CurRoomList[multiple+i].Name.IndexOf("@PW@")) : "";
+                CellBtn[i].transform.GetChild(2).gameObject.SetActive(true);
+            }
+            else
+            {
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].Name : "";
+                CellBtn[i].transform.GetChild(2).gameObject.SetActive(false);
+            }
+
+            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (multiple + i < CurRoomList.Count) ? CurRoomList[multiple + i].PlayerCount + "/" + CurRoomList[multiple + i].MaxPlayers : "";           
+           
+        }
+
+
+/*
         for (int i = 0; i < CellBtn.Length; i++)
         {
             CellBtn[i].interactable = (i < CurRoomList.Count);
@@ -223,8 +252,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }
 
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].PlayerCount + "/" + CurRoomList[i].MaxPlayers : "";
-            /*CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < myList.Count && myList[i].Name.Contains("@PW@"));*/
-        }
+            *//*CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < myList.Count && myList[i].Name.Contains("@PW@"));*//*
+        }*/
 
 
     }
