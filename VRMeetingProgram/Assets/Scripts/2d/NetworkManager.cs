@@ -132,11 +132,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if(PWInput.text == pw) PhotonNetwork.JoinRoom(CurRoomNameText.text);
     }
     //original
-    void MyListRenewal()
+    /*void MyListRenewal()
     {
         //original coding
         
-        /*for (int i = 0; i < CellBtn.Length; i++)
+        *//*for (int i = 0; i < CellBtn.Length; i++)
         {
             CellBtn[i].interactable = (i < myList.Count);
             if (i >= myList.Count) { CellBtn[i].gameObject.SetActive(false); }
@@ -153,7 +153,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }
             else { CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : ""; }
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].PlayerCount + "/" + CurRoomList[i].MaxPlayers : "";*//*
-        }*/
+        }*//*
         /////////////////////////   
         ///
         for (int i = 0; i < CellBtn.Length; i++)
@@ -167,22 +167,25 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             if (i < myList.Count && myList[i].Name.Contains("@PW@"))
             {
                 CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name.Substring(0, myList[i].Name.IndexOf("@PW@")) : "";
+                CellBtn[i].transform.GetChild(2).gameObject.SetActive(true);
             }
-            else { CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : ""; }
-            
-                      
+            else { 
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < myList.Count) ? myList[i].Name : "";
+                CellBtn[i].transform.GetChild(2).gameObject.SetActive(false);
+            }
+                               
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < myList.Count) ? myList[i].PlayerCount + "/" + myList[i].MaxPlayers : "";
-            CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < myList.Count && myList[i].Name.Contains("@PW@"));
+            *//*CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < myList.Count && myList[i].Name.Contains("@PW@"));*//*
         }
 
-    }
+    }*/
 
-    /*public void MyLis()
+    public void MyListRenewal()
     {
         CurRoomList = new List<RoomInfo>();
-        //CurRoomList = myList;
 
-        *//*//전체
+        //Debug.Log("dropdown" + RoomSortDropdown.value);
+        //전체
         if (RoomSortDropdown.value == 0) CurRoomList = myList;
         //공개
         else if (RoomSortDropdown.value == 1)
@@ -200,24 +203,31 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 if (myList[i].Name.Contains("@PW@")) CurRoomList.Add(myList[i]);
             }
         }
-*//*
 
         for (int i = 0; i < CellBtn.Length; i++)
         {
-            CellBtn[i].interactable = (i < CurRoomList.Count) ? true : false;
+            CellBtn[i].interactable = (i < CurRoomList.Count);
 
             if (i >= CurRoomList.Count) { CellBtn[i].gameObject.SetActive(false); }
             else { CellBtn[i].gameObject.SetActive(true); }
 
-            if (CurRoomList[i].Name.Contains("@PW@"))
+            if (i < CurRoomList.Count && CurRoomList[i].Name.Contains("@PW@"))
             {
-                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = CurRoomList[i].Name.Substring(0, CurRoomList[i].Name.IndexOf("@PW@"));
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].Name.Substring(0, CurRoomList[i].Name.IndexOf("@PW@")) : "";
+                CellBtn[i].transform.GetChild(2).gameObject.SetActive(true);
             }
-            else { CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].Name : ""; }
+            else
+            {
+                CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].Name : "";
+                CellBtn[i].transform.GetChild(2).gameObject.SetActive(false);
+            }
+
             CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (i < CurRoomList.Count) ? CurRoomList[i].PlayerCount + "/" + CurRoomList[i].MaxPlayers : "";
+            /*CellBtn[i].transform.GetChild(2).gameObject.SetActive(i < myList.Count && myList[i].Name.Contains("@PW@"));*/
         }
 
-    }*/
+
+    }
 
     /*
      -로비에 접속 시
