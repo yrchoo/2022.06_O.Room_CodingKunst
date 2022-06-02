@@ -13,12 +13,13 @@ public class Emoji : MonoBehaviour
 
     public InputField ChatInput;
 
-    public int index;
+    int index;
     
     public bool activeIF;
 
     GameObject emoji;
     GameObject[] Emojis;
+    //int index;
 
     private float fDestroyTime = 2f;
     private float fTickTime = 2f;
@@ -31,8 +32,8 @@ public class Emoji : MonoBehaviour
         Emojis = new GameObject[6];
         for (int i = 0; i<Emojis.Length; i++){
             Emojis[i] = gameObject.transform.Find($"Emoji{i+1}").gameObject;
-            emoji = Emojis[i];
-            pv.RPC("DeActiveEmoji", RpcTarget.All);
+            index = i;
+            pv.RPC("DeActiveEmoji", RpcTarget.All, index);
         }
     }
 
@@ -44,43 +45,49 @@ public class Emoji : MonoBehaviour
             fTickTime += Time.deltaTime;
             if (fTickTime >= fDestroyTime)
             {
-                pv.RPC("DeActiveEmoji", RpcTarget.All);
+                pv.RPC("DeActiveEmoji", RpcTarget.All, index);
 
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
-                    emoji = Emojis[0];
+                    //emoji = Emojis[0];
+                    index = 0;
                     fTickTime = 0;
-                    pv.RPC("CreateEmoji", RpcTarget.All);
+                    pv.RPC("CreateEmoji", RpcTarget.All, 0);
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    emoji = Emojis[1];
+                    //emoji = Emojis[1];
+                    index = 1;
                     fTickTime = 0;
-                    pv.RPC("CreateEmoji", RpcTarget.All);
+                    pv.RPC("CreateEmoji", RpcTarget.All, 1);
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    emoji = Emojis[2];
+                    //emoji = Emojis[2];
                     fTickTime = 0;
-                    pv.RPC("CreateEmoji", RpcTarget.All);
+                    index = 2;
+                    pv.RPC("CreateEmoji", RpcTarget.All, 2);
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    emoji = Emojis[3];
+                    //emoji = Emojis[3];
                     fTickTime = 0;
-                    pv.RPC("CreateEmoji", RpcTarget.All);
+                    index = 3;
+                    pv.RPC("CreateEmoji", RpcTarget.All, 3);
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha5))
                 {
-                    emoji = Emojis[4];
+                    //emoji = Emojis[4];
                     fTickTime = 0;
-                    pv.RPC("CreateEmoji", RpcTarget.All);
+                    index = 4;
+                    pv.RPC("CreateEmoji", RpcTarget.All, 4);
                 }
                 else if (Input.GetKeyDown(KeyCode.Alpha6))
                 {
-                    emoji = Emojis[5];
+                    //emoji = Emojis[5];
                     fTickTime = 0;
-                    pv.RPC("CreateEmoji", RpcTarget.All);
+                    index = 5;
+                    pv.RPC("CreateEmoji", RpcTarget.All, 5);
                 }
             }
             
@@ -88,7 +95,7 @@ public class Emoji : MonoBehaviour
     }
 
     [PunRPC]
-    void CreateEmoji()
+    void CreateEmoji(int index)
     {
         
         // Debug.Log("CreateEmoji");
@@ -96,13 +103,13 @@ public class Emoji : MonoBehaviour
         // Vector3 pos = spawnPoints.transform.position;
         // Quaternion rot = spawnPoints.transform.rotation;
         // PhotonNetwork.Instantiate(emoji, pos, rot).transform.parent = transform;
-        emoji.SetActive(true);
+        Emojis[index].SetActive(true);
        
     }
 
     [PunRPC]
-    void DeActiveEmoji(){
-        emoji.SetActive(false);
+    void DeActiveEmoji(int index){
+        Emojis[index].SetActive(false);
     }
     
 }
