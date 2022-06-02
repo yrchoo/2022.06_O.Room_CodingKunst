@@ -10,7 +10,11 @@ using UnityEngine.UI;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     private readonly string gameVersion = "v1.0";
-   
+
+    public GameObject Conference;
+    public GameObject School;
+    public GameObject Office;
+
     public ChatManager CM;
     public ChangeScene CS;
 
@@ -42,7 +46,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public InputField RoomNum;
     public Toggle SecretToggle;
     public InputField SecretInput;
-    //SecretInput.characterLimit = 6;
+    public Dropdown RoomKindDropdown;
 
     [Header("Chat")]
     public GameObject Chat;
@@ -285,8 +289,30 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #region 방
     public void CreateConfirmBtn()
     {
-        
-        if(RoomInput.text != "" && RoomNum.text != "")
+        //Debug.Log("??" + RoomKindDropdown.value);
+        //1
+        if (RoomKindDropdown.value == 0)
+        {
+            Conference.SetActive(true);
+            School.SetActive(false);
+            Office.SetActive(false);
+        }
+        //2
+        else if (RoomKindDropdown.value == 1)
+        {
+            Conference.SetActive(false);
+            School.SetActive(true);
+            Office.SetActive(false);
+        }
+        //3
+        else if (RoomKindDropdown.value == 2)
+        {
+            Conference.SetActive(false);
+            School.SetActive(false);
+            Office.SetActive(true);
+        }
+
+        if (RoomInput.text != "" && RoomNum.text != "")
         {           
             byte numByte = byte.Parse(RoomNum.text);      
             if(!SecretToggle.isOn) //일반방
