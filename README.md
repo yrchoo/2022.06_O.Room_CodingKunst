@@ -9,4 +9,4 @@ https://drive.google.com/file/d/1PWjDK4Til_5-QuvWT5fU-Qz-kDC1K16M/view?usp=shari
 https://drive.google.com/file/d/1JRLawoeY8h7XN3VwmdukzVx49DF0XnJ_/view?usp=sharing
 
 # 수상내역
-- 2022 한성공학경진대회 동상
+- [2022 한성공학경진대회 동상](https://github.com/yrchoo/2022.06_O.Room_CodingKunst/assets/101492513/d3102fd5-006f-43fe-9692-ba12f551bb3a)
